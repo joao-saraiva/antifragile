@@ -42,6 +42,7 @@
 [ext_resource path="res://scenes/Haytham.gd" type="Script" id=40]
 
 [sub_resource type="CapsuleShape2D" id=1]
+height = 7.89848
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -81,6 +82,6 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 122.381, 89.8581 )
 frames = SubResource( 2 )
-animation = "fall"
-frame = 3
+animation = "idle"
+frame = 5
 playing = true
