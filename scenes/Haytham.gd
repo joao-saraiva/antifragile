@@ -18,35 +18,21 @@ func _physics_process(delta):
 	movement.x = horizontal_axis*walk_speed
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		movement.y = jump_speed
-		
-	move_and_slide(movement,Vector2.UP)
+	
+	move_and_slide_with_snap(movement, Vector2(0,2), Vector2.UP, true, 4, 0.9)
 	update_animations()
 	
 func update_animations():
 	if movement.x>0 :
-		$AnimatedSprite.scale.x = 2
+		$AnimatedSprite.scale.x = 1
 	elif movement.x<0:
-		$AnimatedSprite.scale.x = -2
+		$AnimatedSprite.scale.x = -1
 		
-		
-		if is_on_floor():
-			if abs(movement.x)>0:
-				$AnimatedSprite.play("walking")
-			else:
-				$AnimatedSprite.play("idle")
+	if is_on_floor():
+		if abs(movement.x)>0:
+			$AnimatedSprite.play("walking")
 		else:
-			$AnimatedSprite.play("jump")
-			
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+			$AnimatedSprite.play("idle")
+	else:
+		$AnimatedSprite.play("jump")
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
