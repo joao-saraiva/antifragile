@@ -68,7 +68,7 @@ animations = [ {
 "speed": 8.0
 }, {
 "frames": [ ExtResource( 38 ), ExtResource( 37 ), ExtResource( 37 ) ],
-"loop": true,
+"loop": false,
 "name": "land",
 "speed": 5.0
 } ]
@@ -82,8 +82,8 @@ script = ExtResource( 40 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "idle"
-frame = 12
+animation = "land"
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
