@@ -50,15 +50,24 @@ func update_animations():
 		elif Input.is_action_just_pressed("attack_strike"):
 			attacking()
 		elif abs(movement.x) > 0:
-			$AnimatedSprite.play("walking")
+			if not playing_attack_animation():
+				$AnimatedSprite.play("walking")
 		elif not playing_land_animation() :
 			if not playing_attack_animation():
 				$AnimatedSprite.play("idle")
 	else:
 		if movement.y > 0:
-			$AnimatedSprite.play("fall")
+			if not playing_attack_animation():
+				$AnimatedSprite.play("fall")
+				if Input.is_action_just_pressed("attack_strike"):
+					attacking()
 		else:
-			$AnimatedSprite.play("jump")
+			if not playing_attack_animation():
+				$AnimatedSprite.play("jump")
+				if Input.is_action_just_pressed("attack_strike"):
+					attacking()
+					pass
+					
 	
 	last_animation = $AnimatedSprite.animation 
 
@@ -70,7 +79,6 @@ func playing_attack_animation():
 func attacking():
 	
 	$AnimatedSprite.play("attack_Strike")
-	print("oi")
 	$Swordhit/sword_strike.disabled = false
 	$Swordhit/wait.start()
 	
