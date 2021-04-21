@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/Inferno/enemies/skeleton/skeleton(2).tres" type="Texture" id=1]
 [ext_resource path="res://assets/Inferno/enemies/skeleton/skeleton(5).tres" type="Texture" id=2]
@@ -7,25 +7,63 @@
 [ext_resource path="res://assets/Inferno/enemies/skeleton/skeleton(4).tres" type="Texture" id=5]
 [ext_resource path="res://assets/Inferno/enemies/skeleton/skeleton(6).tres" type="Texture" id=6]
 [ext_resource path="res://assets/Inferno/enemies/skeleton/Skeleton.gd" type="Script" id=7]
+[ext_resource path="res://assets/Inferno/enemies/skeleton/skeleton_attack(4).tres" type="Texture" id=8]
+[ext_resource path="res://assets/Inferno/enemies/skeleton/skeleton_attack(5).tres" type="Texture" id=9]
+[ext_resource path="res://assets/Inferno/enemies/skeleton/skeleton_attack(1).tres" type="Texture" id=10]
+[ext_resource path="res://assets/Inferno/enemies/skeleton/skeleton_attack(6).tres" type="Texture" id=11]
+[ext_resource path="res://assets/Inferno/enemies/skeleton/skeleton_attack(3).tres" type="Texture" id=12]
+[ext_resource path="res://assets/Inferno/enemies/skeleton/skeleton_attack(2).tres" type="Texture" id=13]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "attack",
+"speed": 8.0
+}, {
 "frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "walk",
-"speed": 5.0
+"speed": 8.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 10, 16.6453 )
+
+[sub_resource type="SegmentShape2D" id=5]
+a = Vector2( 0.257252, -16.4906 )
+b = Vector2( 0.46748, 17.5658 )
 
 [node name="Skeleton" type="KinematicBody2D"]
 script = ExtResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "walk"
-frame = 5
+animation = "attack"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
+
+[node name="DetectedPlayer" type="Area2D" parent="."]
+
+[node name="Detected" type="CollisionShape2D" parent="DetectedPlayer"]
+position = Vector2( 26.7745, -1.58393 )
+shape = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="DetectedPlayer"]
+wait_time = 0.3
+
+[node name="AttackSkeleton" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="Attack" type="CollisionShape2D" parent="AttackSkeleton"]
+position = Vector2( 12.9288, -1.89202 )
+shape = SubResource( 5 )
+[connection signal="body_entered" from="DetectedPlayer" to="." method="_on_DetectedPlayer_body_entered"]
+[connection signal="timeout" from="DetectedPlayer/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="AttackSkeleton" to="." method="_on_AttackSkeleton_body_entered"]
