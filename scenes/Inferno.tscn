@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/Inferno/inferno.tres" type="Texture" id=1]
 [ext_resource path="res://scenes/Haytham.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/HUD/PlayStation - Castlevania Symphony of the Night - Hud.png" type="Texture" id=3]
 
 [sub_resource type="TileSet" id=1]
 0/name = "inferno.tres 0"
@@ -508,7 +507,3 @@ tile_data = PoolIntArray( 6816302, 0, 0, 9568733, 0, 0, 14418261, 0, 0, 17498521
 
 [node name="Haytham" parent="." instance=ExtResource( 2 )]
 position = Vector2( 509.026, 291.109 )
-
-[node name="PlayStation - Castlevania Symphony of the Night - Hud" type="Sprite" parent="."]
-position = Vector2( 370.003, 514.051 )
-texture = ExtResource( 3 )
