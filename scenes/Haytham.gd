@@ -72,4 +72,11 @@ func attacking():
 	$AnimatedSprite.play("attack_Strike")
 	print("oi")
 	$Swordhit/sword_strike.disabled = false
+	$Swordhit/wait.start()
+	
 		
+
+
+func _on_wait_timeout():
+	$Swordhit/sword_strike.disabled = true
+	pass # Replace with function body.
