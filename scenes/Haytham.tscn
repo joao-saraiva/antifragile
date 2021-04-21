@@ -40,7 +40,7 @@
 [ext_resource path="res://assets/Main_Character/fall(3).tres" type="Texture" id=39]
 [ext_resource path="res://scenes/Haytham.gd" type="Script" id=40]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ) ],
 "loop": true,
@@ -81,7 +81,7 @@ height = 17.1035
 script = ExtResource( 40 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 1 )
+frames = SubResource( 3 )
 animation = "land"
 frame = 2
 playing = true
