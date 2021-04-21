@@ -37,7 +37,7 @@ func _physics_process(delta):
 	
 	move_and_slide_with_snap(movement, Vector2(0,2), Vector2.UP, true, 4, 0.9)
 	update_animations()
-
+	
 func update_animations():
 	if movement.x > 0:
 		$AnimatedSprite.scale.x = 1
@@ -47,10 +47,13 @@ func update_animations():
 	if is_on_floor():
 		if last_movement_y > 500:
 			$AnimatedSprite.play("land")
+		elif Input.is_action_just_pressed("attack_strike"):
+			attacking()
 		elif abs(movement.x) > 0:
 			$AnimatedSprite.play("walking")
-		elif not playing_land_animation():
-			$AnimatedSprite.play("idle")
+		elif not playing_land_animation() :
+			if not playing_attack_animation():
+				$AnimatedSprite.play("idle")
 	else:
 		if movement.y > 0:
 			$AnimatedSprite.play("fall")
@@ -61,3 +64,12 @@ func update_animations():
 
 func playing_land_animation():
 	return last_animation == "land" and $AnimatedSprite.frame != 2
+func playing_attack_animation():
+	return last_animation == "attack_Strike" and $AnimatedSprite.frame !=3
+	
+func attacking():
+	
+	$AnimatedSprite.play("attack_Strike")
+	print("oi")
+	$Swordhit/sword_strike.disabled = false
+		

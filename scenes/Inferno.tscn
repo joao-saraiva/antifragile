@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/Inferno/inferno.tres" type="Texture" id=1]
 [ext_resource path="res://scenes/Haytham.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/Skeleton.tscn" type="PackedScene" id=3]
 
 [sub_resource type="TileSet" id=1]
 0/name = "inferno.tres 0"
@@ -498,15 +497,13 @@ tile_data = PoolIntArray( 9306745, 9, 0, 10027680, 10, 0, 10027694, 5, 0, 101587
 tile_set = SubResource( 2 )
 cell_size = Vector2( 1, 1 )
 format = 1
+tile_data = PoolIntArray( 18285349, 1, 0, 18678540, 0, 0 )
 
 [node name="Ground" type="TileMap" parent="."]
 tile_set = SubResource( 10 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 6816302, 0, 0, 9568733, 0, 0, 14418261, 0, 0, 17498521, 0, 0, 19464899, 0, 0, 20316637, 0, 0, 21103134, 14, 0, 21496378, 7, 0, 21496558, 8, 0, 21496606, 7, 0, 21496735, 10, 0, 21562042, 9, 0, 21758839, 13, 0, 21955417, 12, 0, 22216723, 5, 0, 22216963, 5, 0, 22217203, 5, 0, 22217443, 5, 0, 24313875, 6, 0, 24314115, 6, 0, 24314355, 6, 0, 24314595, 6, 0, 26411027, 6, 0, 26411267, 6, 0, 26411507, 6, 0, 26411747, 6, 0, 28508179, 6, 0, 28508419, 6, 0, 28508659, 6, 0, 28508899, 6, 0, 30605331, 6, 0, 30605571, 6, 0, 30605811, 6, 0, 30606051, 6, 0 )
+tile_data = PoolIntArray( 6816302, 0, 0, 9568733, 0, 0, 14418261, 0, 0, 17498521, 0, 0, 20316637, 0, 0, 21103134, 14, 0, 21496378, 7, 0, 21496558, 8, 0, 21496606, 7, 0, 21496735, 10, 0, 21562042, 9, 0, 21758839, 13, 0, 21955417, 12, 0, 22216723, 5, 0, 22216963, 5, 0, 22217203, 5, 0, 22217443, 5, 0, 24313875, 6, 0, 24314115, 6, 0, 24314355, 6, 0, 24314595, 6, 0, 26411027, 6, 0, 26411267, 6, 0, 26411507, 6, 0, 26411747, 6, 0, 28508179, 6, 0, 28508419, 6, 0, 28508659, 6, 0, 28508899, 6, 0, 30605331, 6, 0, 30605571, 6, 0, 30605811, 6, 0, 30606051, 6, 0 )
 
 [node name="Haytham" parent="." instance=ExtResource( 2 )]
 position = Vector2( 509.026, 291.109 )
-
-[node name="Node2D" parent="." instance=ExtResource( 3 )]
-position = Vector2( 598.878, 314.296 )
