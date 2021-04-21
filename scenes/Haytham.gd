@@ -26,7 +26,10 @@ func _physics_process(delta):
 	else:
 		movement.y = gravity
 		
-	if not playing_land_animation():
+	if Input.is_action_just_pressed("attack_strike") and not is_landing() and not is_attacking():
+		attack()
+		
+	if not is_landing():
 		var horizontal_axis = Input.get_action_strength("right")-Input.get_action_strength("left")
 		
 		movement.x = horizontal_axis*walk_speed
@@ -41,52 +44,43 @@ func _physics_process(delta):
 func update_animations():
 	if movement.x > 0:
 		$AnimatedSprite.scale.x = 1
+		$Swordhit/sword_strike.scale.x = 1
+		$Swordhit/sword_strike.position.x = 11.914
 	elif movement.x < 0:
 		$AnimatedSprite.scale.x = -1
-		
-	if is_on_floor():
-		if last_movement_y > 500:
-			$AnimatedSprite.play("land")
-		elif Input.is_action_just_pressed("attack_strike"):
-			attacking()
-		elif abs(movement.x) > 0:
-			if not playing_attack_animation():
+		$Swordhit/sword_strike.scale.x = -1
+		$Swordhit/sword_strike.position.x = -11.914
+	if not is_attacking():
+		if is_on_floor():
+			if last_movement_y > 500:
+				$AnimatedSprite.play("land")
+			elif abs(movement.x) > 0:
 				$AnimatedSprite.play("walking")
-		elif not playing_land_animation() :
-			if not playing_attack_animation():
+			elif not is_landing():
 				$AnimatedSprite.play("idle")
-	else:
-		if movement.y > 0:
-			if not playing_attack_animation():
-				$AnimatedSprite.play("fall")
-				if Input.is_action_just_pressed("attack_strike"):
-					attacking()
 		else:
-			if not playing_attack_animation():
+			if movement.y > 0:
+				$AnimatedSprite.play("fall")
+			else:
 				$AnimatedSprite.play("jump")
-				if Input.is_action_just_pressed("attack_strike"):
-					attacking()
-					pass
-					
-	
 	last_animation = $AnimatedSprite.animation 
 
-func playing_land_animation():
+func is_landing():
 	return last_animation == "land" and $AnimatedSprite.frame != 2
-func playing_attack_animation():
-	return last_animation == "attack_Strike" and $AnimatedSprite.frame !=3
 	
-func attacking():
+func is_attacking():
+	return last_animation == "attack_Strike" and $AnimatedSprite.frame != 4
 	
+func attack():
 	$AnimatedSprite.play("attack_Strike")
+	last_animation = $AnimatedSprite.animation 
 	$Swordhit/sword_strike.disabled = false
+	print("on")
 	$Swordhit/wait.start()
 	
-		
-
-
 func _on_wait_timeout():
 	$Swordhit/sword_strike.disabled = true
+	print("off")
 	pass # Replace with function body.
 
 
