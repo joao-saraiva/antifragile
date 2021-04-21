@@ -7,6 +7,16 @@ export var movement = Vector2(0,0)
 var last_movement_y = 0
 var last_animation = ""
 
+# Esses status serão salvos por arquivo para não serem resetados
+# cada vez q o jogo for iniciado. Estão sendo declarados aqui
+# somente para teste
+var life = 100
+var strength = 1
+var attack = 1
+var defense = 1
+var chaos = 0
+var in_fury_state = false
+
 func _physics_process(delta):
 	last_movement_y = movement.y
 	if is_on_ceiling():
