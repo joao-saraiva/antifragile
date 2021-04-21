@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://assets/Main_Character/idle(15).tres" type="Texture" id=1]
 [ext_resource path="res://assets/Main_Character/idle(13).tres" type="Texture" id=2]
@@ -51,8 +51,8 @@ animations = [ {
 "name": "idle",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 28 ), ExtResource( 42 ), ExtResource( 41 ), ExtResource( 43 ) ],
-"loop": true,
+"frames": [ ExtResource( 28 ), ExtResource( 42 ), ExtResource( 41 ), ExtResource( 43 ), ExtResource( 43 ) ],
+"loop": false,
 "name": "attack_Strike",
 "speed": 8.0
 }, {
@@ -86,16 +86,13 @@ animations = [ {
 radius = 5.69071
 height = 17.1035
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 8.36255, 7.36362 )
-
 [node name="Haytham" type="KinematicBody2D"]
 script = ExtResource( 40 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "attack_Strike"
-frame = 1
+animation = "idle"
+frame = 11
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -108,9 +105,10 @@ zoom = Vector2( 0.5, 0.5 )
 
 [node name="Swordhit" type="Area2D" parent="."]
 
-[node name="sword_strike" type="CollisionShape2D" parent="Swordhit"]
-position = Vector2( 11.9141, -2.97434 )
-shape = SubResource( 3 )
+[node name="sword_strike" type="CollisionPolygon2D" parent="Swordhit"]
+position = Vector2( 11.914, -2.974 )
+build_mode = 1
+polygon = PoolVector2Array( -5.12432, 12.4077, 7.11431, 13.0022, 7.11431, 11.9721, 9.11883, 11.9442, 9.09099, 10.9698, 10.1211, 10.942, 10.1211, 9.96756, 11.0955, 9.93972, 11.1234, 7.96303, 12.1256, 7.96303, 12.0726, -1.06548, 11.0793, -1.03237, 11.1062, -4.03652, 10.105, -4.03652, 10.0842, -5.99707, 9.10391, -6.01792, 9.12476, -6.97734, 8.09867, -7.01591, 8.09867, -8.01991, 7.11436, -8.01991, 7.09467, -9.02391, 6.09067, -9.02391, 6.09067, -10.0082, 5.08667, -10.0279, 5.10636, -11.0122, 3.13773, -11.0319, 3.07058, -12.0274, 1.08408, -12.0274, 1.08408, -13.0372, -1.89566, -13.0372, -1.91221, -14.0139, -5.98715, -13.9858, -5.98715, -15.0489, -22.878, -15.0489, -22.878, -14.0645, -26.9333, -14.0252, -26.9727, -13.0015, -29.9276, -12.9942, -29.9276, -12.001, -31.9141, -11.9679, -31.9141, -11.107, -33.9006, -11.0739, -33.9006, -10.0145, -34.8938, -9.98136, -34.8938, -9.05433, -35.887, -8.98811, -35.887, -8.02798, -34.9931, -8.02798, -34.8938, -9.05433, -27.9411, -9.02122, -27.8749, -8.02798, -23.9681, -8.02798, -23.9019, -7.03473, -20.9552, -7.03473, -20.9221, -6.00837, -18.8694, -6.04148, -16.2891, -10.2132, -11.7863, -12.2862, -5.49571, -8.90913 )
 disabled = true
 
 [node name="wait" type="Timer" parent="Swordhit"]
