@@ -6,6 +6,7 @@ export var jump_speed = -300
 export var movement = Vector2(0,0)
 var last_movement_y = 0
 var last_animation = ""
+var is_dead = false
 var esp32Esquerda = false
 var esp32Direita = false
 
@@ -42,26 +43,28 @@ func _physics_process(delta):
 		movement.y+= gravity
 	else:
 		movement.y = gravity
-		
-	if Input.is_action_just_pressed("attack_strike") and not is_landing() and not is_attacking():
-		attack()
-		
-	if not is_landing():
-		var horizontal_axis = Input.get_action_strength("right")-Input.get_action_strength("left")
-		
-		movement.x = horizontal_axis*walk_speed
-		if Input.is_action_just_pressed("jump") and is_on_floor():
-			movement.y = jump_speed
-	else:
-		movement.x = 0
 	
-	if esp32Esquerda == true:
-		movement.x = -1*walk_speed
-	if esp32Direita == true:
-		movement.x = 1*walk_speed
+	if not is_dead:	
+		if Input.is_action_just_pressed("attack_strike") and not is_landing() and not is_attacking():
+			attack()
+			
+		if not is_landing():
+			var horizontal_axis = Input.get_action_strength("right")-Input.get_action_strength("left")
+			movement.x = horizontal_axis*walk_speed
+			
+			if Input.is_action_just_pressed("jump") and is_on_floor():
+				movement.y = jump_speed
+		else:
+			movement.x = 0
+		
+		if esp32Esquerda == true:
+			movement.x = -1*walk_speed
+		if esp32Direita == true:
+			movement.x = 1*walk_speed
 	
 	move_and_slide_with_snap(movement, Vector2(0,2), Vector2.UP, true, 4, 0.9)
-	update_animations()
+	if not is_dead:
+		update_animations()
 
 func update_animations():
 	if movement.x > 0:
@@ -72,21 +75,23 @@ func update_animations():
 		$AnimatedSprite.scale.x = -1
 		$Swordhit/sword_strike.scale.x = -1
 		$Swordhit/sword_strike.position.x = -11.914
-	if not is_attacking():
-		if life <= 0:
-			$AnimatedSprite.play("death")
-		if is_on_floor():
-			if last_movement_y > 500:
-				$AnimatedSprite.play("land")
-			elif abs(movement.x) > 0:
-				$AnimatedSprite.play("walking")
-			elif not is_landing():
-				$AnimatedSprite.play("idle")
+	
+	if life <= 0:
+		$AnimatedSprite.play("death")
+		is_dead = true
+		movement.x = 0
+	elif is_on_floor():
+		if last_movement_y > 500:
+			$AnimatedSprite.play("land")
+		elif abs(movement.x) > 0 and not is_attacking():
+			$AnimatedSprite.play("walking")
+		elif not is_landing() and not is_attacking():
+			$AnimatedSprite.play("idle")
+	elif not is_attacking() or movement.y == jump_speed:
+		if movement.y > 0:
+			$AnimatedSprite.play("fall")
 		else:
-			if movement.y > 0:
-				$AnimatedSprite.play("fall")
-			else:
-				$AnimatedSprite.play("jump")
+			$AnimatedSprite.play("jump")
 	last_animation = $AnimatedSprite.animation 
 
 func is_landing():
@@ -97,7 +102,7 @@ func is_attacking():
 
 func attack():
 	$AnimatedSprite.play("attack_Strike")
-	last_animation = $AnimatedSprite.animation 
+	last_animation = $AnimatedSprite.animation
 	$Swordhit/sword_strike.disabled = false
 	#print("on")
 	$Swordhit/wait.start()

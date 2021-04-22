@@ -62,12 +62,12 @@ func _on_Timer_timeout():
 
 func _on_AttackSkeleton_body_entered(body):
 	player.life -=1
-	if player.position.x < position.x:
-		player.position.x -= 30
-		player.position.y -= 10
-	else:
-		player.position.x += 30
-		player.position.y -= 10
+	#if player.position.x < position.x:
+	#	player.position.x -= 30
+	#	player.position.y -= 10
+	#else:
+	#	player.position.x += 30
+	#	player.position.y -= 10
 	print(player.life)
 
 func _on_Animation_time_timeout():
