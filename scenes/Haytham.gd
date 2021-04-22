@@ -6,6 +6,8 @@ export var jump_speed = -300
 export var movement = Vector2(0,0)
 var last_movement_y = 0
 var last_animation = ""
+var esp32Esquerda = false
+var esp32Direita = false
 
 # Esses status serão salvos por arquivo para não serem resetados
 # cada vez q o jogo for iniciado. Estão sendo declarados aqui
@@ -18,16 +20,17 @@ var chaos = 0
 var in_fury_state = false
 
 func _ready():
-	Serial.connect("esquerda",self,"teste_serial")
+	Serial.connect("esquerda",self,"esquerda")
+	Serial.connect("parado",self,"parado")
+	Serial.connect("direita",self,"direita")
 
-func teste_serial():
-	if not is_landing():
-		movement.x = -1*walk_speed
-		move_and_slide_with_snap(movement, Vector2(0,2), Vector2.UP, true, 4, 0.9)
-		
-		pass
-	print("oi")
-	pass
+func parado():
+	esp32Esquerda = false;
+	esp32Direita = false;
+func esquerda():
+	esp32Esquerda = true;
+func direita():
+	esp32Direita = true;
 func _physics_process(delta):
 	
 	last_movement_y = movement.y
@@ -49,6 +52,11 @@ func _physics_process(delta):
 			movement.y = jump_speed
 	else:
 		movement.x = 0
+	
+	if esp32Esquerda == true:
+		movement.x = -1*walk_speed
+	if esp32Direita == true:
+		movement.x = 1*walk_speed
 	
 	move_and_slide_with_snap(movement, Vector2(0,2), Vector2.UP, true, 4, 0.9)
 	update_animations()
