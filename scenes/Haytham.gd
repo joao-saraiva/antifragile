@@ -17,7 +17,19 @@ var defense = 1
 var chaos = 0
 var in_fury_state = false
 
+func _ready():
+	Serial.connect("esquerda",self,"teste_serial")
+
+func teste_serial():
+	if not is_landing():
+		movement.x = -1*walk_speed
+		move_and_slide_with_snap(movement, Vector2(0,2), Vector2.UP, true, 4, 0.9)
+		
+		pass
+	print("oi")
+	pass
 func _physics_process(delta):
+	
 	last_movement_y = movement.y
 	if is_on_ceiling():
 		movement.y = 0
