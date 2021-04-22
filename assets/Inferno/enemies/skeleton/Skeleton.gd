@@ -17,6 +17,8 @@ func _ready():
 	
 func _physics_process(delta):
 	
+	if player.life <=0:
+		$AttackSkeleton.monitoring = false
 	
 	
 	if player.position.x < position.x and next_direction != -1:

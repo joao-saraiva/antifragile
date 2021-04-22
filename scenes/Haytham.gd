@@ -12,7 +12,7 @@ var esp32Direita = false
 # Esses status serão salvos por arquivo para não serem resetados
 # cada vez q o jogo for iniciado. Estão sendo declarados aqui
 # somente para teste
-var life = 100
+var life = 1
 var strength = 1
 var attack = 1
 var defense = 1
@@ -72,6 +72,8 @@ func update_animations():
 		$Swordhit/sword_strike.scale.x = -1
 		$Swordhit/sword_strike.position.x = -11.914
 	if not is_attacking():
+		if life <= 0:
+			$AnimatedSprite.play("death")
 		if is_on_floor():
 			if last_movement_y > 500:
 				$AnimatedSprite.play("land")
