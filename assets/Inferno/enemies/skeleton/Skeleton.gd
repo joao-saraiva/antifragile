@@ -61,6 +61,7 @@ func _on_Timer_timeout():
 	$AttackSkeleton.monitoring = false
 
 func _on_AttackSkeleton_body_entered(body):
+	print(body.life)
 	player.life -=1
 	#if player.position.x < position.x:
 	#	player.position.x -= 30

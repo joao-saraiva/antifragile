@@ -50,6 +50,11 @@ func _physics_process(delta):
 	else:
 		movement.y = gravity
 	
+	if life <= 0:
+		$AnimatedSprite.play("death")
+		is_dead = true
+		movement.x = 0
+	
 	if not is_dead:
 		if Input.is_action_just_pressed("attack_slash") and not is_landing() and not is_attacking():
 			attack()
@@ -87,11 +92,7 @@ func update_animations():
 			$Swordhit/sword_strike.scale.x = -1
 			$Swordhit/sword_strike.position.x = -11.914
 	
-	if life <= 0:
-		$AnimatedSprite.play("death")
-		is_dead = true
-		movement.x = 0
-	elif is_on_floor():
+	if is_on_floor():
 		if last_movement_y > 500:
 			$AnimatedSprite.play("land")
 		elif abs(movement.x) > 0 and not is_attacking():
