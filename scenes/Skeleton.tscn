@@ -19,7 +19,7 @@ animations = [ {
 "frames": [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "attack",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 6 ) ],
 "loop": true,
@@ -29,10 +29,10 @@ animations = [ {
 
 [sub_resource type="CapsuleShape2D" id=2]
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 10, 16.6453 )
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 3.50951, 16.1295 )
 
-[sub_resource type="SegmentShape2D" id=5]
+[sub_resource type="SegmentShape2D" id=4]
 a = Vector2( 0.257252, -16.4906 )
 b = Vector2( 0.46748, 17.5658 )
 
@@ -42,7 +42,7 @@ script = ExtResource( 7 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "attack"
-frame = 1
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -51,19 +51,23 @@ shape = SubResource( 2 )
 [node name="DetectedPlayer" type="Area2D" parent="."]
 
 [node name="Detected" type="CollisionShape2D" parent="DetectedPlayer"]
-position = Vector2( 26.7745, -1.58393 )
-shape = SubResource( 4 )
+position = Vector2( 18.1483, -1.20888 )
+shape = SubResource( 3 )
 
 [node name="Timer" type="Timer" parent="DetectedPlayer"]
-wait_time = 0.3
+wait_time = 0.2
 
 [node name="AttackSkeleton" type="Area2D" parent="."]
 monitoring = false
 monitorable = false
 
 [node name="Attack" type="CollisionShape2D" parent="AttackSkeleton"]
-position = Vector2( 12.9288, -1.89202 )
-shape = SubResource( 5 )
+position = Vector2( 14.085, -0.840899 )
+shape = SubResource( 4 )
+
+[node name="Animation_time" type="Timer" parent="."]
+wait_time = 0.8
 [connection signal="body_entered" from="DetectedPlayer" to="." method="_on_DetectedPlayer_body_entered"]
 [connection signal="timeout" from="DetectedPlayer/Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="AttackSkeleton" to="." method="_on_AttackSkeleton_body_entered"]
+[connection signal="timeout" from="Animation_time" to="." method="_on_Animation_time_timeout"]

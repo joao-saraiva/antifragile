@@ -61,6 +61,7 @@ func _physics_process(delta):
 	move_and_slide_with_snap(movement, Vector2(0,2), Vector2.UP, true, 4, 0.9)
 	update_animations()
 	
+	
 func update_animations():
 	if movement.x > 0:
 		$AnimatedSprite.scale.x = 1

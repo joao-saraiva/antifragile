@@ -11,9 +11,10 @@ var last_animation = ""
 onready var player = get_parent().get_node("Haytham")
 
 func _ready():
-	if not is_attacking():
-		$AnimatedSprite.play("walk")
-	last_animation = $AnimatedSprite.animation
+	
+	$AnimatedSprite.play("walk")
+	
+	
 func _physics_process(delta):
 	
 	
@@ -22,9 +23,9 @@ func _physics_process(delta):
 		next_direction = -1
 		$AnimatedSprite.scale.x=-1
 		$AttackSkeleton/Attack.scale.x = -1
-		$AttackSkeleton/Attack.position.x = -12.929
+		$AttackSkeleton/Attack.position.x = -18.148
 		$DetectedPlayer/Detected.scale.x = -1
-		$DetectedPlayer/Detected.position.x = -24.975
+		$DetectedPlayer/Detected.position.x = -14.085
 		next_direction_time = OS.get_ticks_msec()+react_time
 		
 		
@@ -33,9 +34,9 @@ func _physics_process(delta):
 		next_direction = 1
 		$AnimatedSprite.scale.x=1
 		$AttackSkeleton/Attack.scale.x = 1
-		$AttackSkeleton/Attack.position.x = 12.929
+		$AttackSkeleton/Attack.position.x = 18.148
 		$DetectedPlayer/Detected.scale.x = 1
-		$DetectedPlayer/Detected.position.x = 24.975
+		$DetectedPlayer/Detected.position.x = 14.085
 		next_direction_time = OS.get_ticks_msec()+react_time
 		
 		
@@ -53,28 +54,32 @@ func _physics_process(delta):
 	move_and_slide_with_snap(movement, Vector2(0,2), Vector2.UP, true, 4, 0.9)
 	
 	
+	update_animations()
+
+func update_animations():
+	if  not last_animation:
+		$AnimatedSprite.play("walk")
+		
 	
-
-func is_attacking():
-	return last_animation == "attack" and $AnimatedSprite.frame !=5
-	pass
-
-
+	
 
 
 func _on_DetectedPlayer_body_entered(body):
 	if(body.get_name() == "Haytham"):
 		$AnimatedSprite.play("attack")
 		
+		last_animation = "attack" and $AnimatedSprite.frame!=5
+		$Animation_time.start()
 		
-		$DetectedPlayer/Timer.start()
-		$AttackSkeleton.monitoring = true
+		
+		
 		
 
 
 	
 
 func _on_Timer_timeout():
+	
 	$AttackSkeleton.monitoring = false
 	
 	pass # Replace with function body.
@@ -84,7 +89,17 @@ func _on_AttackSkeleton_body_entered(body):
 	player.life -=1
 	if player.position.x < position.x:
 		player.position.x -= 30
+		player.position.y -= 10
 	else:
 		player.position.x += 30
+		player.position.y -= 10
 	print(player.life) 
+	pass # Replace with function body.
+
+
+func _on_Animation_time_timeout():
+	$DetectedPlayer/Timer.start()
+	$AttackSkeleton.monitoring = true
+	last_animation= false
+	
 	pass # Replace with function body.
