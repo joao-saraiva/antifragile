@@ -27,12 +27,14 @@ func _ready():
 func parado():
 	esp32Esquerda = false;
 	esp32Direita = false;
+
 func esquerda():
 	esp32Esquerda = true;
+
 func direita():
 	esp32Direita = true;
+
 func _physics_process(delta):
-	
 	last_movement_y = movement.y
 	if is_on_ceiling():
 		movement.y = 0
@@ -60,8 +62,7 @@ func _physics_process(delta):
 	
 	move_and_slide_with_snap(movement, Vector2(0,2), Vector2.UP, true, 4, 0.9)
 	update_animations()
-	
-	
+
 func update_animations():
 	if movement.x > 0:
 		$AnimatedSprite.scale.x = 1
@@ -90,24 +91,21 @@ func update_animations():
 
 func is_landing():
 	return last_animation == "land" and $AnimatedSprite.frame != 2
-	
+
 func is_attacking():
 	return last_animation == "attack_Strike" and $AnimatedSprite.frame != 4
-	
+
 func attack():
 	$AnimatedSprite.play("attack_Strike")
 	last_animation = $AnimatedSprite.animation 
 	$Swordhit/sword_strike.disabled = false
 	#print("on")
 	$Swordhit/wait.start()
-	
+
 func _on_wait_timeout():
 	$Swordhit/sword_strike.disabled = true
 	#print("off")
-	pass # Replace with function body.
-
 
 func _on_Swordhit_body_entered(body):
-	if (body.get_name() == "Skeleton"):
-		print("oi")
-	pass # Replace with function body.
+	var enemy = get_parent().get_node(body.get_name())
+	enemy.take_damage("slash")

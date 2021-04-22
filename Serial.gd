@@ -10,22 +10,19 @@ signal esquerda()
 signal direita()
 signal parado()
 
-
-
 func _ready():
 	open()
-	pass
-	
+
 func _exit_tree():
 	close()
 
 func open():
 	is_port_open = serial_port.open_port("COM3", 9600)
 	print(is_port_open)
-	
+
 func write(text):
 	serial_port.write_text(text)
-	
+
 func close():
 	is_port_open = false
 	serial_port.close_port()
@@ -41,8 +38,6 @@ func _process(delta):
 					text = ""
 				else:
 					text+=c
-			#print(t)
-		
 
 func on_text_received(text): #"1 Sobe"
 	var command_array = text.split(" ")
