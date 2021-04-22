@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export var gravity = 10
-export var walk_speed = 60
+export var walk_speed = 25
 var movement = Vector2(walk_speed, 0)
 var react_time = 100
 var direction = 0

@@ -16,15 +16,15 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "attack",
-"speed": 10.0
+"speed": 6.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "walk",
-"speed": 8.0
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -33,8 +33,8 @@ animations = [ {
 extents = Vector2( 3.50951, 16.1295 )
 
 [sub_resource type="SegmentShape2D" id=4]
-a = Vector2( 0.257252, -16.4906 )
-b = Vector2( 0.46748, 17.5658 )
+a = Vector2( -5.01812, -18.9843 )
+b = Vector2( 1.18349, -1.95613 )
 
 [node name="Skeleton" type="KinematicBody2D"]
 collision_layer = 3
@@ -43,8 +43,7 @@ script = ExtResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "attack"
-frame = 4
+animation = "walk"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -64,7 +63,7 @@ monitoring = false
 monitorable = false
 
 [node name="Attack" type="CollisionShape2D" parent="AttackSkeleton"]
-position = Vector2( 14.085, -0.840899 )
+position = Vector2( 12, -4.77046 )
 shape = SubResource( 4 )
 
 [node name="Animation_time" type="Timer" parent="."]

@@ -4,6 +4,7 @@ export var gravity = 10
 export var walk_speed = 120
 export var jump_speed = -300
 export var movement = Vector2(0,0)
+var mouse_position = Vector2(0,0)
 var last_movement_y = 0
 var last_animation = ""
 var is_dead = false
@@ -34,6 +35,9 @@ func esquerda():
 
 func direita():
 	esp32Direita = true;
+	
+func _process(delta):
+	mouse_position = get_viewport().get_mouse_position()
 
 func _physics_process(delta):
 	last_movement_y = movement.y
@@ -67,11 +71,11 @@ func _physics_process(delta):
 		update_animations()
 
 func update_animations():
-	if movement.x > 0:
+	if mouse_position.x > 512:
 		$AnimatedSprite.scale.x = 1
 		$Swordhit/sword_strike.scale.x = 1
 		$Swordhit/sword_strike.position.x = 11.914
-	elif movement.x < 0:
+	elif mouse_position.x < 512:
 		$AnimatedSprite.scale.x = -1
 		$Swordhit/sword_strike.scale.x = -1
 		$Swordhit/sword_strike.position.x = -11.914

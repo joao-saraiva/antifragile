@@ -95,8 +95,8 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 5.69071
-height = 17.1035
+radius = 4.0038
+height = 19.8709
 
 [node name="Haytham" type="KinematicBody2D"]
 script = ExtResource( 40 )
@@ -104,7 +104,7 @@ script = ExtResource( 40 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "idle"
-frame = 1
+frame = 11
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
