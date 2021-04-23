@@ -12,7 +12,8 @@ var is_dead = false
 var is_running = false
 var esp32Esquerda = false
 var esp32Direita = false
-
+var esp32Jump = false
+var esp32Attack = false
 # Esses status serão salvos por arquivo para não serem resetados
 # cada vez q o jogo for iniciado. Estão sendo declarados aqui
 # somente para teste
@@ -27,6 +28,8 @@ func _ready():
 	Serial.connect("esquerda",self,"esquerda")
 	Serial.connect("parado",self,"parado")
 	Serial.connect("direita",self,"direita")
+	Serial.connect("jump",self,"jump")
+	Serial.connect("attack",self,"EspAttack")
 
 func parado():
 	esp32Esquerda = false;
@@ -37,6 +40,12 @@ func esquerda():
 
 func direita():
 	esp32Direita = true;
+	
+func jump():
+	esp32Jump = true;
+	
+func EspAttack():
+	esp32Attack = true;
 	
 func _process(delta):
 	mouse_position = get_viewport().get_mouse_position()
@@ -57,6 +66,11 @@ func _physics_process(delta):
 	
 	if not is_dead:
 		if Input.is_action_just_pressed("attack_slash") and not is_landing() and not is_attacking():
+			$Sword_hit_sound.play()
+			attack()
+			
+		if esp32Attack and not is_landing() and not is_attacking():
+			esp32Attack = false
 			attack()
 		if not is_landing():
 			var horizontal_axis = Input.get_action_strength("right")-Input.get_action_strength("left")
@@ -72,12 +86,16 @@ func _physics_process(delta):
 				movement.y = jump_speed
 		else:
 			movement.x = 0
-		
+		if esp32Jump && is_on_floor() :
+			$Swordhit/sword_strike.disabled = true
+			movement.y = jump_speed
+			esp32Jump = false
 		if esp32Esquerda == true:
 			movement.x = -1*run_speed
 		if esp32Direita == true:
 			movement.x = 1*run_speed
 	
+		
 	move_and_slide_with_snap(movement, Vector2(0,2), Vector2.UP, true, 4, 0.9)
 	if not is_dead:
 		update_animations()

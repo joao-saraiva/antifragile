@@ -118,14 +118,6 @@ func take_damage(attack_style):
 		print("dead")
 		
 
-
-
-
-
-
-
-
-
 func _on_delay_timeout():
 	queue_free()
 	pass # Replace with function body.
