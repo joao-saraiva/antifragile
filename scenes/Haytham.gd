@@ -113,7 +113,9 @@ func update_animations():
 	
 	if is_on_floor():
 		if last_movement_y > 500:
+			$landing.play()
 			$AnimatedSprite.play("land")
+			
 		elif abs(movement.x) > 0 and not is_attacking():
 			if is_running:
 				$AnimatedSprite.play("run")
