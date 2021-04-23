@@ -111,6 +111,7 @@ script = ExtResource( 40 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "walk"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -131,6 +132,12 @@ polygon = PoolVector2Array( -5.12432, 12.4077, 7.11431, 13.0022, 7.11431, 11.972
 disabled = true
 
 [node name="wait" type="Timer" parent="Swordhit"]
-wait_time = 0.3
+wait_time = 0.23
+one_shot = true
+
+[node name="wait2" type="Timer" parent="Swordhit"]
+wait_time = 0.2
+one_shot = true
 [connection signal="body_entered" from="Swordhit" to="." method="_on_Swordhit_body_entered"]
 [connection signal="timeout" from="Swordhit/wait" to="." method="_on_wait_timeout"]
+[connection signal="timeout" from="Swordhit/wait2" to="." method="_on_wait2_timeout"]

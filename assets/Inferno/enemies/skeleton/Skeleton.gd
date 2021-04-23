@@ -26,7 +26,7 @@ func _physics_process(delta):
 		next_direction = -1
 		$AnimatedSprite.scale.x=-1
 		$AttackSkeleton/Attack.scale.x = -1
-		$AttackSkeleton/Attack.position.x = -18.148
+		$AttackSkeleton/Attack.position.x = -12
 		$DetectedPlayer/Detected.scale.x = -1
 		$DetectedPlayer/Detected.position.x = -14.085
 		next_direction_time = OS.get_ticks_msec()+react_time
@@ -34,7 +34,7 @@ func _physics_process(delta):
 		next_direction = 1
 		$AnimatedSprite.scale.x=1
 		$AttackSkeleton/Attack.scale.x = 1
-		$AttackSkeleton/Attack.position.x = 18.148
+		$AttackSkeleton/Attack.position.x = 12
 		$DetectedPlayer/Detected.scale.x = 1
 		$DetectedPlayer/Detected.position.x = 14.085
 		next_direction_time = OS.get_ticks_msec()+react_time
@@ -47,15 +47,17 @@ func _physics_process(delta):
 	update_animations()
 
 func update_animations():
-	if  not last_animation:
+	if  not is_attacking():
 		$AnimatedSprite.play("walk")
 
 func _on_DetectedPlayer_body_entered(body):
 	if(body.get_name() == "Haytham"):
 		$AnimatedSprite.play("attack")
-		
-		last_animation = "attack" and $AnimatedSprite.frame!=5
+		last_animation = "attack"
 		$Animation_time.start()
+
+func is_attacking():
+	return last_animation == "attack" and $AnimatedSprite.frame!=7
 
 func _on_Timer_timeout():
 	$AttackSkeleton.monitoring = false
@@ -74,7 +76,6 @@ func _on_AttackSkeleton_body_entered(body):
 func _on_Animation_time_timeout():
 	$DetectedPlayer/Timer.start()
 	$AttackSkeleton.monitoring = true
-	last_animation= false
 
 func take_damage(attack_style):
 	if attack_style == "slash":

@@ -68,6 +68,7 @@ func _physics_process(delta):
 				is_running = false
 			
 			if Input.is_action_just_pressed("jump") and is_on_floor():
+				$Swordhit/sword_strike.disabled = true
 				movement.y = jump_speed
 		else:
 			movement.x = 0
@@ -118,13 +119,16 @@ func is_attacking():
 func attack():
 	$AnimatedSprite.play("attack_slash")
 	last_animation = $AnimatedSprite.animation
-	$Swordhit/sword_strike.disabled = false
-	#print("on")
+	$Swordhit/wait2.start()
 	$Swordhit/wait.start()
+	
 
 func _on_wait_timeout():
 	$Swordhit/sword_strike.disabled = true
-	#print("off")
+
+func _on_wait2_timeout():
+	if not last_animation == "jump":
+		$Swordhit/sword_strike.disabled = false
 
 func _on_Swordhit_body_entered(body):
 	var enemy = get_parent().get_node(body.get_name())
