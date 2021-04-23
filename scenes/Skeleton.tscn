@@ -16,15 +16,15 @@
 [ext_resource path="res://assets/Inferno/enemies/skeleton/skeleton_death(6).tres" type="Texture" id=14]
 [ext_resource path="res://assets/Inferno/enemies/skeleton/skeleton_death(7).tres" type="Texture" id=15]
 [ext_resource path="res://assets/Inferno/enemies/skeleton/skeleton_death(1).tres" type="Texture" id=16]
-[ext_resource path="res://assets/Inferno/enemies/skeleton/506586__mrthenoronha__kill-enemy-3-8-bit.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/Inferno/enemies/skeleton/[ONTIVA.COM]-Skeleton Hurt (Nr. 1 _ Minecraft Sound) - Sound Effect for editing-HQ.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/Inferno/enemies/skeleton/skeleton_death(4).tres" type="Texture" id=18]
 [ext_resource path="res://assets/Inferno/enemies/skeleton/skeleton_death(5).tres" type="Texture" id=19]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 16 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 11 ) ],
 "loop": true,
-"name": "death",
+"name": "attack",
 "speed": 6.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 6 ) ],
@@ -32,9 +32,9 @@ animations = [ {
 "name": "walk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 16 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
-"name": "attack",
+"name": "death",
 "speed": 6.0
 } ]
 
@@ -57,7 +57,7 @@ script = ExtResource( 7 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "death"
-frame = 3
+frame = 1
 playing = true
 
 [node name="delay" type="Timer" parent="."]

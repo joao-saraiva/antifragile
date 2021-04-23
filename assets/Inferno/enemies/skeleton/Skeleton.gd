@@ -25,12 +25,15 @@ func _ready():
 
 func _physics_process(delta):
 	if is_dead :
+		
 		$AnimatedSprite.play("death")
+		
 		last_animation = "death"
-	
+		
 		if not is_death():
 			queue_free()
 	if life <= 0:
+		
 		is_dead = true
 		$DetectedPlayer/Detected.disabled = true
 		$AttackSkeleton.monitoring = false
@@ -80,14 +83,18 @@ func _on_DetectedPlayer_body_entered(body):
 	if(body.get_name() == "Haytham"):
 		if not is_dead:
 			$AnimatedSprite.play("attack")
+			$Death_sound.play()
 			last_animation = "attack"
 			$Animation_time.start()
+			
 
 func is_attacking():
+	
 	return last_animation == "attack" and $AnimatedSprite.frame!=7
 func is_death():
 	return last_animation == "death" and $AnimatedSprite.frame!=4
 func _on_Timer_timeout():
+	
 	$AttackSkeleton.monitoring = false
 
 func _on_AttackSkeleton_body_entered(body):
