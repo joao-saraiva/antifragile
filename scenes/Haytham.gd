@@ -127,7 +127,7 @@ func update_animations():
 			if esp32Cesquerda:
 				mouse_actived= false
 				esp32Cesquerda= false
-	
+
 	if is_on_floor():
 		if last_movement_y > 500:
 			$landing.play()

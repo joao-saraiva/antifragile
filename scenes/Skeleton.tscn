@@ -54,7 +54,7 @@ script = ExtResource( 7 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "attack"
-frame = 6
+frame = 3
 playing = true
 
 [node name="delay" type="Timer" parent="."]
@@ -73,7 +73,7 @@ position = Vector2( 12, -5.51651 )
 shape = SubResource( 3 )
 
 [node name="Timer" type="Timer" parent="DetectedPlayer"]
-wait_time = 0.2
+wait_time = 0.1
 one_shot = true
 
 [node name="AttackSkeleton" type="Area2D" parent="."]
@@ -88,6 +88,7 @@ build_mode = 1
 polygon = PoolVector2Array( -2.17528, 4.21178, 1.19592, 4.21178, 1.57049, -5.71451, 0.259468, -13.7679, -2.17528, -18.8247, -5.73376, -22.1959, -10.0414, -22.945, -14.349, -24.4433, -16.2219, -24.4433, -16.0346, -20.1357, -11.1651, -20.5103, -7.79393, -18.8247, -5.73376, -15.8281, -4.42274, -12.6442, -3.86087, -7.58739, -3.86087, 0.278721, -3.67358, 4.21178 )
 
 [node name="Animation_time" type="Timer" parent="."]
+wait_time = 0.9
 one_shot = true
 
 [node name="Death_sound" type="AudioStreamPlayer" parent="."]
