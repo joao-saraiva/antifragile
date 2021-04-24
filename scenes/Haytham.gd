@@ -106,19 +106,13 @@ func _physics_process(delta):
 				movement.x = 1*run_speed
 		else:
 			movement.x = 0
-		
-	
-		
+			
 	move_and_slide_with_snap(movement, Vector2(0,2), Vector2.UP, true, 4, 0.9)
 	if not is_dead:
 		update_animations()
 
 func update_animations():
 	if not is_attacking():
-		
-			
-		
-			
 		if (esp32Cdireita or mouse_actived and mouse_position.x > 512)   and not is_running  or movement.x > 0 and is_running :
 			$AnimatedSprite.scale.x = 1
 			$Swordhit/sword_strike.scale.x = 1
@@ -127,7 +121,6 @@ func update_animations():
 				mouse_actived = false
 				esp32Cdireita = false
 		elif (esp32Cesquerda or mouse_actived and mouse_position.x < 512)  and not is_running  or movement.x < 0 and is_running :
-			
 			$AnimatedSprite.scale.x = -1
 			$Swordhit/sword_strike.scale.x = -1
 			$Swordhit/sword_strike.position.x = -11.914
@@ -152,6 +145,7 @@ func update_animations():
 			$AnimatedSprite.play("fall")
 		else:
 			$AnimatedSprite.play("jump")
+	
 	last_animation = $AnimatedSprite.animation 
 
 func is_landing():
