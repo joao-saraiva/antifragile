@@ -56,7 +56,7 @@ func _physics_process(delta):
 			$AttackSkeleton/Attack.scale.x = -1
 			$AttackSkeleton/Attack.position.x = -12
 			$DetectedPlayer/Detected.scale.x = -1
-			$DetectedPlayer/Detected.position.x = -14.085
+			$DetectedPlayer/Detected.position.x = -32.685
 			next_direction_time = OS.get_ticks_msec()+react_time
 		elif player.position.x > position.x and next_direction != 1:
 			next_direction = 1
@@ -64,7 +64,7 @@ func _physics_process(delta):
 			$AttackSkeleton/Attack.scale.x = 1
 			$AttackSkeleton/Attack.position.x = 12
 			$DetectedPlayer/Detected.scale.x = 1
-			$DetectedPlayer/Detected.position.x = 14.085
+			$DetectedPlayer/Detected.position.x = 32.685
 			next_direction_time = OS.get_ticks_msec()+react_time
 	if not is_dead:
 		if OS.get_ticks_msec() > next_direction_time:
@@ -112,13 +112,14 @@ func _on_attack_off_timeout():
 	
 func _on_AttackSkeleton_body_entered(body):
 	player.life -=1
+	player.movement.x = (player.position.x - position.x)*20
+	player.hit = true
 	#if player.position.x < position.x:
 	#	player.position.x -= 30
 	#	player.position.y -= 10
 	#else:
 	#	player.position.x += 30
 	#	player.position.y -= 10
-	print(player.life)
 
 func _on_delay_timeout():
 	queue_free()

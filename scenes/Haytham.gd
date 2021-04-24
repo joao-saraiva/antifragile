@@ -7,11 +7,13 @@ export var jump_speed = -300
 export var movement = Vector2(0,0)
 var last_movement_y = 0
 var last_animation = ""
+var last_mouse_position = Vector2(0,0)
 var cursor_position = Vector2(0,0)
 var esp32_left_joystick = Vector2(0,0)
 var mouse_actived = true
 var is_dead = false
 var is_running = false
+var hit = false
 var esp32Jump = false
 var esp32Attack = false
 var esp32Run = false
@@ -35,7 +37,7 @@ func _ready():
 	Serial.connect("right_joystick",self,"esp32_right_joystick")
 
 func run():
-	esp32Run = true
+	esp32Run = !esp32Run
 
 func jump():
 	esp32Jump = true;
@@ -44,19 +46,22 @@ func EspAttack():
 	esp32Attack = true;
 
 func _process(delta):
-	if mouse_actived:
+	if get_viewport().get_mouse_position() != last_mouse_position:
 		cursor_position = get_viewport().get_mouse_position()
-	elif abs(cursor_position.x > 1) or abs(cursor_position.y > 1):
+	elif abs(cursor_position.x) > 1 or abs(cursor_position.y) > 1:
 		mouse_actived = true
+	last_mouse_position = get_viewport().get_mouse_position()
 
-func esp32_right_joystick(xy):
+func esp32_right_joystick(x, y):
 	mouse_actived = false
-	cursor_position = Vector2(0,0)# valor numerico do x e y joystick direito
+	cursor_position = Vector2(float(x), float(y))
 
-func esp32_left_joystick(xy):
+func esp32_left_joystick(x):
+	if mouse_actived:
+		cursor_position = Vector2(0,0)
 	mouse_actived = false
-	esp32_left_joystick = Vector2(0,0)# valor numerico do x e y joystick esquerdo
-
+	esp32_left_joystick = Vector2(int(x),0)
+	
 func _physics_process(delta):
 	print(look_angle()) #excluir essa linha depois
 	last_movement_y = movement.y
@@ -78,6 +83,17 @@ func _physics_process(delta):
 			esp32Attack = false
 			attack()
 		
+		if hit:
+			if not is_landing():
+				if not $Hit.playing:
+					$Hit.play()
+				$AnimatedSprite.play("land")
+				last_animation = "land"
+				$AnimatedSprite.frame = 0
+			movement.x -= movement.x*0.05
+			if abs(movement.x) < 20:
+				hit = false
+		
 		if not is_landing():
 			var horizontal_axis
 			if mouse_actived:
@@ -86,7 +102,6 @@ func _physics_process(delta):
 				horizontal_axis = esp32_left_joystick.x
 			if esp32Run or Input.is_action_pressed("run"):
 				movement.x = horizontal_axis*run_speed
-				esp32Run = false
 				is_running = true
 			else:
 				movement.x = horizontal_axis*walk_speed
@@ -97,7 +112,7 @@ func _physics_process(delta):
 				$Sword_hit_sound.stop()
 				movement.y = jump_speed
 				esp32Jump = false
-		else:
+		elif abs(movement.x) < run_speed:
 			movement.x = 0
 			
 	move_and_slide_with_snap(movement, Vector2(0,2), Vector2.UP, true, 4, 0.9)
@@ -105,7 +120,7 @@ func _physics_process(delta):
 		update_animations()
 
 func update_animations():
-	if not is_attacking():
+	if not is_attacking() and not is_landing():
 		if (not mouse_actived and cursor_position.x > 0 or mouse_actived and cursor_position.x > 512) and not is_running or movement.x > 0 and is_running:
 			$AnimatedSprite.scale.x = 1
 			$Swordhit/sword_strike.scale.x = 1
@@ -173,7 +188,6 @@ func _on_attack_off_timeout():
 
 func _on_attack_on_timeout():
 	if not last_animation == "jump":
-		print("pa")
 		$Swordhit/sword_strike.disabled = false
 		$Swordhit/attack_off.start()
 
