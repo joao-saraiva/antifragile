@@ -536,11 +536,8 @@ tile_data = PoolIntArray( 9699829, 0, 0, 9699895, 0, 0, 14287331, 0, 0, 14287438
 [node name="Haytham" parent="." instance=ExtResource( 2 )]
 position = Vector2( 405.03, 327.399 )
 
-[node name="Skeleton" parent="." instance=ExtResource( 3 )]
-position = Vector2( 755.995, 318.107 )
-
 [node name="Skeleton3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 239.362, 321.053 )
+position = Vector2( 275.475, 321.053 )
 
 [node name="Background_music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )

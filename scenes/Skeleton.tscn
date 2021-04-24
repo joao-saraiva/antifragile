@@ -19,6 +19,7 @@
 [ext_resource path="res://assets/Inferno/enemies/skeleton/[ONTIVA.COM]-Skeleton Hurt (Nr. 1 _ Minecraft Sound) - Sound Effect for editing-HQ.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/Inferno/enemies/skeleton/skeleton_death(4).tres" type="Texture" id=18]
 [ext_resource path="res://assets/Inferno/enemies/skeleton/skeleton_death(5).tres" type="Texture" id=19]
+[ext_resource path="res://assets/Inferno/enemies/skeleton/attack_sound.wav" type="AudioStream" id=20]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -27,15 +28,15 @@ animations = [ {
 "name": "attack",
 "speed": 6.0
 }, {
+"frames": [ ExtResource( 16 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": false,
+"name": "death",
+"speed": 6.0
+}, {
 "frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "walk",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 14 ), ExtResource( 15 ) ],
-"loop": true,
-"name": "death",
-"speed": 6.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -43,11 +44,7 @@ radius = 7.54869
 height = 24.9161
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 8.90693, 16.1295 )
-
-[sub_resource type="SegmentShape2D" id=4]
-a = Vector2( -1.80073, -17.1391 )
-b = Vector2( 3.25607, 1.96432 )
+extents = Vector2( 16.3663, 23.4218 )
 
 [node name="Skeleton" type="KinematicBody2D"]
 collision_layer = 3
@@ -56,11 +53,12 @@ script = ExtResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "death"
-frame = 1
+animation = "attack"
+frame = 6
 playing = true
 
 [node name="delay" type="Timer" parent="."]
+one_shot = true
 
 [node name="Death_time" type="Timer" parent="."]
 wait_time = 0.1
@@ -71,11 +69,12 @@ shape = SubResource( 2 )
 [node name="DetectedPlayer" type="Area2D" parent="."]
 
 [node name="Detected" type="CollisionShape2D" parent="DetectedPlayer"]
-position = Vector2( 18.1483, -1.20888 )
+position = Vector2( 12, -5.51651 )
 shape = SubResource( 3 )
 
 [node name="Timer" type="Timer" parent="DetectedPlayer"]
 wait_time = 0.2
+one_shot = true
 
 [node name="AttackSkeleton" type="Area2D" parent="."]
 monitoring = false
@@ -83,17 +82,23 @@ monitorable = false
 collision_layer = 4
 collision_mask = 4
 
-[node name="Attack" type="CollisionShape2D" parent="AttackSkeleton"]
+[node name="Attack" type="CollisionPolygon2D" parent="AttackSkeleton"]
 position = Vector2( 12, 0 )
-shape = SubResource( 4 )
+build_mode = 1
+polygon = PoolVector2Array( -2.17528, 4.21178, 1.19592, 4.21178, 1.57049, -5.71451, 0.259468, -13.7679, -2.17528, -18.8247, -5.73376, -22.1959, -10.0414, -22.945, -14.349, -24.4433, -16.2219, -24.4433, -16.0346, -20.1357, -11.1651, -20.5103, -7.79393, -18.8247, -5.73376, -15.8281, -4.42274, -12.6442, -3.86087, -7.58739, -3.86087, 0.278721, -3.67358, 4.21178 )
 
 [node name="Animation_time" type="Timer" parent="."]
+one_shot = true
 
 [node name="Death_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )
+
+[node name="Attack_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
 [connection signal="timeout" from="delay" to="." method="_on_delay_timeout"]
 [connection signal="timeout" from="Death_time" to="." method="_on_Death_time_timeout"]
 [connection signal="body_entered" from="DetectedPlayer" to="." method="_on_DetectedPlayer_body_entered"]
+[connection signal="body_exited" from="DetectedPlayer" to="." method="_on_DetectedPlayer_body_exited"]
 [connection signal="timeout" from="DetectedPlayer/Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="AttackSkeleton" to="." method="_on_AttackSkeleton_body_entered"]
 [connection signal="timeout" from="Animation_time" to="." method="_on_Animation_time_timeout"]
