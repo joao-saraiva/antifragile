@@ -96,16 +96,17 @@ func _physics_process(delta):
 				$Swordhit/sword_strike.disabled = true
 				$Sword_hit_sound.stop()
 				movement.y = jump_speed
+			if esp32Jump && is_on_floor() :
+				$Swordhit/sword_strike.disabled = true
+				movement.y = jump_speed
+				esp32Jump = false
+			if esp32Esquerda == true:
+				movement.x = -1*run_speed
+			if esp32Direita == true:
+				movement.x = 1*run_speed
 		else:
 			movement.x = 0
-		if esp32Jump && is_on_floor() :
-			$Swordhit/sword_strike.disabled = true
-			movement.y = jump_speed
-			esp32Jump = false
-		if esp32Esquerda == true:
-			movement.x = -1*run_speed
-		if esp32Direita == true:
-			movement.x = 1*run_speed
+		
 	
 		
 	move_and_slide_with_snap(movement, Vector2(0,2), Vector2.UP, true, 4, 0.9)
@@ -114,31 +115,25 @@ func _physics_process(delta):
 
 func update_animations():
 	if not is_attacking():
-		if esp32Cesquerda and not is_running or movement.x > 0 and is_running :
-			$AnimatedSprite.scale.x = -1
-			$Swordhit/sword_strike.scale.x = -1
-			$Swordhit/sword_strike.position.x = -11.914
-			esp32Cesquerda = false
-			mouse_actived = false
-			print("esquerda")
+		
 			
-		if esp32Cdireita and not is_running or movement.x > 0 and is_running :
+		
+			
+		if (esp32Cdireita or mouse_actived and mouse_position.x > 512)   and not is_running  or movement.x > 0 and is_running :
 			$AnimatedSprite.scale.x = 1
 			$Swordhit/sword_strike.scale.x = 1
 			$Swordhit/sword_strike.position.x = 11.914
-			mouse_actived = false
-			esp32Cdireita = false
-			print("direita")
-			
-		if mouse_position.x > 512 and mouse_actived and not is_running or movement.x > 0 and is_running :
-			$AnimatedSprite.scale.x = 1
-			$Swordhit/sword_strike.scale.x = 1
-			$Swordhit/sword_strike.position.x = 11.914
-		elif mouse_position.x < 512 and mouse_actived and not is_running or movement.x < 0 and is_running :
+			if esp32Cdireita:
+				mouse_actived = false
+				esp32Cdireita = false
+		elif (esp32Cesquerda or mouse_actived and mouse_position.x < 512)  and not is_running  or movement.x < 0 and is_running :
 			
 			$AnimatedSprite.scale.x = -1
 			$Swordhit/sword_strike.scale.x = -1
 			$Swordhit/sword_strike.position.x = -11.914
+			if esp32Cesquerda:
+				mouse_actived= false
+				esp32Cesquerda= false
 	
 	if is_on_floor():
 		if last_movement_y > 500:
