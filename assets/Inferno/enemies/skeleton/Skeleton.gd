@@ -49,7 +49,7 @@ func _physics_process(delta):
 				$AnimatedSprite.play("attack")
 				last_animation = "attack"
 				$Attack_sound.play()
-				$Animation_time.start()
+				$attack_on.start()
 		if player.position.x < position.x and next_direction != -1:
 			next_direction = -1
 			$AnimatedSprite.scale.x=-1
@@ -103,17 +103,14 @@ func _on_DetectedPlayer_body_exited(body):
 	if body.get_name() == "Haytham":
 		player_detected = false
 
-func _on_Animation_time_timeout():
-	$DetectedPlayer/Timer.start()
-	print("on")
+func _on_attack_on_timeout():
+	$DetectedPlayer/attack_off.start()
 	$AttackSkeleton.monitoring = true
 
-func _on_Timer_timeout():
-	print("off")
+func _on_attack_off_timeout():
 	$AttackSkeleton.monitoring = false
 	
 func _on_AttackSkeleton_body_entered(body):
-	print(body.life)
 	player.life -=1
 	#if player.position.x < position.x:
 	#	player.position.x -= 30

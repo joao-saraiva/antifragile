@@ -20,7 +20,7 @@ var esp32Run = false
 # Esses status serão salvos por arquivo para não serem resetados
 # cada vez q o jogo for iniciado. Estão sendo declarados aqui
 # somente para teste
-var life = 1
+var life = 100
 var strength = 1
 var attack = 1
 var defense = 1
@@ -173,6 +173,7 @@ func _on_attack_off_timeout():
 
 func _on_attack_on_timeout():
 	if not last_animation == "jump":
+		print("pa")
 		$Swordhit/sword_strike.disabled = false
 		$Swordhit/attack_off.start()
 

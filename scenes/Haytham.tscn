@@ -133,11 +133,11 @@ polygon = PoolVector2Array( -5.12432, 12.4077, 7.11431, 13.0022, 7.11431, 11.972
 disabled = true
 
 [node name="attack_off" type="Timer" parent="Swordhit"]
-wait_time = 0.1
+wait_time = 0.05
 one_shot = true
 
 [node name="attack_on" type="Timer" parent="Swordhit"]
-wait_time = 0.16
+wait_time = 0.12
 one_shot = true
 
 [node name="Sword_hit_sound" type="AudioStreamPlayer" parent="."]

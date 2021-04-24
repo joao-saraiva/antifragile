@@ -539,6 +539,75 @@ position = Vector2( 405.03, 327.399 )
 [node name="Skeleton3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 275.475, 321.053 )
 
+[node name="Skeleton4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 244.853, 321.053 )
+
+[node name="Skeleton5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 215.123, 321.053 )
+
+[node name="Skeleton6" parent="." instance=ExtResource( 3 )]
+position = Vector2( 184.501, 321.053 )
+
+[node name="Skeleton7" parent="." instance=ExtResource( 3 )]
+position = Vector2( 155.96, 321.053 )
+
+[node name="Skeleton8" parent="." instance=ExtResource( 3 )]
+position = Vector2( 125.338, 321.053 )
+
+[node name="Skeleton9" parent="." instance=ExtResource( 3 )]
+position = Vector2( 95.6075, 321.053 )
+
+[node name="Skeleton10" parent="." instance=ExtResource( 3 )]
+position = Vector2( 64.9854, 321.053 )
+
+[node name="Skeleton11" parent="." instance=ExtResource( 3 )]
+position = Vector2( 37.9309, 321.053 )
+
+[node name="Skeleton12" parent="." instance=ExtResource( 3 )]
+position = Vector2( 7.30878, 321.053 )
+
+[node name="Skeleton13" parent="." instance=ExtResource( 3 )]
+position = Vector2( -22.4213, 321.053 )
+
+[node name="Skeleton14" parent="." instance=ExtResource( 3 )]
+position = Vector2( -53.0435, 321.053 )
+
+[node name="Skeleton15" parent="." instance=ExtResource( 3 )]
+position = Vector2( -81.5844, 321.053 )
+
+[node name="Skeleton16" parent="." instance=ExtResource( 3 )]
+position = Vector2( -112.207, 321.053 )
+
+[node name="Skeleton17" parent="." instance=ExtResource( 3 )]
+position = Vector2( -141.937, 321.053 )
+
+[node name="Skeleton18" parent="." instance=ExtResource( 3 )]
+position = Vector2( -172.559, 321.053 )
+
+[node name="Skeleton19" parent="." instance=ExtResource( 3 )]
+position = Vector2( -197.668, 321.053 )
+
+[node name="Skeleton20" parent="." instance=ExtResource( 3 )]
+position = Vector2( -228.29, 321.053 )
+
+[node name="Skeleton21" parent="." instance=ExtResource( 3 )]
+position = Vector2( -258.021, 321.053 )
+
+[node name="Skeleton22" parent="." instance=ExtResource( 3 )]
+position = Vector2( -288.643, 321.053 )
+
+[node name="Skeleton23" parent="." instance=ExtResource( 3 )]
+position = Vector2( -317.184, 321.053 )
+
+[node name="Skeleton24" parent="." instance=ExtResource( 3 )]
+position = Vector2( -347.806, 321.053 )
+
+[node name="Skeleton25" parent="." instance=ExtResource( 3 )]
+position = Vector2( -377.536, 321.053 )
+
+[node name="Skeleton26" parent="." instance=ExtResource( 3 )]
+position = Vector2( -408.158, 321.053 )
+
 [node name="Background_music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = -19.882
