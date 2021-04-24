@@ -54,6 +54,7 @@ script = ExtResource( 7 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "attack"
+frame = 6
 playing = true
 
 [node name="delay" type="Timer" parent="."]

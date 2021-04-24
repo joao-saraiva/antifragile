@@ -61,7 +61,7 @@ func esp32_left_joystick(x):
 		cursor_position = Vector2(0,0)
 	mouse_actived = false
 	esp32_left_joystick = Vector2(int(x),0)
-	
+
 func _physics_process(delta):
 	print(look_angle()) #excluir essa linha depois
 	last_movement_y = movement.y
@@ -112,7 +112,7 @@ func _physics_process(delta):
 				$Sword_hit_sound.stop()
 				movement.y = jump_speed
 				esp32Jump = false
-		elif abs(movement.x) < run_speed:
+		elif abs(movement.x) <= run_speed:
 			movement.x = 0
 			
 	move_and_slide_with_snap(movement, Vector2(0,2), Vector2.UP, true, 4, 0.9)
