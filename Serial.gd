@@ -11,6 +11,8 @@ signal direita()
 signal parado()
 signal jump()
 signal attack()
+signal cesquerda()
+signal cdireita()
 
 func _ready():
 	open()
@@ -59,3 +61,8 @@ func on_text_received(text): #"1 Sobe"
 		emit_signal("jump")
 	elif str(command_array[0]) == "Attack":
 		emit_signal("attack")
+	elif str(command_array[0]) == "Cesquerda":
+		emit_signal("cesquerda")
+	elif str(command_array[0]) == "Cdireita":
+		emit_signal("cdireita")
+		

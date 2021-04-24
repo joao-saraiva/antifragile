@@ -6,6 +6,7 @@ export var walk_speed = 80
 export var jump_speed = -300
 export var movement = Vector2(0,0)
 var mouse_position = Vector2(0,0)
+var mouse_actived = true
 var last_movement_y = 0
 var last_animation = ""
 var is_dead = false
@@ -14,6 +15,8 @@ var esp32Esquerda = false
 var esp32Direita = false
 var esp32Jump = false
 var esp32Attack = false
+var esp32Cesquerda = false
+var esp32Cdireita = true
 # Esses status serão salvos por arquivo para não serem resetados
 # cada vez q o jogo for iniciado. Estão sendo declarados aqui
 # somente para teste
@@ -30,7 +33,8 @@ func _ready():
 	Serial.connect("direita",self,"direita")
 	Serial.connect("jump",self,"jump")
 	Serial.connect("attack",self,"EspAttack")
-
+	Serial.connect("cesquerda",self,"Cesquerda")
+	Serial.connect("cdireita",self,"cDireita")
 func parado():
 	esp32Esquerda = false;
 	esp32Direita = false;
@@ -49,7 +53,13 @@ func EspAttack():
 	
 func _process(delta):
 	mouse_position = get_viewport().get_mouse_position()
-
+	
+func Cesquerda():
+	esp32Cesquerda = true;
+	
+func cDireita():
+	esp32Cdireita = true;
+	
 func _physics_process(delta):
 	last_movement_y = movement.y
 	if is_on_ceiling():
@@ -71,6 +81,7 @@ func _physics_process(delta):
 			
 		if esp32Attack and not is_landing() and not is_attacking():
 			esp32Attack = false
+			$Sword_hit_sound.play()
 			attack()
 		if not is_landing():
 			var horizontal_axis = Input.get_action_strength("right")-Input.get_action_strength("left")
@@ -103,11 +114,28 @@ func _physics_process(delta):
 
 func update_animations():
 	if not is_attacking():
-		if mouse_position.x > 512 and not is_running or movement.x > 0 and is_running:
+		if esp32Cesquerda and not is_running or movement.x > 0 and is_running :
+			$AnimatedSprite.scale.x = -1
+			$Swordhit/sword_strike.scale.x = -1
+			$Swordhit/sword_strike.position.x = -11.914
+			esp32Cesquerda = false
+			mouse_actived = false
+			print("esquerda")
+			
+		if esp32Cdireita and not is_running or movement.x > 0 and is_running :
 			$AnimatedSprite.scale.x = 1
 			$Swordhit/sword_strike.scale.x = 1
 			$Swordhit/sword_strike.position.x = 11.914
-		elif mouse_position.x < 512 and not is_running or movement.x < 0 and is_running:
+			mouse_actived = false
+			esp32Cdireita = false
+			print("direita")
+			
+		if mouse_position.x > 512 and mouse_actived and not is_running or movement.x > 0 and is_running :
+			$AnimatedSprite.scale.x = 1
+			$Swordhit/sword_strike.scale.x = 1
+			$Swordhit/sword_strike.position.x = 11.914
+		elif mouse_position.x < 512 and mouse_actived and not is_running or movement.x < 0 and is_running :
+			
 			$AnimatedSprite.scale.x = -1
 			$Swordhit/sword_strike.scale.x = -1
 			$Swordhit/sword_strike.position.x = -11.914
