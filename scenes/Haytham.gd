@@ -161,16 +161,11 @@ func look_angle():
 	var adjacent
 	if mouse_actived:
 		adjacent = abs(512 - cursor_position.x)
-		if 300 - cursor_position.y > 0:
-			opposite = abs(300 - cursor_position.y)
-		else:
-			opposite = 0
+		opposite = 300 - cursor_position.y
 	else:
 		adjacent = abs(cursor_position.x)
-		if cursor_position.y > 0:
-			opposite = cursor_position.y
-		else:
-			opposite = 0
+		opposite = cursor_position.y
+
 	
 	var hypotenuse = sqrt(pow(opposite,2) + pow(adjacent,2))
 	if hypotenuse == 0:
