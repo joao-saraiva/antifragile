@@ -16,7 +16,7 @@ var esp32Direita = false
 var esp32Jump = false
 var esp32Attack = false
 var esp32Cesquerda = false
-var esp32Cdireita = true
+var esp32Cdireita = false
 # Esses status serão salvos por arquivo para não serem resetados
 # cada vez q o jogo for iniciado. Estão sendo declarados aqui
 # somente para teste
