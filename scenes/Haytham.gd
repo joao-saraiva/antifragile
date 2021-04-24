@@ -5,18 +5,18 @@ export var run_speed = 140
 export var walk_speed = 80
 export var jump_speed = -300
 export var movement = Vector2(0,0)
-var mouse_position = Vector2(0,0)
-var mouse_actived = true
 var last_movement_y = 0
 var last_animation = ""
+var cursor_position = Vector2(0,0)
+var esp32_left_joystick = Vector2(0,0)
+var mouse_actived = true
 var is_dead = false
 var is_running = false
-var esp32Esquerda = false
-var esp32Direita = false
 var esp32Jump = false
 var esp32Attack = false
-var esp32Cesquerda = false
-var esp32Cdireita = false
+var esp32Run = false
+
+
 # Esses status serão salvos por arquivo para não serem resetados
 # cada vez q o jogo for iniciado. Estão sendo declarados aqui
 # somente para teste
@@ -28,39 +28,37 @@ var chaos = 0
 var in_fury_state = false
 
 func _ready():
-	Serial.connect("esquerda",self,"esquerda")
-	Serial.connect("parado",self,"parado")
-	Serial.connect("direita",self,"direita")
 	Serial.connect("jump",self,"jump")
+	Serial.connect("run",self,"run")
 	Serial.connect("attack",self,"EspAttack")
-	Serial.connect("cesquerda",self,"Cesquerda")
-	Serial.connect("cdireita",self,"cDireita")
-func parado():
-	esp32Esquerda = false;
-	esp32Direita = false;
+	Serial.connect("left_joystick",self,"esp32_left_joystick")
+	Serial.connect("right_joystick",self,"esp32_right_joystick")
 
-func esquerda():
-	esp32Esquerda = true;
+func run():
+	esp32Run = true
 
-func direita():
-	esp32Direita = true;
-	
 func jump():
 	esp32Jump = true;
-	
+
 func EspAttack():
 	esp32Attack = true;
-	
+
 func _process(delta):
-	mouse_position = get_viewport().get_mouse_position()
-	
-func Cesquerda():
-	esp32Cesquerda = true;
-	
-func cDireita():
-	esp32Cdireita = true;
-	
+	if mouse_actived:
+		cursor_position = get_viewport().get_mouse_position()
+	elif abs(cursor_position.x > 1) or abs(cursor_position.y > 1):
+		mouse_actived = true
+
+func esp32_right_joystick(xy):
+	mouse_actived = false
+	cursor_position = Vector2(0,0)# valor numerico do x e y joystick direito
+
+func esp32_left_joystick(xy):
+	mouse_actived = false
+	esp32_left_joystick = Vector2(0,0)# valor numerico do x e y joystick esquerdo
+
 func _physics_process(delta):
+	print(look_angle()) #excluir essa linha depois
 	last_movement_y = movement.y
 	if is_on_ceiling():
 		movement.y = 0
@@ -75,35 +73,30 @@ func _physics_process(delta):
 		movement.x = 0
 	
 	if not is_dead:
-		if Input.is_action_just_pressed("attack_slash") and not is_landing() and not is_attacking():
+		if (esp32Attack or Input.is_action_just_pressed("attack_slash")) and not is_landing() and not is_attacking():
 			$Sword_hit_sound.play()
-			attack()
-			
-		if esp32Attack and not is_landing() and not is_attacking():
 			esp32Attack = false
-			$Sword_hit_sound.play()
 			attack()
+		
 		if not is_landing():
-			var horizontal_axis = Input.get_action_strength("right")-Input.get_action_strength("left")
-			if Input.is_action_pressed("run"):
+			var horizontal_axis
+			if mouse_actived:
+				horizontal_axis = Input.get_action_strength("right")-Input.get_action_strength("left")
+			else:
+				horizontal_axis = esp32_left_joystick.x
+			if esp32Run or Input.is_action_pressed("run"):
 				movement.x = horizontal_axis*run_speed
+				esp32Run = false
 				is_running = true
 			else:
 				movement.x = horizontal_axis*walk_speed
 				is_running = false
 			
-			if Input.is_action_just_pressed("jump") and is_on_floor():
+			if (esp32Jump or Input.is_action_just_pressed("jump")) and is_on_floor():
 				$Swordhit/sword_strike.disabled = true
 				$Sword_hit_sound.stop()
 				movement.y = jump_speed
-			if esp32Jump && is_on_floor() :
-				$Swordhit/sword_strike.disabled = true
-				movement.y = jump_speed
 				esp32Jump = false
-			if esp32Esquerda == true:
-				movement.x = -1*run_speed
-			if esp32Direita == true:
-				movement.x = 1*run_speed
 		else:
 			movement.x = 0
 			
@@ -113,21 +106,15 @@ func _physics_process(delta):
 
 func update_animations():
 	if not is_attacking():
-		if (esp32Cdireita or mouse_actived and mouse_position.x > 512)   and not is_running  or movement.x > 0 and is_running :
+		if (not mouse_actived and cursor_position.x > 0 or mouse_actived and cursor_position.x > 512) and not is_running or movement.x > 0 and is_running:
 			$AnimatedSprite.scale.x = 1
 			$Swordhit/sword_strike.scale.x = 1
 			$Swordhit/sword_strike.position.x = 11.914
-			if esp32Cdireita:
-				mouse_actived = false
-				esp32Cdireita = false
-		elif (esp32Cesquerda or mouse_actived and mouse_position.x < 512)  and not is_running  or movement.x < 0 and is_running :
+		elif (not mouse_actived and cursor_position.x < 0 or mouse_actived and cursor_position.x < 512) and not is_running or movement.x < 0 and is_running:
 			$AnimatedSprite.scale.x = -1
 			$Swordhit/sword_strike.scale.x = -1
 			$Swordhit/sword_strike.position.x = -11.914
-			if esp32Cesquerda:
-				mouse_actived= false
-				esp32Cesquerda= false
-
+	
 	if is_on_floor():
 		if last_movement_y > 500:
 			$landing.play()
@@ -153,6 +140,28 @@ func is_landing():
 
 func is_attacking():
 	return last_animation == "attack_slash" and $AnimatedSprite.frame != 4
+
+func look_angle():
+	var opposite
+	var adjacent
+	if mouse_actived:
+		adjacent = abs(512 - cursor_position.x)
+		if 300 - cursor_position.y > 0:
+			opposite = abs(300 - cursor_position.y)
+		else:
+			opposite = 0
+	else:
+		adjacent = abs(cursor_position.x)
+		if cursor_position.y > 0:
+			opposite = cursor_position.y
+		else:
+			opposite = 0
+	
+	var hypotenuse = sqrt(pow(opposite,2) + pow(adjacent,2))
+	if hypotenuse == 0:
+		return 0
+	else:
+		return asin(opposite/hypotenuse)*180/PI # angulo em graus
 
 func attack():
 	$AnimatedSprite.play("attack_slash")

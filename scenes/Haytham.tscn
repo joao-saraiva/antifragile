@@ -75,30 +75,30 @@ animations = [ {
 "name": "fall",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 28 ), ExtResource( 42 ), ExtResource( 41 ), ExtResource( 43 ), ExtResource( 43 ) ],
+"loop": false,
+"name": "attack_slash",
+"speed": 8.0
+}, {
 "frames": [ ExtResource( 46 ), ExtResource( 45 ), ExtResource( 50 ), ExtResource( 44 ), ExtResource( 49 ), ExtResource( 47 ), ExtResource( 48 ) ],
 "loop": false,
 "name": "death",
 "speed": 6.0
-}, {
-"frames": [ ExtResource( 38 ), ExtResource( 37 ), ExtResource( 37 ) ],
-"loop": false,
-"name": "land",
-"speed": 5.0
 }, {
 "frames": [ ExtResource( 16 ), ExtResource( 18 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ) ],
 "loop": true,
 "name": "run",
 "speed": 8.0
 }, {
+"frames": [ ExtResource( 38 ), ExtResource( 37 ), ExtResource( 37 ) ],
+"loop": false,
+"name": "land",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 16 ), ExtResource( 18 ) ],
 "loop": true,
 "name": "walk",
 "speed": 4.0
-}, {
-"frames": [ ExtResource( 28 ), ExtResource( 42 ), ExtResource( 41 ), ExtResource( 43 ), ExtResource( 43 ) ],
-"loop": false,
-"name": "attack_slash",
-"speed": 8.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
