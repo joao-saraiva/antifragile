@@ -30,11 +30,11 @@ var chaos = 0
 var in_fury_state = false
 
 func _ready():
-	Serial.connect("jump",self,"jump")
-	Serial.connect("run",self,"run")
-	Serial.connect("attack",self,"EspAttack")
-	Serial.connect("left_joystick",self,"esp32_left_joystick")
-	Serial.connect("right_joystick",self,"esp32_right_joystick")
+	Socket.connect("jump",self,"jump")
+	Socket.connect("run",self,"run")
+	Socket.connect("attack",self,"EspAttack")
+	Socket.connect("left_joystick",self,"esp32_left_joystick")
+	Socket.connect("right_joystick",self,"esp32_right_joystick")
 
 func run():
 	esp32Run = !esp32Run

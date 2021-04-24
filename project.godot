@@ -21,7 +21,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Serial="*res://Serial.gd"
+Socket="*res://Socket.gd"
 
 [display]
 
