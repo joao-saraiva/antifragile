@@ -53,15 +53,15 @@ script = ExtResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "attack"
-frame = 3
+animation = "death"
+frame = 4
 playing = true
 
 [node name="delay" type="Timer" parent="."]
 one_shot = true
 
 [node name="Death_time" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 21.566
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1.25566, 2.74974 )
