@@ -128,6 +128,8 @@ func _physics_process(delta):
 			if esp32Shield or Input.is_action_pressed("shield") and is_on_floor():
 				wielded_shield = true
 				$AnimatedSprite.play("shield")
+				$Sword_slash_sound.stop()
+				$Sword_stab_sound.stop()
 				movement.x = 0
 				last_animation = $AnimatedSprite.animation
 			elif (not esp32Shield and not mouse_actived) or Input.is_action_just_released("shield"):
@@ -136,6 +138,7 @@ func _physics_process(delta):
 			if (esp32Jump or Input.is_action_just_pressed("jump")) and is_on_floor():
 				$Swordhit/sword_slash.disabled = true
 				$Sword_slash_sound.stop()
+				$Sword_stab_sound.stop()
 				movement.y = jump_speed
 				esp32Jump = false
 				wielded_shield = false
