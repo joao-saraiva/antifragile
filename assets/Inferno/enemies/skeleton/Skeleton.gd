@@ -18,6 +18,7 @@ var life = 0.5
 var strength = 1
 var attack = 1
 var defense = 1
+var wakness = "slash"
 var is_dead = false
 
 func _ready():
@@ -109,7 +110,7 @@ func _on_attack_off_timeout():
 	$AttackSkeleton.monitoring = false
 
 func _on_AttackSkeleton_body_entered(body):
-	player.take_damage(position, defense, attack, strength)
+	player.take_damage(position, defense, attack, strength, wakness)
 
 func _on_delay_timeout():
 	queue_free()

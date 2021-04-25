@@ -213,7 +213,7 @@ func attack():
 		$Swordhit/attack_on.wait_time = 0.12
 	$Swordhit/attack_on.start()
 
-func take_damage(enemy, enemy_defense, enemy_attack, enemy_strength):
+func take_damage(enemy, enemy_defense, enemy_attack, enemy_strength, enemy_wakness):
 	var distance = enemy.x - position.x
 	if distance < 0 and $AnimatedSprite.scale.x < 0 and wielded_shield:
 		$block.play()
