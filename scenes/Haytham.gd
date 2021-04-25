@@ -26,11 +26,12 @@ var esp32ChangeAttackStyle = false
 # cada vez q o jogo for iniciado. Estão sendo declarados aqui
 # somente para teste
 var life = 100
-var strength = 1
+var strength = 99
 var attack = 1
-var defense = 1
+var defense = 99
 var chaos = 0
 var in_fury_state = false
+var sword = "Steel_longsword"
 
 func _ready():
 	Socket.connect("jump",self,"jump")
@@ -69,8 +70,7 @@ func esp32_left_joystick(x):
 	esp32_left_joystick = Vector2(int(x),0)
 
 func _physics_process(delta):
-	#print(look_angle()) #excluir essa linha depois
-	print(wielded_shield)
+	print(look_angle()) #excluir essa linha depois
 	last_movement = movement
 	if is_on_ceiling():
 		movement.y = 0
@@ -118,10 +118,6 @@ func _physics_process(delta):
 					is_running = false
 			
 				if (esp32Attack or Input.is_action_just_pressed("attack")) and not is_attacking():
-					if attack_style == "slash":
-						$Sword_slash_sound.play()
-					else:
-						$Sword_stab_sound.play()
 					esp32Attack = false
 					attack()
 			
@@ -213,7 +209,7 @@ func attack():
 		$Swordhit/attack_on.wait_time = 0.12
 	$Swordhit/attack_on.start()
 
-func take_damage(enemy, enemy_defense, enemy_attack, enemy_strength, enemy_wakness):
+func take_damage(enemy, enemy_strength):
 	var distance = enemy.x - position.x
 	if distance < 0 and $AnimatedSprite.scale.x < 0 and wielded_shield:
 		$block.play()
@@ -221,10 +217,10 @@ func take_damage(enemy, enemy_defense, enemy_attack, enemy_strength, enemy_wakne
 		$block.play()
 	else:
 		wielded_shield = false
-		life -= 1
+		life -= 0.5 * (enemy_strength/defense)
 		movement.x = (position.x - enemy.x)*20
 		hit = true
-		print("hit")
+		print(life)
 
 func _on_attack_off_timeout():
 	$Swordhit/sword_slash.disabled = true
@@ -234,10 +230,12 @@ func _on_attack_on_timeout():
 	if not last_animation == "jump" and $AnimatedSprite.animation == attack_style:
 		if attack_style == "slash":
 			$Swordhit/sword_slash.disabled = false
+			$Sword_slash_sound.play()
 		else:
 			$Swordhit/sword_stab.disabled = false
+			$Sword_stab_sound.play()
 		$Swordhit/attack_off.start()
 
 func _on_Swordhit_body_entered(body):
 	var enemy = get_parent().get_node(body.get_name())
-	enemy.take_damage(attack_style)
+	enemy.take_damage()

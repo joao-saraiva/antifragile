@@ -14,11 +14,10 @@ var player_detected = false
 
 onready var player = get_parent().get_node("Haytham")
 
-var life = 0.5
-var strength = 1
+var life = 10
+var strength = 100
 var attack = 1
 var defense = 1
-var wakness = "slash"
 var is_dead = false
 
 func _ready():
@@ -85,13 +84,20 @@ func is_attacking():
 func is_dead():
 	return last_animation == "death" and $AnimatedSprite.frame!=4
 
-func take_damage(attack_style):
+func take_damage():
 	$Death_sound.play()
-	if attack_style == "slash":
-		var damage = 0.5 * (  player.strength)
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var value = round(rng.randf_range(0, player.attack))
+	if value == 0:
+		print("miss")
+		return
+	print("hit")
+	if player.attack_style == "slash":
+		var damage = 0.5 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength)
 		life -= damage
 	else:
-		var damage = 0.5 * (  player.strength)
+		var damage = 0.1 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength)
 		life -= damage
 
 func _on_DetectedPlayer_body_entered(body):
@@ -110,7 +116,7 @@ func _on_attack_off_timeout():
 	$AttackSkeleton.monitoring = false
 
 func _on_AttackSkeleton_body_entered(body):
-	player.take_damage(position, defense, attack, strength, wakness)
+	player.take_damage(position, strength)
 
 func _on_delay_timeout():
 	queue_free()
