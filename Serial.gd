@@ -22,7 +22,6 @@ func _exit_tree():
 
 func open():
 	is_port_open = serial_port.open_port("COM3", 9600)
-	print(is_port_open)
 
 func write(text):
 	serial_port.write_text(text)

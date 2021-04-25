@@ -28,20 +28,20 @@ animations = [ {
 "name": "attack",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 16 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 14 ), ExtResource( 15 ) ],
-"loop": false,
-"name": "death",
-"speed": 6.0
-}, {
 "frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "walk",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": false,
+"name": "death",
+"speed": 6.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 7.54869
-height = 24.9161
+radius = 6.17265
+height = 28.6533
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 39.9854, 37.4578 )
@@ -54,7 +54,7 @@ script = ExtResource( 7 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "attack"
-frame = 5
+frame = 3
 playing = true
 
 [node name="delay" type="Timer" parent="."]
@@ -64,6 +64,7 @@ one_shot = true
 wait_time = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1.25566, 2.74974 )
 shape = SubResource( 2 )
 
 [node name="DetectedPlayer" type="Area2D" parent="."]

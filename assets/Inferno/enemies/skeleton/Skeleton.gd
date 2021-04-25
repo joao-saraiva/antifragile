@@ -19,7 +19,6 @@ var strength = 1
 var attack = 1
 var defense = 1
 var is_dead = false
-var acabou = false
 
 func _ready():
 	$AnimatedSprite.play("walk")
@@ -86,14 +85,13 @@ func is_dead():
 	return last_animation == "death" and $AnimatedSprite.frame!=4
 
 func take_damage(attack_style):
+	$Death_sound.play()
 	if attack_style == "slash":
 		var damage = 0.5 * (  player.strength)
 		life -= damage
 	else:
-		pass
-	
-	if life <= 0:
-		$Death_sound.play()
+		var damage = 0.5 * (  player.strength)
+		life -= damage
 
 func _on_DetectedPlayer_body_entered(body):
 	if body.get_name() == "Haytham":
@@ -109,17 +107,9 @@ func _on_attack_on_timeout():
 
 func _on_attack_off_timeout():
 	$AttackSkeleton.monitoring = false
-	
+
 func _on_AttackSkeleton_body_entered(body):
-	player.life -=1
-	player.movement.x = (player.position.x - position.x)*20
-	player.hit = true
-	#if player.position.x < position.x:
-	#	player.position.x -= 30
-	#	player.position.y -= 10
-	#else:
-	#	player.position.x += 30
-	#	player.position.y -= 10
+	player.take_damage(position, defense, attack, strength)
 
 func _on_delay_timeout():
 	queue_free()
