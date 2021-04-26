@@ -65,21 +65,6 @@ animations = [ {
 "name": "idle",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 28 ), ExtResource( 42 ), ExtResource( 41 ), ExtResource( 43 ), ExtResource( 43 ) ],
-"loop": false,
-"name": "slash",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 17 ), ExtResource( 20 ), ExtResource( 29 ), ExtResource( 36 ), ExtResource( 36 ) ],
-"loop": true,
-"name": "stab",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 54 ), ExtResource( 55 ), ExtResource( 56 ), ExtResource( 57 ) ],
-"loop": false,
-"name": "shield",
-"speed": 20.0
-}, {
 "frames": [ ExtResource( 30 ), ExtResource( 32 ), ExtResource( 27 ), ExtResource( 35 ), ExtResource( 33 ), ExtResource( 34 ) ],
 "loop": false,
 "name": "jump",
@@ -90,25 +75,40 @@ animations = [ {
 "name": "run",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 34 ), ExtResource( 39 ) ],
-"loop": true,
-"name": "fall",
-"speed": 5.0
+"frames": [ ExtResource( 28 ), ExtResource( 42 ), ExtResource( 41 ), ExtResource( 43 ), ExtResource( 43 ) ],
+"loop": false,
+"name": "slash",
+"speed": 8.0
 }, {
 "frames": [ ExtResource( 16 ), ExtResource( 18 ) ],
 "loop": true,
 "name": "walk",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 38 ), ExtResource( 37 ), ExtResource( 37 ) ],
-"loop": false,
-"name": "land",
-"speed": 5.0
+"frames": [ ExtResource( 17 ), ExtResource( 20 ), ExtResource( 29 ), ExtResource( 36 ), ExtResource( 36 ) ],
+"loop": true,
+"name": "stab",
+"speed": 12.0
 }, {
 "frames": [ ExtResource( 46 ), ExtResource( 45 ), ExtResource( 50 ), ExtResource( 44 ), ExtResource( 49 ), ExtResource( 47 ), ExtResource( 48 ) ],
 "loop": false,
 "name": "death",
 "speed": 6.0
+}, {
+"frames": [ ExtResource( 38 ), ExtResource( 37 ), ExtResource( 37 ) ],
+"loop": false,
+"name": "land",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 34 ), ExtResource( 39 ) ],
+"loop": true,
+"name": "fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 54 ), ExtResource( 55 ), ExtResource( 56 ), ExtResource( 57 ) ],
+"loop": false,
+"name": "shield",
+"speed": 20.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]

@@ -14,16 +14,24 @@ var player_detected = false
 
 onready var player = get_parent().get_node("Haytham")
 
-var life = 10
+var life = 0.5
 var strength = 100
 var attack = 1
 var defense = 1
 var is_dead = false
+var push_power = 5
 
 func _ready():
 	$AnimatedSprite.play("walk")
 
 func _physics_process(delta):
+	if is_on_ceiling():
+		movement.y = 0
+	if !is_on_floor():
+		movement.y+= gravity
+	else:
+		movement.y = gravity
+	
 	if is_dead :
 		$AnimatedSprite.play("death")
 		last_animation = "death"
@@ -57,6 +65,7 @@ func _physics_process(delta):
 			$DetectedPlayer/Detected.scale.x = -1
 			$DetectedPlayer/Detected.position.x = -32.685
 			next_direction_time = OS.get_ticks_msec()+react_time
+			push_power= -15
 		elif player.position.x > position.x and next_direction != 1:
 			next_direction = 1
 			$AnimatedSprite.scale.x=1
@@ -64,6 +73,7 @@ func _physics_process(delta):
 			$AttackSkeleton/Attack.position.x = 12
 			$DetectedPlayer/Detected.scale.x = 1
 			$DetectedPlayer/Detected.position.x = 32.685
+			push_power= 15
 			next_direction_time = OS.get_ticks_msec()+react_time
 	if not is_dead:
 		if OS.get_ticks_msec() > next_direction_time:
@@ -86,13 +96,6 @@ func is_dead():
 
 func take_damage():
 	$Death_sound.play()
-	var rng = RandomNumberGenerator.new()
-	rng.randomize()
-	var value = round(rng.randf_range(0, player.attack))
-	if value == 0:
-		print("miss")
-		return
-	print("hit")
 	if player.attack_style == "slash":
 		var damage = 0.5 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength)
 		life -= damage
@@ -116,7 +119,7 @@ func _on_attack_off_timeout():
 	$AttackSkeleton.monitoring = false
 
 func _on_AttackSkeleton_body_entered(body):
-	player.take_damage(position, strength)
+	player.take_damage(position, strength,push_power)
 
 func _on_delay_timeout():
 	queue_free()

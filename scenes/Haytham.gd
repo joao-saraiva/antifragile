@@ -70,7 +70,7 @@ func esp32_left_joystick(x):
 	esp32_left_joystick = Vector2(int(x),0)
 
 func _physics_process(delta):
-	print(look_angle()) #excluir essa linha depois
+	#print(look_angle()) #excluir essa linha depois
 	last_movement = movement
 	if is_on_ceiling():
 		movement.y = 0
@@ -209,7 +209,7 @@ func attack():
 		$Swordhit/attack_on.wait_time = 0.12
 	$Swordhit/attack_on.start()
 
-func take_damage(enemy, enemy_strength):
+func take_damage(enemy, enemy_strength,push_power):
 	var distance = enemy.x - position.x
 	if distance < 0 and $AnimatedSprite.scale.x < 0 and wielded_shield:
 		$block.play()
@@ -218,7 +218,7 @@ func take_damage(enemy, enemy_strength):
 	else:
 		wielded_shield = false
 		life -= 0.5 * (enemy_strength/defense)
-		movement.x = (position.x - enemy.x)*20
+		movement.x = push_power*20
 		hit = true
 		print(life)
 

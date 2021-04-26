@@ -1,0 +1,95 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://assets/Boss_1/boss_attack(1).tres" type="Texture" id=1]
+[ext_resource path="res://assets/Boss_1/boss_walk(1).tres" type="Texture" id=2]
+[ext_resource path="res://assets/Boss_1/boss_walk(2).tres" type="Texture" id=3]
+[ext_resource path="res://assets/Boss_1/boss_attack(7).tres" type="Texture" id=4]
+[ext_resource path="res://assets/Boss_1/boss_attack(6).tres" type="Texture" id=5]
+[ext_resource path="res://assets/Boss_1/boss_attack(8).tres" type="Texture" id=6]
+[ext_resource path="res://assets/Boss_1/boss_attack(2).tres" type="Texture" id=7]
+[ext_resource path="res://assets/Boss_1/boss_attack(3).tres" type="Texture" id=8]
+[ext_resource path="res://assets/Boss_1/boss_attack(5).tres" type="Texture" id=9]
+[ext_resource path="res://assets/Boss_1/boss_attack(4).tres" type="Texture" id=10]
+[ext_resource path="res://assets/Boss_1/boss_death(1).tres" type="Texture" id=11]
+[ext_resource path="res://assets/Boss_1/boss_death(2).tres" type="Texture" id=12]
+[ext_resource path="res://scenes/Boss_1.gd" type="Script" id=13]
+[ext_resource path="res://assets/Boss_1/boss_attack(9).tres" type="Texture" id=14]
+[ext_resource path="res://assets/Boss_1/SHHHUINNN.wav" type="AudioStream" id=15]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "attack",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "death",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+height = 47.2841
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 244.365, 49.1391 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 20.6685, 38.2262 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 16.5046, 31.6057 )
+
+[node name="Boss_1" type="KinematicBody2D"]
+position = Vector2( 976.174, 205.461 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 13 )
+
+[node name="Boss_animated_sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 3.05176e-05 )
+scale = Vector2( -1, 1 )
+frames = SubResource( 1 )
+animation = "attack"
+frame = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 12.2704 )
+shape = SubResource( 2 )
+
+[node name="CanFollow" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CanFollowShape" type="CollisionShape2D" parent="CanFollow"]
+position = Vector2( -196.431, 0 )
+shape = SubResource( 3 )
+
+[node name="CanAttack" type="Area2D" parent="."]
+
+[node name="CanAttackShape" type="CollisionShape2D" parent="CanAttack"]
+position = Vector2( -26.7515, 12.2704 )
+shape = SubResource( 4 )
+
+[node name="CanAttackTime" type="Timer" parent="."]
+wait_time = 0.8
+
+[node name="Heavy_attack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+
+[node name="Attack" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="AttackShape" type="CollisionShape2D" parent="Attack"]
+position = Vector2( -26.7515, 12.2704 )
+shape = SubResource( 5 )
+[connection signal="body_entered" from="CanFollow" to="." method="_on_CanFollow_body_entered"]
+[connection signal="body_entered" from="CanAttack" to="." method="_on_CanAttack_body_entered"]
+[connection signal="timeout" from="CanAttackTime" to="." method="_on_CanAttackTime_timeout"]
+[connection signal="body_entered" from="Attack" to="." method="_on_Attack_body_entered"]
