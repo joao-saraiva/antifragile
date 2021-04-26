@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
-
+const whiten_duration = 0.15
+export(ShaderMaterial) var whiten_material
 export var gravity = 10
 export var walk_speed = 25
 var movement = Vector2(walk_speed, 0)
@@ -13,9 +14,10 @@ var next_direction_time = 0
 var last_animation = ""
 var player_detected = false
 var canFollow = false
+var tocou = false
+var is_hit = false
 onready var player = get_parent().get_node("Haytham")
-
-var life = 0.5
+var life = 500
 var strength = 1000
 var attack = 1
 var defense = 1
@@ -26,6 +28,7 @@ var push_power = 150
 func _ready():
 	set_process(true)
 	$Boss_animated_sprite.play("walk")
+	$Background.play()
 	pass # Replace with function body.
 
 func _process(delta):
@@ -34,7 +37,10 @@ func _process(delta):
 	if is_dead:
 		movement.x = 0
 		$Boss_animated_sprite.play("death")
+		$Attack.monitoring = false
 		last_animation = "death"
+		death_sound()
+		
 		
 		
 	if last_animation == "attack" and $Boss_animated_sprite.frame == 4:
@@ -47,6 +53,8 @@ func _process(delta):
 		$Attack.monitoring = true
 	if last_animation == "death" and $Boss_animated_sprite.frame == 2:
 		$Boss_animated_sprite.stop()
+		
+		
 		
 	if is_on_ceiling():
 		movement.y = 0
@@ -98,7 +106,15 @@ func is_dead():
 func _on_CanFollow_body_entered(body):
 	if body.get_name() == "Haytham":
 		canFollow = true
+		$Background.stop()
+		$Theme.play()
 		#print("entrou")
+
+func death_sound():
+	if not tocou:
+		tocou = true
+		$Land.play()
+		$Death_sound.play()
 	
 
 func attack():
@@ -116,11 +132,17 @@ func take_damage():
 	if player.attack_style == "slash":
 		var damage = 0.5 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength)
 		life -= damage
+		whiten_material.set_shader_param("whiten",true)
+		yield(get_tree().create_timer(whiten_duration),"timeout")
+		whiten_material.set_shader_param("whiten",false)
 	else:
 		var damage = 0.1 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength)
 		life -= damage
 	
-
+	print(life)
+	
+func play_theme():
+	$Theme.play()
 
 func _on_Attack_body_entered(body):
 	

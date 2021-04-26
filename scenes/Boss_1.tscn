@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://assets/Boss_1/boss_attack(1).tres" type="Texture" id=1]
 [ext_resource path="res://assets/Boss_1/boss_walk(1).tres" type="Texture" id=2]
@@ -15,6 +15,13 @@
 [ext_resource path="res://scenes/Boss_1.gd" type="Script" id=13]
 [ext_resource path="res://assets/Boss_1/boss_attack(9).tres" type="Texture" id=14]
 [ext_resource path="res://assets/Boss_1/SHHHUINNN.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/Boss_1/noooooooooo.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/Main_Character/landing.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/Boss_1/[ONTIVA.COM]-Final Demise - The Legend of Zelda_ Skyward Sword-HQ.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/Inferno/music/[ONTIVA.COM]-Castlevania_ Symphony of the Night OST_ Metamorphosis I-HQ.wav" type="AudioStream" id=19]
+[ext_resource path="res://assets/Boss_1/boss_walk_hit(2).tres" type="Texture" id=20]
+[ext_resource path="res://assets/Boss_1/boss_walk_hit(1).tres" type="Texture" id=21]
+[ext_resource path="res://scenes/whiten_material.tres" type="Material" id=22]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -31,6 +38,11 @@ animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "death",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 21 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "hit_walk",
 "speed": 5.0
 } ]
 
@@ -51,13 +63,14 @@ position = Vector2( 976.174, 205.461 )
 collision_layer = 3
 collision_mask = 3
 script = ExtResource( 13 )
+whiten_material = ExtResource( 22 )
 
 [node name="Boss_animated_sprite" type="AnimatedSprite" parent="."]
+material = ExtResource( 22 )
 position = Vector2( 0, 3.05176e-05 )
 scale = Vector2( -1, 1 )
 frames = SubResource( 1 )
 animation = "attack"
-frame = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 12.2704 )
@@ -89,6 +102,20 @@ monitorable = false
 [node name="AttackShape" type="CollisionShape2D" parent="Attack"]
 position = Vector2( -26.7515, 12.2704 )
 shape = SubResource( 5 )
+
+[node name="Death_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+
+[node name="Land" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+
+[node name="Theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+volume_db = -16.282
+
+[node name="Background" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+volume_db = -10.505
 [connection signal="body_entered" from="CanFollow" to="." method="_on_CanFollow_body_entered"]
 [connection signal="body_entered" from="CanAttack" to="." method="_on_CanAttack_body_entered"]
 [connection signal="timeout" from="CanAttackTime" to="." method="_on_CanAttackTime_timeout"]
