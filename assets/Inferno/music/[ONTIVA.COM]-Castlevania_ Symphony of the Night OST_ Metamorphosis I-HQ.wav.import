@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/[ONTIVA.COM]-Castlevania_ Symphony of the Night OST_ Metamorphosis I-HQ.wav-9e2f9594eee739d4a93e55a137f06194.sample"
+
+[deps]
+
+source_file="res://assets/Inferno/music/[ONTIVA.COM]-Castlevania_ Symphony of the Night OST_ Metamorphosis I-HQ.wav"
+dest_files=[ "res://.import/[ONTIVA.COM]-Castlevania_ Symphony of the Night OST_ Metamorphosis I-HQ.wav-9e2f9594eee739d4a93e55a137f06194.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

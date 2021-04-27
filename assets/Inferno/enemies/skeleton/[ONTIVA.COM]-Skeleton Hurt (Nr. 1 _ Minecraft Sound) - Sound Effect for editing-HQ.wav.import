@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/[ONTIVA.COM]-Skeleton Hurt (Nr. 1 _ Minecraft Sound) - Sound Effect for editing-HQ.wav-d09f1b9a60aac8976f0f8adb5d2f9a92.sample"
+
+[deps]
+
+source_file="res://assets/Inferno/enemies/skeleton/[ONTIVA.COM]-Skeleton Hurt (Nr. 1 _ Minecraft Sound) - Sound Effect for editing-HQ.wav"
+dest_files=[ "res://.import/[ONTIVA.COM]-Skeleton Hurt (Nr. 1 _ Minecraft Sound) - Sound Effect for editing-HQ.wav-d09f1b9a60aac8976f0f8adb5d2f9a92.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

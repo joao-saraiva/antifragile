@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/assets_Main_Character_[ONTIVA.COM]-Sword Whoosh Sound Effect First Variation-HQ.wav-6370af3721606810f50fa60b5a4cc0f5.sample"
+
+[deps]
+
+source_file="res://assets/Main_Character/assets_Main_Character_[ONTIVA.COM]-Sword Whoosh Sound Effect First Variation-HQ.wav"
+dest_files=[ "res://.import/assets_Main_Character_[ONTIVA.COM]-Sword Whoosh Sound Effect First Variation-HQ.wav-6370af3721606810f50fa60b5a4cc0f5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

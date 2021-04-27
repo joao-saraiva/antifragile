@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/506586__mrthenoronha__kill-enemy-3-8-bit.wav-d816fd5bff9b2c9fe415bc7e9873b721.sample"
+
+[deps]
+
+source_file="res://assets/Inferno/enemies/skeleton/506586__mrthenoronha__kill-enemy-3-8-bit.wav"
+dest_files=[ "res://.import/506586__mrthenoronha__kill-enemy-3-8-bit.wav-d816fd5bff9b2c9fe415bc7e9873b721.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
