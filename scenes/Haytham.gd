@@ -23,6 +23,7 @@ var esp32Run = false
 var esp32Shield = false
 var esp32ChangeAttackStyle = false
 var walkSound = true
+var deathSound = true
 # Esses status serão salvos por arquivo para não serem resetados
 # cada vez q o jogo for iniciado. Estão sendo declarados aqui
 # somente para teste
@@ -81,12 +82,17 @@ func _physics_process(delta):
 		movement.y = gravity
 	
 	if life <= 0:
+		if deathSound:
+			$death.play()
+			deathSound = false
+			$walk.stop()
 		$AnimatedSprite.play("death")
 		is_dead = true
 		$CollisionShape2D.disabled = true
 		$reset.start()
 		movement.y = 0
 		movement.x = 0
+		$GameOverCanvasLayer/Black.visible = true
 	
 	if not is_dead:
 		if esp32ChangeAttackStyle or Input.is_action_just_pressed("change_attack_style"):
@@ -257,4 +263,10 @@ func _on_Swordhit_body_entered(body):
 func _on_reset_timeout():
 	
 	
+	pass # Replace with function body.
+
+
+func _on_death_finished():
+	print("acabamos")
+	get_tree().reload_current_scene()
 	pass # Replace with function body.

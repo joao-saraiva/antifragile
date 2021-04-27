@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://assets/Main_Character/idle(15).tres" type="Texture" id=1]
 [ext_resource path="res://assets/Main_Character/idle(13).tres" type="Texture" id=2]
@@ -58,6 +58,8 @@
 [ext_resource path="res://assets/Main_Character/shield(3).tres" type="Texture" id=56]
 [ext_resource path="res://assets/Main_Character/shield(4).tres" type="Texture" id=57]
 [ext_resource path="res://assets/Main_Character/walk_sound.wav" type="AudioStream" id=58]
+[ext_resource path="res://assets/HUD/1800e2ace2db58927a59cdb0ca5b022b.png" type="Texture" id=59]
+[ext_resource path="res://assets/Main_Character/Gamer_over.wav" type="AudioStream" id=60]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -66,50 +68,50 @@ animations = [ {
 "name": "idle",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 30 ), ExtResource( 32 ), ExtResource( 27 ), ExtResource( 35 ), ExtResource( 33 ), ExtResource( 34 ) ],
-"loop": false,
-"name": "jump",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 18 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ) ],
-"loop": true,
-"name": "run",
-"speed": 8.0
-}, {
 "frames": [ ExtResource( 28 ), ExtResource( 42 ), ExtResource( 41 ), ExtResource( 43 ), ExtResource( 43 ) ],
 "loop": false,
 "name": "slash",
 "speed": 8.0
-}, {
-"frames": [ ExtResource( 34 ), ExtResource( 39 ) ],
-"loop": true,
-"name": "fall",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 18 ) ],
-"loop": true,
-"name": "walk",
-"speed": 4.0
-}, {
-"frames": [ ExtResource( 17 ), ExtResource( 20 ), ExtResource( 29 ), ExtResource( 36 ), ExtResource( 36 ) ],
-"loop": true,
-"name": "stab",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 46 ), ExtResource( 45 ), ExtResource( 50 ), ExtResource( 44 ), ExtResource( 49 ), ExtResource( 47 ), ExtResource( 48 ) ],
-"loop": false,
-"name": "death",
-"speed": 6.0
 }, {
 "frames": [ ExtResource( 38 ), ExtResource( 37 ), ExtResource( 37 ) ],
 "loop": false,
 "name": "land",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 46 ), ExtResource( 45 ), ExtResource( 50 ), ExtResource( 44 ), ExtResource( 49 ), ExtResource( 47 ), ExtResource( 48 ) ],
+"loop": false,
+"name": "death",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 20 ), ExtResource( 29 ), ExtResource( 36 ), ExtResource( 36 ) ],
+"loop": true,
+"name": "stab",
+"speed": 12.0
+}, {
 "frames": [ ExtResource( 54 ), ExtResource( 55 ), ExtResource( 56 ), ExtResource( 57 ) ],
 "loop": false,
 "name": "shield",
 "speed": 20.0
+}, {
+"frames": [ ExtResource( 34 ), ExtResource( 39 ) ],
+"loop": true,
+"name": "fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 30 ), ExtResource( 32 ), ExtResource( 27 ), ExtResource( 35 ), ExtResource( 33 ), ExtResource( 34 ) ],
+"loop": false,
+"name": "jump",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "walk",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 18 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "run",
+"speed": 8.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -182,8 +184,31 @@ volume_db = -1.538
 stream = ExtResource( 58 )
 
 [node name="reset" type="Timer" parent="."]
-wait_time = 0.029
+wait_time = 0.017
+
+[node name="GameOverCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Black" type="ColorRect" parent="GameOverCanvasLayer"]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 0.239216 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="GameOverCanvasLayer/Black"]
+margin_left = 384.872
+margin_top = 212.064
+margin_right = 641.872
+margin_bottom = 283.064
+texture = ExtResource( 59 )
+
+[node name="death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 60 )
+volume_db = -9.979
 [connection signal="body_entered" from="Swordhit" to="." method="_on_Swordhit_body_entered"]
 [connection signal="timeout" from="Swordhit/attack_off" to="." method="_on_attack_off_timeout"]
 [connection signal="timeout" from="Swordhit/attack_on" to="." method="_on_attack_on_timeout"]
 [connection signal="timeout" from="reset" to="." method="_on_reset_timeout"]
+[connection signal="finished" from="death" to="." method="_on_death_finished"]

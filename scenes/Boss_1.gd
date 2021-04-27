@@ -32,6 +32,8 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
+	if player.life <= 0:
+		$Theme.stop()
 	if life <= 0:
 		is_dead = true
 		
