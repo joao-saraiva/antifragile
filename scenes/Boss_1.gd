@@ -17,7 +17,7 @@ var canFollow = false
 var tocou = false
 var is_hit = false
 onready var player = get_parent().get_node("Haytham")
-var life = 500
+var life = 1
 var strength = 1000
 var attack = 1
 var defense = 1
@@ -34,6 +34,7 @@ func _ready():
 func _process(delta):
 	if life <= 0:
 		is_dead = true
+		
 	if is_dead:
 		movement.x = 0
 		$Boss_animated_sprite.play("death")
@@ -53,6 +54,8 @@ func _process(delta):
 		$Attack.monitoring = true
 	if last_animation == "death" and $Boss_animated_sprite.frame == 2:
 		$Boss_animated_sprite.stop()
+		$Theme.stop()
+		$CollisionShape2D.disabled = true
 		
 		
 		
@@ -121,7 +124,7 @@ func attack():
 	$Boss_animated_sprite.play("attack")
 	last_animation = "attack"
 	$CanAttack.monitoring = false
-	$CanAttackTime.start()
+	
 
 func _on_CanAttack_body_entered(body):
 	if body.get_name() == "Haytham" and not is_dead:
@@ -152,3 +155,6 @@ func _on_Attack_body_entered(body):
 		player.take_damage(position,strength,push_power)
 		
 	pass # Replace with function body.
+
+
+

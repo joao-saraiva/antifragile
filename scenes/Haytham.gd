@@ -22,10 +22,11 @@ var esp32Attack = false
 var esp32Run = false
 var esp32Shield = false
 var esp32ChangeAttackStyle = false
+var walkSound = true
 # Esses status serão salvos por arquivo para não serem resetados
 # cada vez q o jogo for iniciado. Estão sendo declarados aqui
 # somente para teste
-var life = 100
+var life = 1
 var strength = 99
 var attack = 1
 var defense = 99
@@ -82,6 +83,9 @@ func _physics_process(delta):
 	if life <= 0:
 		$AnimatedSprite.play("death")
 		is_dead = true
+		$CollisionShape2D.disabled = true
+		$reset.start()
+		movement.y = 0
 		movement.x = 0
 	
 	if not is_dead:
@@ -165,17 +169,26 @@ func update_animations():
 			$landing.play()
 			$AnimatedSprite.play("land")	
 		elif abs(movement.x) > 0 and not is_attacking():
+			if walkSound:
+				$walk.play()
+				walkSound = false
 			if is_running:
 				$AnimatedSprite.play("run")
 			else:
 				$AnimatedSprite.play("walk")
 		elif not is_landing() and not is_attacking() and not wielded_shield:
 			$AnimatedSprite.play("idle")
+			$walk.stop()
+			walkSound = true
 	elif not is_attacking() or movement.y == jump_speed:
 		if movement.y > 0:
 			$AnimatedSprite.play("fall")
+			$walk.stop()
+			walkSound = true
 		else:
 			$AnimatedSprite.play("jump")
+			$walk.stop()
+			walkSound = true
 	last_animation = $AnimatedSprite.animation 
 
 func is_landing():
@@ -220,7 +233,7 @@ func take_damage(enemy, enemy_strength,push_power):
 		life -= 0.5 * (enemy_strength/defense)
 		movement.x = push_power*20
 		hit = true
-		print(life)
+		#print(life)
 
 func _on_attack_off_timeout():
 	$Swordhit/sword_slash.disabled = true
@@ -239,3 +252,9 @@ func _on_attack_on_timeout():
 func _on_Swordhit_body_entered(body):
 	var enemy = get_parent().get_node(body.get_name())
 	enemy.take_damage()
+
+
+func _on_reset_timeout():
+	
+	
+	pass # Replace with function body.

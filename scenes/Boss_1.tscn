@@ -90,7 +90,7 @@ position = Vector2( -26.7515, 12.2704 )
 shape = SubResource( 4 )
 
 [node name="CanAttackTime" type="Timer" parent="."]
-wait_time = 0.8
+wait_time = 0.1
 
 [node name="Heavy_attack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
