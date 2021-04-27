@@ -70,7 +70,7 @@ func _process(delta):
 	
 
 	
-	if canFollow and not is_attacking() and not is_dead:
+	if canFollow and not is_dead:
 		#print(position.x)
 		$CanFollow.monitoring = false
 		if player.position.x < position.x and next_direction != -1:

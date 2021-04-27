@@ -28,15 +28,15 @@ animations = [ {
 "name": "attack",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 16 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": false,
 "name": "death",
 "speed": 6.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]

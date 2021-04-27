@@ -89,7 +89,6 @@ func _physics_process(delta):
 		$AnimatedSprite.play("death")
 		is_dead = true
 		$CollisionShape2D.disabled = true
-		$reset.start()
 		movement.y = 0
 		movement.x = 0
 		$GameOverCanvasLayer/Black.visible = true
@@ -155,6 +154,7 @@ func _physics_process(delta):
 	
 	if not is_dead:
 		update_animations()
+		update_attack_hitbox()
 
 func update_animations():
 	if not is_attacking() and not is_landing():
@@ -259,14 +259,59 @@ func _on_Swordhit_body_entered(body):
 	var enemy = get_parent().get_node(body.get_name())
 	enemy.take_damage()
 
-
-func _on_reset_timeout():
-	
-	
-	pass # Replace with function body.
-
+func update_attack_hitbox():
+	var degree = look_angle()
+	if abs(movement.x) > abs(walk_speed) or degree < 30 and degree > -30:
+		if $AnimatedSprite.scale.x == 1:
+			$Swordhit/sword_slash.position.x = 11.914
+			$Swordhit/sword_stab.position.x = 11
+		else:
+			$Swordhit/sword_slash.position.x = -11.914
+			$Swordhit/sword_stab.position.x = -11
+		$Swordhit/sword_slash.rotation = 0
+		$Swordhit/sword_stab.rotation = 0
+		$Swordhit/sword_slash.position.y = -2.974
+		$Swordhit/sword_stab.position.y = -4
+	elif degree >= 30 and degree < 60:
+		if $AnimatedSprite.scale.x == 1:
+			$Swordhit/sword_slash.rotation = -0.523599
+			$Swordhit/sword_stab.rotation = -0.523599
+			$Swordhit/sword_slash.position.x = 15.273 
+			$Swordhit/sword_stab.position.x = 13.652
+		else:
+			$Swordhit/sword_slash.rotation = 0.523599
+			$Swordhit/sword_stab.rotation = 0.523599
+			$Swordhit/sword_slash.position.x = -15.273 
+			$Swordhit/sword_stab.position.x = -13.652
+		$Swordhit/sword_slash.position.y = -11.283
+		$Swordhit/sword_stab.position.y = -11.778
+	elif degree >= 60:
+		if $AnimatedSprite.scale.x == 1:
+			$Swordhit/sword_slash.rotation = -1.0472
+			$Swordhit/sword_stab.rotation = -1.0472
+			$Swordhit/sword_slash.position.x = 11.914
+			$Swordhit/sword_stab.position.x = 10.47
+		else:
+			$Swordhit/sword_slash.rotation = 1.0472
+			$Swordhit/sword_stab.rotation = 1.0472
+			$Swordhit/sword_slash.position.x = -11.914
+			$Swordhit/sword_stab.position.x = -10.47
+		$Swordhit/sword_slash.position.y = -19.061
+		$Swordhit/sword_stab.position.y = -21.147
+	elif degree <= -30:
+		if $AnimatedSprite.scale.x == 1:
+			$Swordhit/sword_slash.rotation = 0.523599
+			$Swordhit/sword_stab.rotation = 0.523599
+			$Swordhit/sword_slash.position.x = 10.323
+			$Swordhit/sword_stab.position.x = 11.354
+		else:
+			$Swordhit/sword_slash.rotation = -0.523599
+			$Swordhit/sword_stab.rotation = -0.523599
+			$Swordhit/sword_slash.position.x = -10.323
+			$Swordhit/sword_stab.position.x = -11.354
+		$Swordhit/sword_slash.position.y = 6.572
+		$Swordhit/sword_stab.position.y = 8.551
 
 func _on_death_finished():
 	print("acabamos")
 	get_tree().reload_current_scene()
-	pass # Replace with function body.
