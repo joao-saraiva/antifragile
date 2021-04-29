@@ -30,7 +30,7 @@ var deathSound = true
 # somente para teste
 var life = 100
 var strength = 70
-var defense = 35
+var defense = 50
 var chaos = 0
 var in_fury_state = false
 var sword = "Chaos_longsword"
@@ -93,7 +93,7 @@ func _physics_process(delta):
 		$GameOverCanvasLayer/Black.visible = true
 	
 	if not is_dead:
-		if esp32ChangeAttackStyle or Input.is_action_just_pressed("change_attack_style"):
+		if sword != "None" and esp32ChangeAttackStyle or Input.is_action_just_pressed("change_attack_style"):
 			if attack_style == "slash":
 				attack_style = "stab"
 			else:
@@ -125,7 +125,7 @@ func _physics_process(delta):
 					movement.x = horizontal_axis*walk_speed
 					is_running = false
 			
-				if (esp32Attack or Input.is_action_just_pressed("attack")) and not is_attacking():
+				if sword != "None" and (esp32Attack or Input.is_action_just_pressed("attack")) and not is_attacking():
 					esp32Attack = false
 					attack()
 			
@@ -232,14 +232,14 @@ func take_damage(enemy, enemy_strength,push_power):
 	var distance = enemy.x - position.x
 	if (distance < 0 and $AnimatedSprite.scale.x < 0 and wielded_shield) or (enemy.x - position.x > 0 and $AnimatedSprite.scale.x > 0 and wielded_shield):
 		$block.play()
-		var damage = 0.5 * (enemy_strength/defense)
+		var damage = 0.5 * (pow(1.1,enemy_strength)/(pow(1.15,defense)+1))
 		life -= damage
 		if damage >= 5:
 			$Hit.play()
 		print("player: "+str(life))
 	else:
 		wielded_shield = false
-		life -= 0.5 * (enemy_strength/(defense/5))
+		life -= 0.5 * (pow(1.1,enemy_strength)/pow(1.1,defense))
 		movement.x = push_power*20
 		hit = true
 		print("player: "+str(life))
