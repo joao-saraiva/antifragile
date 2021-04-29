@@ -128,7 +128,8 @@ func _physics_process(delta):
 				if sword != "None" and (esp32Attack or Input.is_action_just_pressed("attack")) and not is_attacking():
 					esp32Attack = false
 					attack()
-			
+			elif $AnimatedSprite.frame == 11:
+				$AnimatedSprite.frame = 3
 			if esp32Shield or Input.is_action_pressed("shield") and is_on_floor():
 				wielded_shield = true
 				$AnimatedSprite.play("shield"+sword)
