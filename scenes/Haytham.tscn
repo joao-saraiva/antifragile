@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=206 format=2]
 
 [ext_resource path="res://assets/Main_Character/idle(15).tres" type="Texture" id=1]
 [ext_resource path="res://assets/Main_Character/idle(13).tres" type="Texture" id=2]
@@ -16,33 +16,32 @@
 [ext_resource path="res://assets/Main_Character/idle(6).tres" type="Texture" id=14]
 [ext_resource path="res://assets/Main_Character/idle(4).tres" type="Texture" id=15]
 [ext_resource path="res://assets/Main_Character/walk(1).tres" type="Texture" id=16]
-[ext_resource path="res://assets/Main_Character/attack(2).tres" type="Texture" id=17]
+[ext_resource path="res://assets/Main_Character/attack_stab(1)0.tres" type="Texture" id=17]
 [ext_resource path="res://assets/Main_Character/walk(2).tres" type="Texture" id=18]
 [ext_resource path="res://assets/Main_Character/walk(5).tres" type="Texture" id=19]
-[ext_resource path="res://assets/Main_Character/attack(3).tres" type="Texture" id=20]
+[ext_resource path="res://assets/Main_Character/attack_stab(2)0.tres" type="Texture" id=20]
 [ext_resource path="res://assets/Main_Character/walk(6).tres" type="Texture" id=21]
-[ext_resource path="res://assets/Main_Character/walk(7).tres" type="Texture" id=22]
-[ext_resource path="res://assets/Main_Character/walk(8).tres" type="Texture" id=23]
+[ext_resource path="res://assets/Main_Character/walk(8).tres" type="Texture" id=22]
+[ext_resource path="res://assets/Main_Character/walk(7).tres" type="Texture" id=23]
 [ext_resource path="res://assets/Main_Character/Recording (22) (online-audio-converter.com).wav" type="AudioStream" id=24]
-[ext_resource path="res://assets/Main_Character/walk(3).tres" type="Texture" id=25]
-[ext_resource path="res://assets/Main_Character/walk(4).tres" type="Texture" id=26]
+[ext_resource path="res://assets/Main_Character/walk(4).tres" type="Texture" id=25]
 [ext_resource path="res://assets/Main_Character/jump(3).tres" type="Texture" id=27]
-[ext_resource path="res://assets/Main_Character/attack_slash(1).tres" type="Texture" id=28]
-[ext_resource path="res://assets/Main_Character/attack(4).tres" type="Texture" id=29]
+[ext_resource path="res://assets/Main_Character/attack_slash(1)0.tres" type="Texture" id=28]
+[ext_resource path="res://assets/Main_Character/attack_stab(3)0.tres" type="Texture" id=29]
 [ext_resource path="res://assets/Main_Character/jump(1).tres" type="Texture" id=30]
 [ext_resource path="res://assets/Main_Character/Recording (19) (online-audio-converter.com).wav" type="AudioStream" id=31]
 [ext_resource path="res://assets/Main_Character/jump(2).tres" type="Texture" id=32]
 [ext_resource path="res://assets/Main_Character/fall(1).tres" type="Texture" id=33]
 [ext_resource path="res://assets/Main_Character/fall(2).tres" type="Texture" id=34]
 [ext_resource path="res://assets/Main_Character/jump(4).tres" type="Texture" id=35]
-[ext_resource path="res://assets/Main_Character/attack(5).tres" type="Texture" id=36]
+[ext_resource path="res://assets/Main_Character/attack_stab(4)0.tres" type="Texture" id=36]
 [ext_resource path="res://assets/Main_Character/fall(5).tres" type="Texture" id=37]
 [ext_resource path="res://assets/Main_Character/fall(4).tres" type="Texture" id=38]
 [ext_resource path="res://assets/Main_Character/fall(3).tres" type="Texture" id=39]
 [ext_resource path="res://scenes/Haytham.gd" type="Script" id=40]
-[ext_resource path="res://assets/Main_Character/attack_slash(3).tres" type="Texture" id=41]
-[ext_resource path="res://assets/Main_Character/attack_slash(2).tres" type="Texture" id=42]
-[ext_resource path="res://assets/Main_Character/attack_slash(4).tres" type="Texture" id=43]
+[ext_resource path="res://assets/Main_Character/attack_slash(3)0.tres" type="Texture" id=41]
+[ext_resource path="res://assets/Main_Character/attack_slash(2)0.tres" type="Texture" id=42]
+[ext_resource path="res://assets/Main_Character/attack_slash(4)0.tres" type="Texture" id=43]
 [ext_resource path="res://assets/Main_Character/death(4).tres" type="Texture" id=44]
 [ext_resource path="res://assets/Main_Character/death(2).tres" type="Texture" id=45]
 [ext_resource path="res://assets/Main_Character/death(1).tres" type="Texture" id=46]
@@ -60,65 +59,358 @@
 [ext_resource path="res://assets/Main_Character/walk_sound.wav" type="AudioStream" id=58]
 [ext_resource path="res://assets/HUD/1800e2ace2db58927a59cdb0ca5b022b.png" type="Texture" id=59]
 [ext_resource path="res://assets/Main_Character/Gamer_over.wav" type="AudioStream" id=60]
+[ext_resource path="res://assets/Main_Character/attack_slash(4)30.tres" type="Texture" id=61]
+[ext_resource path="res://assets/Main_Character/attack_slash(3)30.tres" type="Texture" id=62]
+[ext_resource path="res://assets/Main_Character/attack_slash(2)30.tres" type="Texture" id=63]
+[ext_resource path="res://assets/Main_Character/attack_slash(1)30.tres" type="Texture" id=64]
+[ext_resource path="res://assets/Main_Character/attack_slash(3)60.tres" type="Texture" id=65]
+[ext_resource path="res://assets/Main_Character/attack_slash(1)60.tres" type="Texture" id=66]
+[ext_resource path="res://assets/Main_Character/attack_slash(4)60.tres" type="Texture" id=67]
+[ext_resource path="res://assets/Main_Character/attack_slash(2)60.tres" type="Texture" id=68]
+[ext_resource path="res://assets/Main_Character/attack_slash(1)-30.tres" type="Texture" id=69]
+[ext_resource path="res://assets/Main_Character/attack_slash(2)-30.tres" type="Texture" id=70]
+[ext_resource path="res://assets/Main_Character/attack_slash(3)-30.tres" type="Texture" id=71]
+[ext_resource path="res://assets/Main_Character/attack_slash(4)-30.tres" type="Texture" id=72]
+[ext_resource path="res://assets/Main_Character/attack_stab(2)30.tres" type="Texture" id=73]
+[ext_resource path="res://assets/Main_Character/attack_stab(4)30.tres" type="Texture" id=74]
+[ext_resource path="res://assets/Main_Character/attack_stab(3)30.tres" type="Texture" id=75]
+[ext_resource path="res://assets/Main_Character/attack_stab(1)30.tres" type="Texture" id=76]
+[ext_resource path="res://assets/Main_Character/attack_stab(1)60.tres" type="Texture" id=77]
+[ext_resource path="res://assets/Main_Character/attack_stab(2)60.tres" type="Texture" id=78]
+[ext_resource path="res://assets/Main_Character/attack_stab(4)60.tres" type="Texture" id=79]
+[ext_resource path="res://assets/Main_Character/attack_stab(3)60.tres" type="Texture" id=80]
+[ext_resource path="res://assets/Main_Character/attack_stab(4)-30.tres" type="Texture" id=81]
+[ext_resource path="res://assets/Main_Character/attack_stab(1)-30.tres" type="Texture" id=82]
+[ext_resource path="res://assets/Main_Character/attack_stab(2)-30.tres" type="Texture" id=83]
+[ext_resource path="res://assets/Main_Character/attack_stab(3)-30.tres" type="Texture" id=84]
+[ext_resource path="res://assets/Main_Character/idle2(2).tres" type="Texture" id=85]
+[ext_resource path="res://assets/Main_Character/idle2(1).tres" type="Texture" id=86]
+[ext_resource path="res://assets/Main_Character/idle2(5).tres" type="Texture" id=87]
+[ext_resource path="res://assets/Main_Character/idle2(4).tres" type="Texture" id=88]
+[ext_resource path="res://assets/Main_Character/idle2(10).tres" type="Texture" id=89]
+[ext_resource path="res://assets/Main_Character/idle2(11).tres" type="Texture" id=90]
+[ext_resource path="res://assets/Main_Character/idle2(14).tres" type="Texture" id=91]
+[ext_resource path="res://assets/Main_Character/idle2(7).tres" type="Texture" id=92]
+[ext_resource path="res://assets/Main_Character/idle2(3).tres" type="Texture" id=93]
+[ext_resource path="res://assets/Main_Character/idle2(8).tres" type="Texture" id=94]
+[ext_resource path="res://assets/Main_Character/idle2(6).tres" type="Texture" id=95]
+[ext_resource path="res://assets/Main_Character/idle2(9).tres" type="Texture" id=96]
+[ext_resource path="res://assets/Main_Character/idle2(12).tres" type="Texture" id=97]
+[ext_resource path="res://assets/Main_Character/idle2(13).tres" type="Texture" id=98]
+[ext_resource path="res://assets/Main_Character/idle2(15).tres" type="Texture" id=99]
+[ext_resource path="res://assets/Main_Character/idle3(1).tres" type="Texture" id=100]
+[ext_resource path="res://assets/Main_Character/idle3(9).tres" type="Texture" id=101]
+[ext_resource path="res://assets/Main_Character/idle3(6).tres" type="Texture" id=102]
+[ext_resource path="res://assets/Main_Character/idle3(5).tres" type="Texture" id=103]
+[ext_resource path="res://assets/Main_Character/idle3(13).tres" type="Texture" id=104]
+[ext_resource path="res://assets/Main_Character/idle3(4).tres" type="Texture" id=105]
+[ext_resource path="res://assets/Main_Character/idle3(14).tres" type="Texture" id=106]
+[ext_resource path="res://assets/Main_Character/idle3(3).tres" type="Texture" id=107]
+[ext_resource path="res://assets/Main_Character/idle3(12).tres" type="Texture" id=108]
+[ext_resource path="res://assets/Main_Character/idle3(15).tres" type="Texture" id=109]
+[ext_resource path="res://assets/Main_Character/idle3(11).tres" type="Texture" id=110]
+[ext_resource path="res://assets/Main_Character/idle3(2).tres" type="Texture" id=111]
+[ext_resource path="res://assets/Main_Character/idle3(7).tres" type="Texture" id=112]
+[ext_resource path="res://assets/Main_Character/idle3(10).tres" type="Texture" id=113]
+[ext_resource path="res://assets/Main_Character/idle3(8).tres" type="Texture" id=114]
+[ext_resource path="res://assets/Main_Character/attack_slash2(1)0.tres" type="Texture" id=115]
+[ext_resource path="res://assets/Main_Character/attack_slash2(2)0.tres" type="Texture" id=116]
+[ext_resource path="res://assets/Main_Character/attack_slash2(4)0.tres" type="Texture" id=117]
+[ext_resource path="res://assets/Main_Character/attack_slash2(3)0.tres" type="Texture" id=118]
+[ext_resource path="res://assets/Main_Character/attack_slash2(1)30.tres" type="Texture" id=119]
+[ext_resource path="res://assets/Main_Character/attack_slash2(2)30.tres" type="Texture" id=120]
+[ext_resource path="res://assets/Main_Character/attack_slash2(3)30.tres" type="Texture" id=121]
+[ext_resource path="res://assets/Main_Character/attack_slash2(4)30.tres" type="Texture" id=122]
+[ext_resource path="res://assets/Main_Character/attack_slash2(1)60.tres" type="Texture" id=123]
+[ext_resource path="res://assets/Main_Character/attack_slash2(2)60.tres" type="Texture" id=124]
+[ext_resource path="res://assets/Main_Character/attack_slash2(3)60.tres" type="Texture" id=125]
+[ext_resource path="res://assets/Main_Character/attack_slash2(4)-30.tres" type="Texture" id=126]
+[ext_resource path="res://assets/Main_Character/attack_slash2(4)60.tres" type="Texture" id=127]
+[ext_resource path="res://assets/Main_Character/attack_slash2(1)-30.tres" type="Texture" id=128]
+[ext_resource path="res://assets/Main_Character/attack_slash2(2)-30.tres" type="Texture" id=129]
+[ext_resource path="res://assets/Main_Character/attack_slash2(3)-30.tres" type="Texture" id=130]
+[ext_resource path="res://assets/Main_Character/attack_stab2(4)0.tres" type="Texture" id=131]
+[ext_resource path="res://assets/Main_Character/attack_stab2(1)30.tres" type="Texture" id=132]
+[ext_resource path="res://assets/Main_Character/attack_stab2(3)30.tres" type="Texture" id=133]
+[ext_resource path="res://assets/Main_Character/attack_stab2(2)30.tres" type="Texture" id=134]
+[ext_resource path="res://assets/Main_Character/attack_stab2(4)30.tres" type="Texture" id=135]
+[ext_resource path="res://assets/Main_Character/attack_stab2(1)0.tres" type="Texture" id=136]
+[ext_resource path="res://assets/Main_Character/attack_stab2(2)0.tres" type="Texture" id=137]
+[ext_resource path="res://assets/Main_Character/attack_stab2(1)60.tres" type="Texture" id=138]
+[ext_resource path="res://assets/Main_Character/attack_stab2(2)60.tres" type="Texture" id=139]
+[ext_resource path="res://assets/Main_Character/attack_stab2(3)60.tres" type="Texture" id=140]
+[ext_resource path="res://assets/Main_Character/attack_stab2(3)0.tres" type="Texture" id=141]
+[ext_resource path="res://assets/Main_Character/attack_stab2(4)60.tres" type="Texture" id=142]
+[ext_resource path="res://assets/Main_Character/attack_stab2(3)-30.tres" type="Texture" id=143]
+[ext_resource path="res://assets/Main_Character/attack_stab2(4)-30.tres" type="Texture" id=144]
+[ext_resource path="res://assets/Main_Character/attack_stab2(2)-30.tres" type="Texture" id=145]
+[ext_resource path="res://assets/Main_Character/attack_stab2(1)-30.tres" type="Texture" id=146]
+[ext_resource path="res://assets/Main_Character/walk2(1).tres" type="Texture" id=147]
+[ext_resource path="res://assets/Main_Character/walk2(2).tres" type="Texture" id=148]
+[ext_resource path="res://assets/Main_Character/walk2(4).tres" type="Texture" id=149]
+[ext_resource path="res://assets/Main_Character/walk2(3).tres" type="Texture" id=150]
+[ext_resource path="res://assets/Main_Character/walk2(6).tres" type="Texture" id=151]
+[ext_resource path="res://assets/Main_Character/walk2(5).tres" type="Texture" id=152]
+[ext_resource path="res://assets/Main_Character/walk2(8).tres" type="Texture" id=153]
+[ext_resource path="res://assets/Main_Character/walk2(7).tres" type="Texture" id=154]
+[ext_resource path="res://assets/Main_Character/walk3(8).tres" type="Texture" id=155]
+[ext_resource path="res://assets/Main_Character/walk3(3).tres" type="Texture" id=156]
+[ext_resource path="res://assets/Main_Character/walk3(6).tres" type="Texture" id=157]
+[ext_resource path="res://assets/Main_Character/walk3(4).tres" type="Texture" id=158]
+[ext_resource path="res://assets/Main_Character/walk3(1).tres" type="Texture" id=159]
+[ext_resource path="res://assets/Main_Character/walk3(5).tres" type="Texture" id=160]
+[ext_resource path="res://assets/Main_Character/walk3(7).tres" type="Texture" id=161]
+[ext_resource path="res://assets/Main_Character/walk3(2).tres" type="Texture" id=162]
+[ext_resource path="res://assets/Main_Character/walk(3).tres" type="Texture" id=163]
+[ext_resource path="res://assets/Main_Character/jump3(2).tres" type="Texture" id=164]
+[ext_resource path="res://assets/Main_Character/jump3(1).tres" type="Texture" id=165]
+[ext_resource path="res://assets/Main_Character/jump3(3).tres" type="Texture" id=166]
+[ext_resource path="res://assets/Main_Character/jump3(4).tres" type="Texture" id=167]
+[ext_resource path="res://assets/Main_Character/fall3(5).tres" type="Texture" id=168]
+[ext_resource path="res://assets/Main_Character/fall3(4).tres" type="Texture" id=169]
+[ext_resource path="res://assets/Main_Character/fall2(4).tres" type="Texture" id=170]
+[ext_resource path="res://assets/Main_Character/fall2(5).tres" type="Texture" id=171]
+[ext_resource path="res://assets/Main_Character/fall3(3).tres" type="Texture" id=172]
+[ext_resource path="res://assets/Main_Character/fall3(2).tres" type="Texture" id=173]
+[ext_resource path="res://assets/Main_Character/jump2(4).tres" type="Texture" id=174]
+[ext_resource path="res://assets/Main_Character/jump2(1).tres" type="Texture" id=175]
+[ext_resource path="res://assets/Main_Character/jump2(2).tres" type="Texture" id=176]
+[ext_resource path="res://assets/Main_Character/jump2(3).tres" type="Texture" id=177]
+[ext_resource path="res://assets/Main_Character/fall2(2).tres" type="Texture" id=178]
+[ext_resource path="res://assets/Main_Character/fall3(1).tres" type="Texture" id=179]
+[ext_resource path="res://assets/Main_Character/fall2(3).tres" type="Texture" id=180]
+[ext_resource path="res://assets/Main_Character/fall2(1).tres" type="Texture" id=181]
+[ext_resource path="res://assets/Main_Character/death2(6).tres" type="Texture" id=182]
+[ext_resource path="res://assets/Main_Character/death3(5).tres" type="Texture" id=183]
+[ext_resource path="res://assets/Main_Character/death2(5).tres" type="Texture" id=184]
+[ext_resource path="res://assets/Main_Character/death3(2).tres" type="Texture" id=185]
+[ext_resource path="res://assets/Main_Character/death3(3).tres" type="Texture" id=186]
+[ext_resource path="res://assets/Main_Character/death3(4).tres" type="Texture" id=187]
+[ext_resource path="res://assets/Main_Character/death2(7).tres" type="Texture" id=188]
+[ext_resource path="res://assets/Main_Character/death3(1).tres" type="Texture" id=189]
+[ext_resource path="res://assets/Main_Character/death3(6).tres" type="Texture" id=190]
+[ext_resource path="res://assets/Main_Character/death3(7).tres" type="Texture" id=191]
+[ext_resource path="res://assets/Main_Character/death2(3).tres" type="Texture" id=192]
+[ext_resource path="res://assets/Main_Character/death2(4).tres" type="Texture" id=193]
+[ext_resource path="res://assets/Main_Character/death2(1).tres" type="Texture" id=194]
+[ext_resource path="res://assets/Main_Character/death2(2).tres" type="Texture" id=195]
+[ext_resource path="res://assets/Main_Character/shield2(3).tres" type="Texture" id=196]
+[ext_resource path="res://assets/Main_Character/shield3(3).tres" type="Texture" id=197]
+[ext_resource path="res://assets/Main_Character/shield3(4).tres" type="Texture" id=198]
+[ext_resource path="res://assets/Main_Character/shield3(1).tres" type="Texture" id=199]
+[ext_resource path="res://assets/Main_Character/shield2(2).tres" type="Texture" id=200]
+[ext_resource path="res://assets/Main_Character/shield2(1).tres" type="Texture" id=201]
+[ext_resource path="res://assets/Main_Character/shield2(4).tres" type="Texture" id=202]
+[ext_resource path="res://assets/Main_Character/shield3(2).tres" type="Texture" id=203]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ) ],
+"frames": [ ExtResource( 147 ), ExtResource( 150 ), ExtResource( 152 ) ],
 "loop": true,
-"name": "idle",
+"name": "walkChaos_longsword",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 159 ), ExtResource( 156 ), ExtResource( 160 ) ],
+"loop": true,
+"name": "walkNone",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 46 ), ExtResource( 45 ), ExtResource( 50 ), ExtResource( 44 ), ExtResource( 49 ), ExtResource( 47 ), ExtResource( 48 ) ],
+"loop": false,
+"name": "deathSteel_longsword",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 194 ), ExtResource( 195 ), ExtResource( 192 ), ExtResource( 193 ), ExtResource( 184 ), ExtResource( 182 ), ExtResource( 188 ) ],
+"loop": false,
+"name": "deathChaos_longsword",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 165 ), ExtResource( 164 ), ExtResource( 166 ), ExtResource( 167 ), ExtResource( 179 ), ExtResource( 173 ) ],
+"loop": false,
+"name": "jumpNone",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 163 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "walkSteel_longsword",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 159 ), ExtResource( 162 ), ExtResource( 156 ), ExtResource( 158 ), ExtResource( 160 ), ExtResource( 157 ), ExtResource( 161 ), ExtResource( 155 ) ],
+"loop": true,
+"name": "runNone",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 147 ), ExtResource( 148 ), ExtResource( 150 ), ExtResource( 149 ), ExtResource( 152 ), ExtResource( 151 ), ExtResource( 154 ), ExtResource( 153 ) ],
+"loop": true,
+"name": "runChaos_longsword",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 201 ), ExtResource( 200 ), ExtResource( 196 ), ExtResource( 202 ) ],
+"loop": false,
+"name": "shieldChaos_longsword",
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 199 ), ExtResource( 203 ), ExtResource( 197 ), ExtResource( 198 ) ],
+"loop": false,
+"name": "shieldNone",
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 54 ), ExtResource( 55 ), ExtResource( 56 ), ExtResource( 57 ) ],
+"loop": false,
+"name": "shieldSteel_longsword",
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 189 ), ExtResource( 185 ), ExtResource( 186 ), ExtResource( 187 ), ExtResource( 183 ), ExtResource( 190 ), ExtResource( 191 ) ],
+"loop": false,
+"name": "deathNone",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 175 ), ExtResource( 176 ), ExtResource( 177 ), ExtResource( 174 ), ExtResource( 181 ), ExtResource( 178 ) ],
+"loop": false,
+"name": "jumpChaos_longsword",
 "speed": 8.0
 }, {
 "frames": [ ExtResource( 30 ), ExtResource( 32 ), ExtResource( 27 ), ExtResource( 35 ), ExtResource( 33 ), ExtResource( 34 ) ],
 "loop": false,
-"name": "jump",
+"name": "jumpSteel_longsword",
 "speed": 8.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 18 ), ExtResource( 163 ), ExtResource( 25 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "runSteel_longsword",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 123 ), ExtResource( 124 ), ExtResource( 125 ), ExtResource( 127 ), ExtResource( 127 ) ],
+"loop": false,
+"name": "slash60Chaos_longsword",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 115 ), ExtResource( 116 ), ExtResource( 118 ), ExtResource( 117 ), ExtResource( 117 ) ],
+"loop": false,
+"name": "slash0Chaos_longsword",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 100 ), ExtResource( 111 ), ExtResource( 107 ), ExtResource( 105 ), ExtResource( 103 ), ExtResource( 102 ), ExtResource( 112 ), ExtResource( 114 ), ExtResource( 101 ), ExtResource( 113 ), ExtResource( 110 ), ExtResource( 108 ), ExtResource( 104 ), ExtResource( 106 ), ExtResource( 109 ) ],
+"loop": true,
+"name": "idleNone",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 146 ), ExtResource( 145 ), ExtResource( 143 ), ExtResource( 144 ), ExtResource( 144 ) ],
+"loop": false,
+"name": "stab-30Chaos_longsword",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 132 ), ExtResource( 134 ), ExtResource( 133 ), ExtResource( 135 ), ExtResource( 135 ) ],
+"loop": false,
+"name": "stab30Chaos_longsword",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 136 ), ExtResource( 137 ), ExtResource( 141 ), ExtResource( 131 ), ExtResource( 131 ) ],
+"loop": false,
+"name": "stab0Chaos_longsword",
+"speed": 12.0
 }, {
 "frames": [ ExtResource( 28 ), ExtResource( 42 ), ExtResource( 41 ), ExtResource( 43 ), ExtResource( 43 ) ],
 "loop": false,
-"name": "slash",
+"name": "slash0Steel_longsword",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 54 ), ExtResource( 55 ), ExtResource( 56 ), ExtResource( 57 ) ],
+"frames": [ ExtResource( 77 ), ExtResource( 78 ), ExtResource( 80 ), ExtResource( 79 ), ExtResource( 79 ) ],
 "loop": false,
-"name": "shield",
-"speed": 20.0
+"name": "stab60Steel_longsword",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 119 ), ExtResource( 120 ), ExtResource( 121 ), ExtResource( 122 ), ExtResource( 122 ) ],
+"loop": true,
+"name": "slash30Chaos_longsword",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 82 ), ExtResource( 83 ), ExtResource( 84 ), ExtResource( 81 ), ExtResource( 81 ) ],
+"loop": false,
+"name": "stab-30Steel_longsword",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "idleSteel_longsword",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 64 ), ExtResource( 63 ), ExtResource( 62 ), ExtResource( 61 ), ExtResource( 61 ) ],
+"loop": false,
+"name": "slash30Steel_longsword",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 86 ), ExtResource( 85 ), ExtResource( 93 ), ExtResource( 88 ), ExtResource( 87 ), ExtResource( 95 ), ExtResource( 92 ), ExtResource( 94 ), ExtResource( 96 ), ExtResource( 89 ), ExtResource( 90 ), ExtResource( 97 ), ExtResource( 98 ), ExtResource( 91 ), ExtResource( 99 ) ],
+"loop": true,
+"name": "idleChaos_longsword",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 76 ), ExtResource( 73 ), ExtResource( 75 ), ExtResource( 74 ), ExtResource( 74 ) ],
+"loop": false,
+"name": "stab30Steel_longsword",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 69 ), ExtResource( 70 ), ExtResource( 71 ), ExtResource( 72 ), ExtResource( 72 ) ],
+"loop": false,
+"name": "slash-30Steel_longsword",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 66 ), ExtResource( 68 ), ExtResource( 65 ), ExtResource( 67 ), ExtResource( 67 ) ],
+"loop": false,
+"name": "slash60Steel_longsword",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 128 ), ExtResource( 129 ), ExtResource( 130 ), ExtResource( 126 ), ExtResource( 126 ) ],
+"loop": true,
+"name": "slash-30Chaos_longsword",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 138 ), ExtResource( 139 ), ExtResource( 140 ), ExtResource( 142 ), ExtResource( 142 ) ],
+"loop": false,
+"name": "stab60Chaos_longsword",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 20 ), ExtResource( 29 ), ExtResource( 36 ), ExtResource( 36 ) ],
+"loop": false,
+"name": "stab0Steel_longsword",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 173 ), ExtResource( 172 ) ],
+"loop": true,
+"name": "fallNone",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 178 ), ExtResource( 180 ) ],
+"loop": true,
+"name": "fallChaos_longsword",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 38 ), ExtResource( 37 ), ExtResource( 37 ) ],
 "loop": false,
-"name": "land",
+"name": "landSteel_longsword",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 46 ), ExtResource( 45 ), ExtResource( 50 ), ExtResource( 44 ), ExtResource( 49 ), ExtResource( 47 ), ExtResource( 48 ) ],
-"loop": false,
-"name": "death",
-"speed": 6.0
+"frames": [ ExtResource( 169 ), ExtResource( 168 ), ExtResource( 168 ) ],
+"loop": true,
+"name": "landNone",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 34 ), ExtResource( 39 ) ],
 "loop": true,
-"name": "fall",
+"name": "fallSteel_longsword",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ), ExtResource( 18 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ) ],
-"loop": true,
-"name": "run",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 17 ), ExtResource( 20 ), ExtResource( 29 ), ExtResource( 36 ), ExtResource( 36 ) ],
-"loop": true,
-"name": "stab",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 18 ) ],
-"loop": true,
-"name": "walk",
-"speed": 4.0
+"frames": [ ExtResource( 170 ), ExtResource( 171 ), ExtResource( 171 ) ],
+"loop": false,
+"name": "landChaos_longsword",
+"speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=3]
 radius = 4.0038
 height = 19.8709
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 10, 2 )
 
 [node name="Haytham" type="KinematicBody2D"]
@@ -127,13 +419,13 @@ collision_mask = 5
 script = ExtResource( 40 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 1 )
-animation = "shield"
-frame = 3
+frames = SubResource( 2 )
+animation = "runChaos_longsword"
+frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Camera2D2" type="Camera2D" parent="."]
 current = true
@@ -146,16 +438,16 @@ collision_mask = 2
 [node name="sword_slash" type="CollisionPolygon2D" parent="Swordhit"]
 position = Vector2( 11.914, -2.974 )
 build_mode = 1
-polygon = PoolVector2Array( -5.03574, 12.8715, 7.11431, 13.0022, 7.11431, 11.9721, 9.11883, 11.9442, 9.09099, 10.9698, 10.1211, 10.942, 10.1211, 9.96756, 11.0955, 9.93972, 11.1234, 7.96303, 12.1256, 7.96303, 12.0726, -1.06548, 11.0793, -1.03237, 11.1062, -4.03652, 10.105, -4.03652, 10.0842, -5.99707, 9.10391, -6.01792, 9.12476, -6.97734, 8.09867, -7.01591, 8.09867, -8.01991, 7.11436, -8.01991, 7.09467, -9.02391, 6.09067, -9.02391, 6.09067, -10.0082, 5.08667, -10.0279, 5.10636, -11.0122, 3.13773, -11.0319, 3.07058, -12.0274, 1.08408, -12.0274, 1.08408, -13.0372, -1.89566, -13.0372, -1.91221, -14.0139, -5.98715, -13.9858, -5.98715, -15.0489, -13.7506, -14.9749, -5.49571, -8.90913 )
+polygon = PoolVector2Array( -5.72024, 10.9996, 7.11431, 13.0022, 7.11431, 11.9721, 9.11883, 11.9442, 9.09099, 10.9698, 10.1211, 10.942, 10.1211, 9.96756, 11.0955, 9.93972, 11.1234, 7.96303, 12.1256, 7.96303, 12.0726, -1.06548, 11.0793, -1.03237, 11.1062, -4.03652, 10.105, -4.03652, 10.0842, -5.99707, 9.10391, -6.01792, 9.12476, -6.97734, 8.09867, -7.01591, 8.09867, -8.01991, 7.11436, -8.01991, 7.09467, -9.02391, 6.09067, -9.02391, 6.09067, -10.0082, 5.08667, -10.0279, 5.10636, -11.0122, 3.13773, -11.0319, 3.07058, -12.0274, 1.08408, -12.0274, 1.08408, -13.0372, -1.89566, -13.0372, -1.91221, -14.0139, -5.98715, -13.9858, -5.98715, -15.0489, -13.7506, -14.9749, -5.49571, -8.90913 )
 disabled = true
 
 [node name="sword_stab" type="CollisionShape2D" parent="Swordhit"]
 position = Vector2( 11, -4 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 disabled = true
 
 [node name="attack_off" type="Timer" parent="Swordhit"]
-wait_time = 0.05
+wait_time = 0.1
 one_shot = true
 
 [node name="attack_on" type="Timer" parent="Swordhit"]
@@ -164,6 +456,7 @@ one_shot = true
 
 [node name="Sword_slash_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 51 )
+volume_db = 1.401
 
 [node name="Sword_stab_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 31 )
@@ -174,7 +467,7 @@ stream = ExtResource( 52 )
 
 [node name="Hit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 53 )
-volume_db = -6.126
+volume_db = -3.158
 
 [node name="block" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 24 )
@@ -187,23 +480,23 @@ stream = ExtResource( 58 )
 
 [node name="Black" type="ColorRect" parent="GameOverCanvasLayer"]
 visible = false
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_right = 1280.0
+margin_bottom = 720.0
 color = Color( 0, 0, 0, 0.239216 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureRect" type="TextureRect" parent="GameOverCanvasLayer/Black"]
-margin_left = 384.872
-margin_top = 212.064
-margin_right = 641.872
-margin_bottom = 283.064
+margin_left = 532.872
+margin_top = 320.064
+margin_right = 789.872
+margin_bottom = 391.064
 texture = ExtResource( 59 )
 
 [node name="death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 60 )
-volume_db = -9.979
+volume_db = -4.045
 [connection signal="body_entered" from="Swordhit" to="." method="_on_Swordhit_body_entered"]
 [connection signal="timeout" from="Swordhit/attack_off" to="." method="_on_attack_off_timeout"]
 [connection signal="timeout" from="Swordhit/attack_on" to="." method="_on_attack_on_timeout"]

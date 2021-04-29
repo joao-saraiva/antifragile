@@ -11,6 +11,7 @@ var attack_style = "slash"
 var last_mouse_position = Vector2(0,0)
 var cursor_position = Vector2(0,0)
 var esp32_left_joystick = Vector2(0,0)
+var current_look_angle = 0
 var mouse_actived = true
 var is_dead = false
 var is_running = false
@@ -27,13 +28,12 @@ var deathSound = true
 # Esses status serão salvos por arquivo para não serem resetados
 # cada vez q o jogo for iniciado. Estão sendo declarados aqui
 # somente para teste
-var life = 1
-var strength = 99
-var attack = 1
-var defense = 99
+var life = 100
+var strength = 70
+var defense = 35
 var chaos = 0
 var in_fury_state = false
-var sword = "Steel_longsword"
+var sword = "Chaos_longsword"
 
 func _ready():
 	Socket.connect("jump",self,"jump")
@@ -72,7 +72,6 @@ func esp32_left_joystick(x):
 	esp32_left_joystick = Vector2(int(x),0)
 
 func _physics_process(delta):
-	#print(look_angle()) #excluir essa linha depois
 	last_movement = movement
 	if is_on_ceiling():
 		movement.y = 0
@@ -86,7 +85,7 @@ func _physics_process(delta):
 			$death.play()
 			deathSound = false
 			$walk.stop()
-		$AnimatedSprite.play("death")
+		$AnimatedSprite.play("death"+sword)
 		is_dead = true
 		$CollisionShape2D.disabled = true
 		movement.y = 0
@@ -105,8 +104,8 @@ func _physics_process(delta):
 			if just_hitted:
 				$Hit.play()
 				just_hitted = false;
-			$AnimatedSprite.play("land")
-			last_animation = "land"
+			$AnimatedSprite.play("land"+sword)
+			last_animation = "land"+sword
 			movement.x -= movement.x*0.05
 			if abs(movement.x) < 20:
 				hit = false
@@ -132,7 +131,7 @@ func _physics_process(delta):
 			
 			if esp32Shield or Input.is_action_pressed("shield") and is_on_floor():
 				wielded_shield = true
-				$AnimatedSprite.play("shield")
+				$AnimatedSprite.play("shield"+sword)
 				$Sword_slash_sound.stop()
 				$Sword_stab_sound.stop()
 				movement.x = 0
@@ -152,19 +151,19 @@ func _physics_process(delta):
 			
 	move_and_slide_with_snap(movement, Vector2(0,2), Vector2.UP, true, 4, 0.9)
 	
-	if not is_dead:
+	if not is_dead and (not is_attacking() or movement.y == jump_speed):
 		update_animations()
 		update_attack_hitbox()
 
 func update_animations():
 	if not is_attacking() and not is_landing():
-		if (not mouse_actived and cursor_position.x > 0 or mouse_actived and cursor_position.x > 512) and not is_running or movement.x > 0 and is_running:
+		if (not mouse_actived and cursor_position.x > 0 or mouse_actived and cursor_position.x > 640) and not is_running or movement.x > 0 and is_running:
 			$AnimatedSprite.scale.x = 1
 			$Swordhit/sword_slash.scale.x = 1
 			$Swordhit/sword_slash.position.x = 11.914
 			$Swordhit/sword_stab.scale.x = 1
 			$Swordhit/sword_stab.position.x = 11
-		elif (not mouse_actived and cursor_position.x < 0 or mouse_actived and cursor_position.x < 512) and not is_running or movement.x < 0 and is_running:
+		elif (not mouse_actived and cursor_position.x < 0 or mouse_actived and cursor_position.x < 640) and not is_running or movement.x < 0 and is_running:
 			$AnimatedSprite.scale.x = -1
 			$Swordhit/sword_slash.scale.x = -1
 			$Swordhit/sword_slash.position.x = -11.914
@@ -173,32 +172,32 @@ func update_animations():
 	if is_on_floor():
 		if last_movement.y > 500:
 			$landing.play()
-			$AnimatedSprite.play("land")	
+			$AnimatedSprite.play("land"+sword)	
 		elif abs(movement.x) > 0 and not is_attacking():
 			if walkSound:
 				$walk.play()
 				walkSound = false
 			if is_running:
-				$AnimatedSprite.play("run")
+				$AnimatedSprite.play("run"+sword)
 			else:
-				$AnimatedSprite.play("walk")
+				$AnimatedSprite.play("walk"+sword)
 		elif not is_landing() and not is_attacking() and not wielded_shield:
-			$AnimatedSprite.play("idle")
+			$AnimatedSprite.play("idle"+sword)
 			$walk.stop()
 			walkSound = true
 	elif not is_attacking() or movement.y == jump_speed:
 		if movement.y > 0:
-			$AnimatedSprite.play("fall")
+			$AnimatedSprite.play("fall"+sword)
 			$walk.stop()
 			walkSound = true
 		else:
-			$AnimatedSprite.play("jump")
+			$AnimatedSprite.play("jump"+sword)
 			$walk.stop()
 			walkSound = true
-	last_animation = $AnimatedSprite.animation 
+	last_animation = $AnimatedSprite.animation
 
 func is_landing():
-	return last_animation == "land" and $AnimatedSprite.frame != 2
+	return last_animation == "land"+sword and $AnimatedSprite.frame != 2
 
 func is_attacking():
 	return last_animation == attack_style and $AnimatedSprite.frame != 4
@@ -207,8 +206,8 @@ func look_angle():
 	var opposite
 	var adjacent
 	if mouse_actived:
-		adjacent = abs(512 - cursor_position.x)
-		opposite = 300 - cursor_position.y
+		adjacent = abs(640 - cursor_position.x)
+		opposite = 360 - cursor_position.y
 	else:
 		adjacent = abs(cursor_position.x)
 		opposite = cursor_position.y
@@ -220,39 +219,42 @@ func look_angle():
 		return asin(opposite/hypotenuse)*180/PI # angulo em graus
 
 func attack():
-	$AnimatedSprite.play(attack_style)
-	last_animation = $AnimatedSprite.animation
+	$AnimatedSprite.play(attack_style+str(current_look_angle)+sword)
+	last_animation = attack_style
 	if attack_style == "slash":
-		$Swordhit/attack_on.wait_time = 0.12
+		$Swordhit/attack_on.wait_time = 0.16
 	else:
+		$Sword_stab_sound.play()
 		$Swordhit/attack_on.wait_time = 0.12
 	$Swordhit/attack_on.start()
 
 func take_damage(enemy, enemy_strength,push_power):
 	var distance = enemy.x - position.x
-	if distance < 0 and $AnimatedSprite.scale.x < 0 and wielded_shield:
+	if (distance < 0 and $AnimatedSprite.scale.x < 0 and wielded_shield) or (enemy.x - position.x > 0 and $AnimatedSprite.scale.x > 0 and wielded_shield):
 		$block.play()
-	elif enemy.x - position.x > 0 and $AnimatedSprite.scale.x > 0 and wielded_shield:
-		$block.play()
+		var damage = 0.5 * (enemy_strength/defense)
+		life -= damage
+		if damage >= 5:
+			$Hit.play()
+		print("player: "+str(life))
 	else:
 		wielded_shield = false
-		life -= 0.5 * (enemy_strength/defense)
+		life -= 0.5 * (enemy_strength/(defense/5))
 		movement.x = push_power*20
 		hit = true
-		#print(life)
+		print("player: "+str(life))
 
 func _on_attack_off_timeout():
 	$Swordhit/sword_slash.disabled = true
 	$Swordhit/sword_stab.disabled = true
 
 func _on_attack_on_timeout():
-	if not last_animation == "jump" and $AnimatedSprite.animation == attack_style:
+	if not last_animation == "jump" and last_animation == attack_style:
 		if attack_style == "slash":
 			$Swordhit/sword_slash.disabled = false
 			$Sword_slash_sound.play()
 		else:
 			$Swordhit/sword_stab.disabled = false
-			$Sword_stab_sound.play()
 		$Swordhit/attack_off.start()
 
 func _on_Swordhit_body_entered(body):
@@ -261,7 +263,49 @@ func _on_Swordhit_body_entered(body):
 
 func update_attack_hitbox():
 	var degree = look_angle()
-	if abs(movement.x) > abs(walk_speed) or degree < 30 and degree > -30:
+	if degree >= 17 and degree < 60:
+		if $AnimatedSprite.scale.x == 1:
+			$Swordhit/sword_slash.rotation = -0.523599
+			$Swordhit/sword_stab.rotation = -0.523599
+			$Swordhit/sword_slash.position.x = 11.273 
+			$Swordhit/sword_stab.position.x = 10.652
+		else:
+			$Swordhit/sword_slash.rotation = 0.523599
+			$Swordhit/sword_stab.rotation = 0.523599
+			$Swordhit/sword_slash.position.x = -11.273 
+			$Swordhit/sword_stab.position.x = -10.652
+		$Swordhit/sword_slash.position.y = -9.283
+		$Swordhit/sword_stab.position.y = -10.778
+		current_look_angle = 30
+	elif degree >= 38:
+		if $AnimatedSprite.scale.x == 1:
+			$Swordhit/sword_slash.rotation = -1.0472
+			$Swordhit/sword_stab.rotation = -1.0472
+			$Swordhit/sword_slash.position.x = 7.914
+			$Swordhit/sword_stab.position.x = 6.47
+		else:
+			$Swordhit/sword_slash.rotation = 1.0472
+			$Swordhit/sword_stab.rotation = 1.0472
+			$Swordhit/sword_slash.position.x = -7.914
+			$Swordhit/sword_stab.position.x = -6.47
+		$Swordhit/sword_slash.position.y = -15.061
+		$Swordhit/sword_stab.position.y = -14.147
+		current_look_angle = 60
+	elif degree <= -17:
+		if $AnimatedSprite.scale.x == 1:
+			$Swordhit/sword_slash.rotation = 0.523599
+			$Swordhit/sword_stab.rotation = 0.523599
+			$Swordhit/sword_slash.position.x = 10.323
+			$Swordhit/sword_stab.position.x = 10.354
+		else:
+			$Swordhit/sword_slash.rotation = -0.523599
+			$Swordhit/sword_stab.rotation = -0.523599
+			$Swordhit/sword_slash.position.x = -10.323
+			$Swordhit/sword_stab.position.x = -10.354
+		$Swordhit/sword_slash.position.y = 6.572
+		$Swordhit/sword_stab.position.y = 3.551
+		current_look_angle = -30
+	else:
 		if $AnimatedSprite.scale.x == 1:
 			$Swordhit/sword_slash.position.x = 11.914
 			$Swordhit/sword_stab.position.x = 11
@@ -272,45 +316,7 @@ func update_attack_hitbox():
 		$Swordhit/sword_stab.rotation = 0
 		$Swordhit/sword_slash.position.y = -2.974
 		$Swordhit/sword_stab.position.y = -4
-	elif degree >= 30 and degree < 60:
-		if $AnimatedSprite.scale.x == 1:
-			$Swordhit/sword_slash.rotation = -0.523599
-			$Swordhit/sword_stab.rotation = -0.523599
-			$Swordhit/sword_slash.position.x = 15.273 
-			$Swordhit/sword_stab.position.x = 13.652
-		else:
-			$Swordhit/sword_slash.rotation = 0.523599
-			$Swordhit/sword_stab.rotation = 0.523599
-			$Swordhit/sword_slash.position.x = -15.273 
-			$Swordhit/sword_stab.position.x = -13.652
-		$Swordhit/sword_slash.position.y = -11.283
-		$Swordhit/sword_stab.position.y = -11.778
-	elif degree >= 60:
-		if $AnimatedSprite.scale.x == 1:
-			$Swordhit/sword_slash.rotation = -1.0472
-			$Swordhit/sword_stab.rotation = -1.0472
-			$Swordhit/sword_slash.position.x = 11.914
-			$Swordhit/sword_stab.position.x = 10.47
-		else:
-			$Swordhit/sword_slash.rotation = 1.0472
-			$Swordhit/sword_stab.rotation = 1.0472
-			$Swordhit/sword_slash.position.x = -11.914
-			$Swordhit/sword_stab.position.x = -10.47
-		$Swordhit/sword_slash.position.y = -19.061
-		$Swordhit/sword_stab.position.y = -21.147
-	elif degree <= -30:
-		if $AnimatedSprite.scale.x == 1:
-			$Swordhit/sword_slash.rotation = 0.523599
-			$Swordhit/sword_stab.rotation = 0.523599
-			$Swordhit/sword_slash.position.x = 10.323
-			$Swordhit/sword_stab.position.x = 11.354
-		else:
-			$Swordhit/sword_slash.rotation = -0.523599
-			$Swordhit/sword_stab.rotation = -0.523599
-			$Swordhit/sword_slash.position.x = -10.323
-			$Swordhit/sword_stab.position.x = -11.354
-		$Swordhit/sword_slash.position.y = 6.572
-		$Swordhit/sword_stab.position.y = 8.551
+		current_look_angle = 0
 
 func _on_death_finished():
 	print("acabamos")

@@ -6,5 +6,8 @@ func swordAtributes(sword, attack_style):
 			return 5
 		else:
 			return 10
-	elif sword == "none":
-		return 0
+	if sword == "Chaos_longsword":
+		if attack_style == "slash":
+			return 20
+		else:
+			return 40
