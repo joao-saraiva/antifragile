@@ -21,7 +21,7 @@ var life = 400
 var strength = 90
 var defense = 70
 var is_dead = false
-var push_power = 150
+var push_power = 30
 
 func _ready():
 	set_process(true)
@@ -71,7 +71,7 @@ func _process(delta):
 			$CanAttack/CanAttackShape.position.x = -26.751
 			$Attack/AttackShape.scale.x = -1
 			$Attack/AttackShape.position.x = -26.751
-			push_power = -30
+			push_power *= -1
 			next_direction_time = OS.get_ticks_msec()+react_time
 		elif player.position.x > position.x and next_direction != 1:
 			next_direction = 1
@@ -80,7 +80,7 @@ func _process(delta):
 			$CanAttack/CanAttackShape.position.x = 26.751
 			$Attack/AttackShape.scale.x = 1
 			$Attack/AttackShape.position.x = 26.751
-			push_power = 30
+			push_power *= -1
 			next_direction_time = OS.get_ticks_msec()+react_time
 	if not is_dead:
 		if OS.get_ticks_msec() > next_direction_time:
@@ -123,10 +123,10 @@ func _on_CanAttack_body_entered(body):
 
 func take_damage():
 	if player.attack_style == "slash":
-		var damage = 0.2 * (pow(1.15,Swords.swordAtributes(player.sword,player.attack_style))+pow(1.1,player.strength))/pow(1.1,defense)
+		var damage = 0.2 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength)/(defense/5)
 		life -= damage
 	else:
-		var damage = 0.4 * (pow(1.15,Swords.swordAtributes(player.sword,player.attack_style))+pow(1.1,player.strength))/pow(1.1,defense)
+		var damage = 0.4 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength)/(defense/5)
 		life -= damage
 	$hit.play()
 	whiten_material.set_shader_param("whiten",true)

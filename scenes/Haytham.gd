@@ -29,8 +29,8 @@ var deathSound = true
 # cada vez q o jogo for iniciado. Estão sendo declarados aqui
 # somente para teste
 var life = 100
-var strength = 70
-var defense = 50
+var strength = 45
+var defense = 1
 var chaos = 0
 var in_fury_state = false
 var sword = "Chaos_longsword"
@@ -232,14 +232,14 @@ func take_damage(enemy, enemy_strength,push_power):
 	var distance = enemy.x - position.x
 	if (distance < 0 and $AnimatedSprite.scale.x < 0 and wielded_shield) or (enemy.x - position.x > 0 and $AnimatedSprite.scale.x > 0 and wielded_shield):
 		$block.play()
-		var damage = 0.5 * (pow(1.1,enemy_strength)/(pow(1.15,defense)+1))
+		var damage = 0.5 * (enemy_strength/(defense*4))
 		life -= damage
 		if damage >= 5:
 			$Hit.play()
 		print("player: "+str(life))
 	else:
 		wielded_shield = false
-		life -= 0.5 * (pow(1.1,enemy_strength)/pow(1.1,defense))
+		life -= 0.5 * (enemy_strength/(defense))
 		movement.x = push_power*20
 		hit = true
 		print("player: "+str(life))

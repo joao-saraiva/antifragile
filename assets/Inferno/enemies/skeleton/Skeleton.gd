@@ -14,10 +14,9 @@ var player_detected = false
 
 onready var player = get_parent().get_node("Haytham")
 
-var life = 0.5
-var strength = 100
-var attack = 1
-var defense = 1
+var life = 25
+var strength = 15
+var defense = 5
 var is_dead = false
 var push_power = 5
 
@@ -65,7 +64,7 @@ func _physics_process(delta):
 			$DetectedPlayer/Detected.scale.x = -1
 			$DetectedPlayer/Detected.position.x = -32.685
 			next_direction_time = OS.get_ticks_msec()+react_time
-			push_power= -15
+			push_power *= -1
 		elif player.position.x > position.x and next_direction != 1:
 			next_direction = 1
 			$AnimatedSprite.scale.x=1
@@ -73,7 +72,7 @@ func _physics_process(delta):
 			$AttackSkeleton/Attack.position.x = 12
 			$DetectedPlayer/Detected.scale.x = 1
 			$DetectedPlayer/Detected.position.x = 32.685
-			push_power= 15
+			push_power *= -1
 			next_direction_time = OS.get_ticks_msec()+react_time
 	if not is_dead:
 		if OS.get_ticks_msec() > next_direction_time:
@@ -97,10 +96,10 @@ func is_dead():
 func take_damage():
 	$Death_sound.play()
 	if player.attack_style == "slash":
-		var damage = 0.5 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength)
+		var damage = 0.5 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength)/(defense/5)
 		life -= damage
 	else:
-		var damage = 0.1 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength)
+		var damage = 0.1 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength)/(defense/5)
 		life -= damage
 
 func _on_DetectedPlayer_body_entered(body):
