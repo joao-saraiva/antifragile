@@ -80,6 +80,5 @@ __meta__ = {
 position = Vector2( -20, 10 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 3 )
-animation = "in_furystate"
-frame = 2
+animation = "not_in_furystate"
 playing = true
