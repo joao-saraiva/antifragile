@@ -15,10 +15,10 @@ var player_detected = false
 onready var player = get_parent().get_node("Haytham")
 
 var life = 25
-var strength = 15
+var strength = 5
 var defense = 5
 var is_dead = false
-var push_power = 5
+var push_power = 15
 
 func _ready():
 	$AnimatedSprite.play("walk")
@@ -96,10 +96,10 @@ func is_dead():
 func take_damage():
 	$Death_sound.play()
 	if player.attack_style == "slash":
-		var damage = 0.5 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength*player.chaos_multiplier)/(defense/5)
+		var damage = (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defense
 		life -= damage
 	else:
-		var damage = 0.1 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength*player.chaos_multiplier)/(defense/5)
+		var damage = 0.5 * (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defense
 		life -= damage
 	if life <= 0:
 		if player.chaos + 50 > 100:

@@ -18,7 +18,7 @@ var can_attack = false
 var tocou = false
 var is_hit = false
 onready var player = get_parent().get_node("Haytham")
-var life = 400
+var life = 200
 var strength = 90
 var defense = 70
 var is_dead = false
@@ -129,10 +129,10 @@ func _on_CanAttack_body_exited(body):
 
 func take_damage():
 	if player.attack_style == "slash":
-		var damage = 0.2 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength*player.chaos_multiplier)/(defense/5)
+		var damage = 0.8 * (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defense
 		life -= damage
 	else:
-		var damage = 0.4 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength*player.chaos_multiplier)/(defense/5)
+		var damage =  (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defense
 		life -= damage
 	$hit.play()
 	whiten_material.set_shader_param("whiten",true)

@@ -1,0 +1,85 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://assets/HUD/skull(5).tres" type="Texture" id=1]
+[ext_resource path="res://assets/HUD/skull(1).tres" type="Texture" id=2]
+[ext_resource path="res://assets/HUD/skull(3).tres" type="Texture" id=3]
+[ext_resource path="res://assets/HUD/skull(2).tres" type="Texture" id=4]
+[ext_resource path="res://assets/HUD/skull(4).tres" type="Texture" id=5]
+[ext_resource path="res://assets/HUD/skull(10).tres" type="Texture" id=6]
+[ext_resource path="res://assets/HUD/skull(6).tres" type="Texture" id=7]
+[ext_resource path="res://assets/HUD/skull(9).tres" type="Texture" id=8]
+[ext_resource path="res://assets/HUD/skull(12).tres" type="Texture" id=9]
+[ext_resource path="res://assets/HUD/skull(8).tres" type="Texture" id=10]
+[ext_resource path="res://assets/HUD/skull(11).tres" type="Texture" id=11]
+[ext_resource path="res://assets/HUD/skull(13).tres" type="Texture" id=12]
+[ext_resource path="res://assets/HUD/skull(7).tres" type="Texture" id=13]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.556863, 0.0117647, 0.0901961, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 7 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "starting_furystate",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 13 ), ExtResource( 7 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "exiting_furystate",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "not_in_furystate",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 9 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "in_furystate",
+"speed": 5.0
+} ]
+
+[node name="ChaosBar" type="ProgressBar"]
+anchor_left = 0.107
+anchor_right = 0.107
+margin_left = 60.432
+margin_top = 50.0
+margin_right = 330.432
+margin_bottom = 70.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+value = 50.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -20, 10 )
+scale = Vector2( 0.2, 0.2 )
+frames = SubResource( 3 )
+animation = "in_furystate"
+frame = 2
+playing = true

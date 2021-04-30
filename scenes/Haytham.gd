@@ -26,13 +26,14 @@ var esp32ChangeAttackStyle = false
 var walkSound = true
 var deathSound = true
 var chaos_multiplier = 1
+var reset_chaos_bar = false
 # Esses status serão salvos por arquivo para não serem resetados
 # cada vez q o jogo for iniciado. Estão sendo declarados aqui
 # somente para teste
 var life = 100
-var strength = 45
-var defense = 25
-var chaos = 10
+var strength = 65
+var defense = 20
+var chaos = 0
 var chaos_enable = true
 var sword = "Chaos_longsword"
 
@@ -94,14 +95,18 @@ func _physics_process(delta):
 		$GameOverCanvasLayer/Black.visible = true
 	
 	if not is_dead:
-		if chaos_enable and chaos > 0 and chaos_multiplier != 9:
+		if chaos_enable and chaos > 0 and chaos_multiplier != 4 and not reset_chaos_bar:
 			if chaos == 100:
-				chaos_multiplier = 9
+				chaos_multiplier = 4
 				$Chaos.start()
 			else:
 				chaos -= 0.01
 				if chaos < 0:
 					chaos = 0
+		if reset_chaos_bar:
+			chaos -= 2
+			if chaos == 0:
+				reset_chaos_bar = true
 		if sword != "None" and esp32ChangeAttackStyle or Input.is_action_just_pressed("change_attack_style"):
 			if attack_style == "slash":
 				attack_style = "stab"
@@ -111,7 +116,6 @@ func _physics_process(delta):
 		
 		if hit:
 			if just_hitted:
-				$Hit.play()
 				just_hitted = false;
 			$AnimatedSprite.play("land"+sword)
 			last_animation = "land"+sword
@@ -239,20 +243,22 @@ func attack():
 	$Swordhit/attack_on.start()
 
 func take_damage(enemy, enemy_strength,push_power):
+	var damage
 	var distance = enemy.x - position.x
-	if (distance < 0 and $AnimatedSprite.scale.x < 0 and wielded_shield) or (enemy.x - position.x > 0 and $AnimatedSprite.scale.x > 0 and wielded_shield):
+	if wielded_shield and ((distance < 0 and $AnimatedSprite.scale.x < 0) or (enemy.x - position.x > 0 and $AnimatedSprite.scale.x > 0)):
 		$block.play()
-		var damage = 1.2 * (enemy_strength/(defense*4*chaos_multiplier))
+		damage = (enemy_strength*15)/(10*defense*chaos_multiplier)
 		life -= damage
-		if damage >= 5:
-			$Hit.play()
-		print("player: "+str(life))
 	else:
 		wielded_shield = false
-		life -= 1.2 * (enemy_strength/(defense*chaos_multiplier))
+		damage = (enemy_strength*15)/(defense*chaos_multiplier)
+		life -= damage
 		movement.x = push_power*20
-		hit = true
-		print("player: "+str(life))
+		if damage >= 10:
+			hit = true
+	print("player: "+str(life))
+	if damage >= 3:
+		$Hit.play()
 
 func _on_attack_off_timeout():
 	$Swordhit/sword_slash.disabled = true
@@ -334,5 +340,5 @@ func _on_death_finished():
 
 
 func _on_Chaos_timeout():
-	chaos = 0
+	reset_chaos_bar = true
 	chaos_multiplier = 1
