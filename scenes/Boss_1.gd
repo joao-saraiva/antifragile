@@ -14,6 +14,7 @@ var next_direction_time = 0
 var last_animation = ""
 var player_detected = false
 var canFollow = false
+var can_attack = false
 var tocou = false
 var is_hit = false
 onready var player = get_parent().get_node("Haytham")
@@ -40,7 +41,8 @@ func _process(delta):
 		$Attack.monitoring = false
 		last_animation = "death"
 		death_sound()
-	
+	if can_attack:
+		attack()
 	if last_animation == "attack" and $Boss_animated_sprite.frame == 4:
 		$Heavy_attack.play()
 	if last_animation == "attack" and $Boss_animated_sprite.frame == 8:
@@ -95,7 +97,7 @@ func update_animations():
 	pass
 
 func is_attacking():
-	return last_animation == "attack" and $Boss_animated_sprite.frame !=8
+	return last_animation == "attack" and $Boss_animated_sprite.frame != 8
 
 func is_dead():
 	return last_animation == "death" and $Boss_animated_sprite.frame!=2
@@ -119,14 +121,18 @@ func attack():
 
 func _on_CanAttack_body_entered(body):
 	if body.get_name() == "Haytham" and not is_dead:
-		attack()
+		can_attack = true
+
+func _on_CanAttack_body_exited(body):
+	if body.get_name() == "Haytham" and not is_dead:
+		can_attack = false
 
 func take_damage():
 	if player.attack_style == "slash":
-		var damage = 0.2 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength)/(defense/5)
+		var damage = 0.2 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength*player.chaos_multiplier)/(defense/5)
 		life -= damage
 	else:
-		var damage = 0.4 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength)/(defense/5)
+		var damage = 0.4 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength*player.chaos_multiplier)/(defense/5)
 		life -= damage
 	$hit.play()
 	whiten_material.set_shader_param("whiten",true)
@@ -140,5 +146,3 @@ func play_theme():
 func _on_Attack_body_entered(body):
 	if body.get_name() == "Haytham":
 		player.take_damage(position,strength,push_power)
-
-

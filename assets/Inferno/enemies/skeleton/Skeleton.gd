@@ -44,7 +44,7 @@ func _physics_process(delta):
 		$CollisionShape2D.disabled = true
 		$Attack_sound.stop()
 		movement.x = 0
-		
+	
 	if player.life <=0:
 		#desativa o ataque do esqueleto
 		$AttackSkeleton.monitoring = false
@@ -96,11 +96,16 @@ func is_dead():
 func take_damage():
 	$Death_sound.play()
 	if player.attack_style == "slash":
-		var damage = 0.5 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength)/(defense/5)
+		var damage = 0.5 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength*player.chaos_multiplier)/(defense/5)
 		life -= damage
 	else:
-		var damage = 0.1 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength)/(defense/5)
+		var damage = 0.1 * (Swords.swordAtributes(player.sword,player.attack_style)+player.strength*player.chaos_multiplier)/(defense/5)
 		life -= damage
+	if life <= 0:
+		if player.chaos + 50 > 100:
+			player.chaos = 100
+		else:
+			player.chaos += 50
 
 func _on_DetectedPlayer_body_entered(body):
 	if body.get_name() == "Haytham":

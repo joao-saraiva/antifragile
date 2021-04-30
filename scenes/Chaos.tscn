@@ -1,14 +1,13 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/HUD/heart.png" type="Texture" id=1]
+[ext_resource path="res://assets/HUD/skull.png" type="Texture" id=1]
 
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.243137, 0, 0.87451, 1 )
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.556863, 0.0117647, 0.0901961, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 1, 1, 1, 1 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -26,22 +25,26 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="HealthBar" type="ProgressBar"]
+[node name="Node2D" type="ProgressBar"]
 anchor_left = 0.107
 anchor_right = 0.107
 margin_left = 60.432
 margin_top = 50.0
 margin_right = 330.432
 margin_bottom = 70.0
-custom_styles/fg = SubResource( 3 )
+custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 value = 50.0
 percent_visible = false
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": ""
 }
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -20, 10 )
-scale = Vector2( 2.34375, 2.5 )
+scale = Vector2( 0.07, 0.07 )
 texture = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}

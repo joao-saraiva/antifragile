@@ -423,7 +423,7 @@ script = ExtResource( 40 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "runChaos_longsword"
-frame = 2
+frame = 7
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -499,7 +499,12 @@ texture = ExtResource( 59 )
 [node name="death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 60 )
 volume_db = -4.045
+
+[node name="Chaos" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
 [connection signal="body_entered" from="Swordhit" to="." method="_on_Swordhit_body_entered"]
 [connection signal="timeout" from="Swordhit/attack_off" to="." method="_on_attack_off_timeout"]
 [connection signal="timeout" from="Swordhit/attack_on" to="." method="_on_attack_on_timeout"]
 [connection signal="finished" from="death" to="." method="_on_death_finished"]
+[connection signal="timeout" from="Chaos" to="." method="_on_Chaos_timeout"]

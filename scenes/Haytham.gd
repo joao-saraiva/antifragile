@@ -25,14 +25,15 @@ var esp32Shield = false
 var esp32ChangeAttackStyle = false
 var walkSound = true
 var deathSound = true
+var chaos_multiplier = 1
 # Esses status serão salvos por arquivo para não serem resetados
 # cada vez q o jogo for iniciado. Estão sendo declarados aqui
 # somente para teste
 var life = 100
 var strength = 45
-var defense = 1
-var chaos = 0
-var in_fury_state = false
+var defense = 25
+var chaos = 10
+var chaos_enable = true
 var sword = "Chaos_longsword"
 
 func _ready():
@@ -93,6 +94,14 @@ func _physics_process(delta):
 		$GameOverCanvasLayer/Black.visible = true
 	
 	if not is_dead:
+		if chaos_enable and chaos > 0 and chaos_multiplier != 9:
+			if chaos == 100:
+				chaos_multiplier = 9
+				$Chaos.start()
+			else:
+				chaos -= 0.01
+				if chaos < 0:
+					chaos = 0
 		if sword != "None" and esp32ChangeAttackStyle or Input.is_action_just_pressed("change_attack_style"):
 			if attack_style == "slash":
 				attack_style = "stab"
@@ -233,14 +242,14 @@ func take_damage(enemy, enemy_strength,push_power):
 	var distance = enemy.x - position.x
 	if (distance < 0 and $AnimatedSprite.scale.x < 0 and wielded_shield) or (enemy.x - position.x > 0 and $AnimatedSprite.scale.x > 0 and wielded_shield):
 		$block.play()
-		var damage = 0.5 * (enemy_strength/(defense*4))
+		var damage = 1.2 * (enemy_strength/(defense*4*chaos_multiplier))
 		life -= damage
 		if damage >= 5:
 			$Hit.play()
 		print("player: "+str(life))
 	else:
 		wielded_shield = false
-		life -= 0.5 * (enemy_strength/(defense))
+		life -= 1.2 * (enemy_strength/(defense*chaos_multiplier))
 		movement.x = push_power*20
 		hit = true
 		print("player: "+str(life))
@@ -322,3 +331,8 @@ func update_attack_hitbox():
 func _on_death_finished():
 	print("acabamos")
 	get_tree().reload_current_scene()
+
+
+func _on_Chaos_timeout():
+	chaos = 0
+	chaos_multiplier = 1

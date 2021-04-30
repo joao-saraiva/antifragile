@@ -123,5 +123,6 @@ stream = ExtResource( 19 )
 volume_db = -10.505
 [connection signal="body_entered" from="CanFollow" to="." method="_on_CanFollow_body_entered"]
 [connection signal="body_entered" from="CanAttack" to="." method="_on_CanAttack_body_entered"]
+[connection signal="body_exited" from="CanAttack" to="." method="_on_CanAttack_body_exited"]
 [connection signal="timeout" from="CanAttackTime" to="." method="_on_CanAttackTime_timeout"]
 [connection signal="body_entered" from="Attack" to="." method="_on_Attack_body_entered"]
