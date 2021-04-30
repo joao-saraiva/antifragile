@@ -1,0 +1,23 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/archer_skeleton/archer_skeleton(7).tres" type="Texture" id=1]
+[ext_resource path="res://assets/archer_skeleton/archer_skeleton(5).tres" type="Texture" id=2]
+[ext_resource path="res://assets/archer_skeleton/archer_skeleton(4).tres" type="Texture" id=3]
+[ext_resource path="res://assets/archer_skeleton/archer_skeleton(3).tres" type="Texture" id=4]
+[ext_resource path="res://assets/archer_skeleton/archer_skeleton(1).tres" type="Texture" id=5]
+[ext_resource path="res://assets/archer_skeleton/archer_skeleton(2).tres" type="Texture" id=6]
+[ext_resource path="res://assets/archer_skeleton/archer_skeleton(6).tres" type="Texture" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+} ]
+
+[node name="AnimatedSprite" type="AnimatedSprite"]
+frames = SubResource( 1 )
+animation = "attack"
+frame = 3
+playing = true
