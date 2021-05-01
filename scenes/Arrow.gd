@@ -1,16 +1,19 @@
-extends Sprite
+extends KinematicBody2D
 
+var strength = 40
+var push_power = 15
+var next_direction = 0
+var movement = Vector2(0,0)
+var onAir = true
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass 
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	
+	movement.x = -30
+	move_and_collide(Vector2(movement.x,0))
+	
+
+	pass
