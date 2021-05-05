@@ -26,7 +26,8 @@ func _ready():
 	pass 
 
 func _process(delta):
-
+	if life <= 0 :
+		queue_free()
 	if is_on_ceiling():
 		movement.y = 0
 	if !is_on_floor():

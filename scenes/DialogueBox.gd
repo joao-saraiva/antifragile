@@ -18,7 +18,7 @@ func _process(delta):
 		$"next-indicator".visible = finished
 		$"next-indicator/AnimationPlayer".play("idle")
 	$"next-indicator".visible = finished
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("enter"):
 		load_dialog()
 func load_dialog():
 	if dialog_index <dialog.size():
