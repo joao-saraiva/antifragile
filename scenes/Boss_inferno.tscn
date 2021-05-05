@@ -1,0 +1,33 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/Boss_inferno/boss_inferno(6).tres" type="Texture" id=1]
+[ext_resource path="res://assets/Boss_inferno/boss_inferno(0).tres" type="Texture" id=2]
+[ext_resource path="res://assets/Boss_inferno/boss_inferno(4).tres" type="Texture" id=3]
+[ext_resource path="res://assets/Boss_inferno/boss_inferno(3).tres" type="Texture" id=4]
+[ext_resource path="res://assets/Boss_inferno/boss_inferno(2).tres" type="Texture" id=5]
+[ext_resource path="res://assets/Boss_inferno/boss_inferno(7).tres" type="Texture" id=6]
+[ext_resource path="res://assets/Boss_inferno/boss_inferno(1).tres" type="Texture" id=7]
+[ext_resource path="res://assets/Boss_inferno/boss_inferno(5).tres" type="Texture" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 1 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 19.3087
+height = 39.4091
+
+[node name="Boss_inferno" type="KinematicBody2D"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idle"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -3.99426, 2.73291 )
+shape = SubResource( 2 )

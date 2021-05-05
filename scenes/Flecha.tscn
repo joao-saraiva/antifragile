@@ -10,6 +10,8 @@ extents = Vector2( 13.5604, 1.19623 )
 extents = Vector2( 15.0336, 1.12608 )
 
 [node name="Flecha" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

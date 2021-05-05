@@ -45,6 +45,7 @@ func _process(delta):
 		attack()
 	if last_animation == "attack" and $Boss_animated_sprite.frame == 4:
 		$Heavy_attack.play()
+		
 	if last_animation == "attack" and $Boss_animated_sprite.frame == 8:
 		#print("ataque up")
 		$CanAttack.monitoring = true

@@ -12,10 +12,13 @@ var movement = Vector2(0, 0)
 var last_animation = " "
 var arrow_direction = Vector2(0,0)
 var canArrow = false
-var strengh = 40
+var strengh = 5
 var push_power = 15
+var defense = 3
+var canArrow2 = true
 onready var player = get_parent().get_node("Haytham")
 onready var arrow = preload("res://scenes/FLEXA.tscn")
+var contador = 0
 
 func _ready():
 	$AnimatedSprite.play("waiting")
@@ -38,30 +41,52 @@ func _process(delta):
 			$CanAttack/CollisionShape2D.scale.x = -1
 			$CanAttack/CollisionShape2D.position.x = -195
 			arrow_direction = Vector2.LEFT
+			push_power *= -1
 		elif player.position.x > position.x and next_direction != 1:
 			next_direction = 1
 			$AnimatedSprite.scale.x = 1
 			$CanAttack/CollisionShape2D.scale.x = 1
 			$CanAttack/CollisionShape2D.position.x = 195
 			arrow_direction = Vector2.RIGHT
+			push_power *= -1
 		pass
 	if canAttack:
 		$AnimatedSprite.play("attack")
 		last_animation = "attack"
-		
+	if last_animation == "attack" and $AnimatedSprite.frame == 6:
+		canArrow2 = true
 	if last_animation == "attack" and $AnimatedSprite.frame == 2 :
-		canArrow = true
-		pass
+		
+		
+		if canArrow2:
+			canArrow = true
+			
 	if canArrow:
 			canArrow = false
+			canArrow2 = false
 			$attackSound.play()
 			var a = arrow.instance()
 			add_child(a)
 			a.direction = arrow_direction
 			a.escala = next_direction
-			if a.hitHaytham == true:
-				player.take_damage(position,strengh,push_power)
+			a.flexa_push_power = push_power
+			a.flexa_strengh = strengh
+			
+			
 
+func take_damage():
+	
+	if player.attack_style == "slash":
+		var damage = (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defense
+		life -= damage
+	else:
+		var damage = 0.5 * (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defense
+		life -= damage
+	if life <= 0:
+		if player.chaos + 50 > 100:
+			player.chaos = 100
+		else:
+			player.chaos += 50
 
 
 func _on_CanAttack_body_entered(body):

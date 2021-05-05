@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 
 var direction : Vector2 = Vector2.LEFT
-
-
+var escala 
+var hitHaytham = false
 #
 func _ready():
 	pass #
@@ -11,6 +11,7 @@ func _ready():
 
 func _process(delta):
 	move_and_slide(Vector2(direction))
+	$Sprite.scale.x = escala
 	pass
 	
 
