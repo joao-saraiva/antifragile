@@ -82,6 +82,8 @@ func _physics_process(delta):
 	if !is_on_floor():
 		movement.y+= gravity
 	else:
+		if last_movement.y > 700:
+			fall_damage()
 		movement.y = gravity
 	
 	if life <= 0:
@@ -261,6 +263,11 @@ func take_damage(enemy, enemy_strength,push_power, ignore_shield = false):
 	print("player: "+str(life))
 	if damage >= 3:
 		$Hit.play()
+
+func fall_damage():
+	var damage = pow(1.14,last_movement.y/(defence*chaos_multiplier))
+	life -= damage
+	$Hit.play()
 
 func _on_attack_off_timeout():
 	$Swordhit/sword_slash.disabled = true

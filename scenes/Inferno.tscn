@@ -628,7 +628,7 @@ tile_data = PoolIntArray( 21496606, 7, 0, 21496735, 10, 0, 21562042, 9, 0, 21758
 position = Vector2( 1053.42, 297.613 )
 
 [node name="Haytham" parent="." instance=ExtResource( 2 )]
-position = Vector2( 2513.32, 2599.63 )
+position = Vector2( 2532.56, 2569.19 )
 
 [node name="Boss_1" parent="." instance=ExtResource( 6 )]
 position = Vector2( 3348.02, 270.505 )
@@ -765,6 +765,8 @@ margin_bottom = 83.304
 script = ExtResource( 9 )
 
 [node name="Inventory" parent="InterfaceLayer" instance=ExtResource( 15 )]
+visible = true
+position = Vector2( 0, 30.2381 )
 
 [node name="HotBar" parent="InterfaceLayer" instance=ExtResource( 16 )]
 position = Vector2( -2.70996, -3.6709 )
