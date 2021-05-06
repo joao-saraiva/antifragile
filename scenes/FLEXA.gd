@@ -11,11 +11,11 @@ signal dano()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	$Timer.start()
 	pass
 	
 func _process(delta):
-	translate(direction*70*delta)
+	translate(direction*150*delta)
 	$Sprite.scale.x = escala
 
 
@@ -28,4 +28,9 @@ func _on_Area2D_body_entered(body):
 		
 		
 		
+	pass # Replace with function body.
+
+
+func _on_Timer_timeout():
+	queue_free()
 	pass # Replace with function body.

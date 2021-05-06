@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PlayStation - Castlevania Symphony of the Night - Ctulhu.png-177a36345fee3f8d05092238061d891a.stex"
+path="res://.import/p3.png-2b740416442b282067c95e38c9977a99.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Boss_inferno/PlayStation - Castlevania Symphony of the Night - Ctulhu.png"
-dest_files=[ "res://.import/PlayStation - Castlevania Symphony of the Night - Ctulhu.png-177a36345fee3f8d05092238061d891a.stex" ]
+source_file="res://assets/Boss_2/p3.png"
+dest_files=[ "res://.import/p3.png-2b740416442b282067c95e38c9977a99.stex" ]
 
 [params]
 

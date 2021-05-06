@@ -26,25 +26,25 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 14 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
-"name": "attack",
-"speed": 6.0
+"name": "walk",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "death",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 21 ), ExtResource( 20 ) ],
 "loop": true,
 "name": "hit_walk",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "attack",
+"speed": 6.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]

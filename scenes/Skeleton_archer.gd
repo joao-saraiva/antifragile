@@ -91,14 +91,16 @@ func take_damage():
 
 
 func _on_CanAttack_body_entered(body):
-	canAttack = true
+	if body.get_name() == "Haytham":
+		canAttack = true
 	
 	
 	pass # Replace with function body.
 
 
 func _on_CanAttack_body_exited(body):
-	$AnimatedSprite.play("waiting")
-	last_animation = "waiting"
-	canAttack = false
+	if body.get_name() == "Haytham":
+		$AnimatedSprite.play("waiting")
+		last_animation = "waiting"
+		canAttack = false
 	pass # Replace with function body.
