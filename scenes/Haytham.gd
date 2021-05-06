@@ -34,7 +34,7 @@ var inventory_open = false
 var life = 100
 export var experience = 5001
 export var strength = 1
-export var defence = 1
+export var defence = 33
 var chaos = 0
 var chaos_enable = true
 var sword = "Chaos_longsword"
@@ -244,10 +244,10 @@ func attack():
 		$Swordhit/attack_on.wait_time = 0.12
 	$Swordhit/attack_on.start()
 
-func take_damage(enemy, enemy_strength,push_power):
+func take_damage(enemy, enemy_strength,push_power, ignore_shield = false):
 	var damage
 	var distance = enemy.x - position.x
-	if wielded_shield and ((distance < 0 and $AnimatedSprite.scale.x < 0) or (enemy.x - position.x > 0 and $AnimatedSprite.scale.x > 0)):
+	if wielded_shield and ((distance < 0 and $AnimatedSprite.scale.x < 0) or (enemy.x - position.x > 0 and $AnimatedSprite.scale.x > 0)) and not ignore_shield:
 		$block.play()
 		damage = (enemy_strength*15)/(10*defence*chaos_multiplier)
 		life -= damage

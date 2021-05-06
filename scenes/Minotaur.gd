@@ -20,14 +20,14 @@ var is_hit = false
 onready var player = get_parent().get_node("Haytham")
 var life = 1
 var strength = 90
-var defense = 70
+var defence = 70
 var is_dead = false
 var push_power = 30
 var push_power_fogo = 10
 var rng = RandomNumberGenerator.new()
+
 func _ready():
 	$AnimatedSprite.play("walk")
-	pass 
 
 func _process(delta):
 	if life <= 0 :
@@ -82,8 +82,8 @@ func _process(delta):
 			$Attack_fire/CollisionShape2D.position.x = -31.216
 			$Attack/CollisionShape2D.position.x = -35.5
 			$Attack/CollisionShape2D.scale.x = 1
-			push_power *= -1
-			push_power_fogo *=-1
+			push_power = -abs(push_power)
+			push_power_fogo = -abs(push_power_fogo)
 			next_direction_time = OS.get_ticks_msec()+react_time
 		elif player.position.x > position.x and next_direction != 1:
 			next_direction = 1
@@ -93,8 +93,8 @@ func _process(delta):
 			$Attack_fire/CollisionShape2D.position.x = 31.216
 			$Attack/CollisionShape2D.position.x = 35.5
 			$Attack/CollisionShape2D.scale.x = -1
-			push_power *= -1
-			push_power_fogo *=-1
+			push_power = abs(push_power)
+			push_power_fogo = abs(push_power_fogo)
 			next_direction_time = OS.get_ticks_msec()+react_time
 	if not is_dead:
 		if OS.get_ticks_msec() > next_direction_time:
@@ -115,27 +115,24 @@ func _on_CanFollow_body_entered(body):
 		canFollow = true
 		$CanFollow/CollisionShape2D.disabled = true
 		$CanFollow.monitoring = false
-	pass 
 
 
 func _on_CanAttack_body_entered(body):
 	if body.get_name() == "Haytham":
 		can_attack = true
-	pass # Replace with function body.
 
 
 func _on_CanAttack_body_exited(body):
 	if body.get_name() == "Haytham":
 		can_attack = false
-	pass # Replace with function body.
 
 func take_damage():
 	print(life)
 	if player.attack_style == "slash":
-		var damage = (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defense
+		var damage = (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defence
 		life -= damage
 	else:
-		var damage = 0.5 * (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defense
+		var damage = 0.5 * (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defence
 		life -= damage
 	if life <= 0:
 		player.experience += 1100
@@ -147,11 +144,9 @@ func take_damage():
 
 func _on_Attack_fire_body_entered(body):
 	if body.get_name() == "Haytham":
-		player.take_damage(position,strength,push_power_fogo)
-	pass # Replace with function body.
+		player.take_damage(position,strength,push_power_fogo, true)
 
 
 func _on_Attack_body_entered(body):
 	if body.get_name() == "Haytham":
 		player.take_damage(position,strength,push_power)
-	pass # Replace with function body.

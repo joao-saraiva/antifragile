@@ -22,8 +22,6 @@ var contador = 0
 
 func _ready():
 	$AnimatedSprite.play("waiting")
-	
-	pass 
 
 func _process(delta):
 	if life <= 0 :
@@ -57,11 +55,8 @@ func _process(delta):
 	if last_animation == "attack" and $AnimatedSprite.frame == 6:
 		canArrow2 = true
 	if last_animation == "attack" and $AnimatedSprite.frame == 2 :
-		
-		
 		if canArrow2:
 			canArrow = true
-			
 	if canArrow:
 			canArrow = false
 			canArrow2 = false
@@ -72,8 +67,6 @@ func _process(delta):
 			a.escala = next_direction
 			a.flexa_push_power = push_power
 			a.flexa_strengh = strengh
-			
-			
 
 func take_damage():
 	
@@ -90,18 +83,12 @@ func take_damage():
 		else:
 			player.chaos += 50
 
-
 func _on_CanAttack_body_entered(body):
 	if body.get_name() == "Haytham":
 		canAttack = true
-	
-	
-	pass # Replace with function body.
-
 
 func _on_CanAttack_body_exited(body):
 	if body.get_name() == "Haytham":
 		$AnimatedSprite.play("waiting")
 		last_animation = "waiting"
 		canAttack = false
-	pass # Replace with function body.
