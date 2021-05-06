@@ -767,7 +767,7 @@ script = ExtResource( 9 )
 [node name="Inventory" parent="InterfaceLayer" instance=ExtResource( 15 )]
 
 [node name="HotBar" parent="InterfaceLayer" instance=ExtResource( 16 )]
-position = Vector2( 1124, 0 )
+position = Vector2( -2.70996, -3.6709 )
 
 [node name="Wall" type="StaticBody2D" parent="."]
 
