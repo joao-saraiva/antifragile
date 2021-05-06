@@ -16,7 +16,7 @@ onready var player = get_parent().get_node("Haytham")
 
 var life = 25
 var strength = 5
-var defense = 5
+var defence = 5
 var is_dead = false
 var push_power = 15
 
@@ -96,12 +96,13 @@ func is_dead():
 func take_damage():
 	$Death_sound.play()
 	if player.attack_style == "slash":
-		var damage = (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defense
+		var damage = (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defence
 		life -= damage
 	else:
-		var damage = 0.5 * (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defense
+		var damage = 0.5 * (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defence
 		life -= damage
 	if life <= 0:
+		player.experience += 1
 		if player.chaos + 50 > 100:
 			player.chaos = 100
 		else:

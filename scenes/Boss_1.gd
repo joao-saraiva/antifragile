@@ -135,6 +135,12 @@ func take_damage():
 	else:
 		var damage =  (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defense
 		life -= damage
+	if life <= 0:
+		player.experience += 1100
+		if player.chaos + 50 > 100:
+			player.chaos = 100
+		else:
+			player.chaos += 50
 	$hit.play()
 	whiten_material.set_shader_param("whiten",true)
 	yield(get_tree().create_timer(whiten_duration),"timeout")

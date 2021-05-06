@@ -59,17 +59,17 @@ func _process(delta):
 			last_animation = "attack"
 			escolhido = true
 			
-	if last_animation == "attack_fire" and $AnimatedSprite.frame == 10:
+	if last_animation == "attack_fire" and $AnimatedSprite.frame == 13:
 		attacking = false
 		escolhido = false
 		$Attack_fire.monitoring = false
-	if last_animation == "attack" and $AnimatedSprite.frame == 5:
+	if last_animation == "attack" and $AnimatedSprite.frame == 7:
 		attacking = false
 		escolhido = false
 		$Attack.monitoring = false
 	if last_animation == "attack_fire" and $AnimatedSprite.frame == 7:
 		$Attack_fire.monitoring = true
-	if last_animation == "attack" and $AnimatedSprite.frame == 4:
+	if last_animation == "attack" and $AnimatedSprite.frame == 5:
 		$Attack.monitoring = true
 	if canFollow and not is_dead and not attacking  :
 		
@@ -81,6 +81,7 @@ func _process(delta):
 			$CanAttack/CollisionShape2D.position.x = -49.554
 			$Attack_fire/CollisionShape2D.position.x = -31.216
 			$Attack/CollisionShape2D.position.x = -35.5
+			$Attack/CollisionShape2D.scale.x = 1
 			push_power *= -1
 			push_power_fogo *=-1
 			next_direction_time = OS.get_ticks_msec()+react_time
@@ -91,6 +92,7 @@ func _process(delta):
 			$CanAttack/CollisionShape2D.position.x = 49.554
 			$Attack_fire/CollisionShape2D.position.x = 31.216
 			$Attack/CollisionShape2D.position.x = 35.5
+			$Attack/CollisionShape2D.scale.x = -1
 			push_power *= -1
 			push_power_fogo *=-1
 			next_direction_time = OS.get_ticks_msec()+react_time
@@ -136,6 +138,7 @@ func take_damage():
 		var damage = 0.5 * (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defense
 		life -= damage
 	if life <= 0:
+		player.experience += 1100
 		if player.chaos + 50 > 100:
 			player.chaos = 100
 		else:

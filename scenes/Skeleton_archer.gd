@@ -14,7 +14,7 @@ var arrow_direction = Vector2(0,0)
 var canArrow = false
 var strengh = 5
 var push_power = 15
-var defense = 3
+var defence = 3
 var canArrow2 = true
 onready var player = get_parent().get_node("Haytham")
 onready var arrow = preload("res://scenes/FLEXA.tscn")
@@ -78,12 +78,13 @@ func _process(delta):
 func take_damage():
 	
 	if player.attack_style == "slash":
-		var damage = (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defense
+		var damage = (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defence
 		life -= damage
 	else:
-		var damage = 0.5 * (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defense
+		var damage = 0.5 * (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defence
 		life -= damage
 	if life <= 0:
+		player.experience += 2
 		if player.chaos + 50 > 100:
 			player.chaos = 100
 		else:

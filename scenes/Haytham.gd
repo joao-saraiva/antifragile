@@ -27,12 +27,14 @@ var walkSound = true
 var deathSound = true
 var chaos_multiplier = 1
 var reset_chaos_bar = false
+var inventory_open = false
 # Esses status serão salvos por arquivo para não serem resetados
 # cada vez q o jogo for iniciado. Estão sendo declarados aqui
 # somente para teste
 var life = 100
-var strength = 65
-var defense = 20
+export var experience = 5001
+export var strength = 1
+export var defence = 1
 var chaos = 0
 var chaos_enable = true
 var sword = "Chaos_longsword"
@@ -124,7 +126,7 @@ func _physics_process(delta):
 				hit = false
 				just_hitted = true
 		
-		if not is_landing():
+		if not is_landing() and not inventory_open:
 			var horizontal_axis
 			if not wielded_shield:
 				if mouse_actived:
@@ -247,11 +249,11 @@ func take_damage(enemy, enemy_strength,push_power):
 	var distance = enemy.x - position.x
 	if wielded_shield and ((distance < 0 and $AnimatedSprite.scale.x < 0) or (enemy.x - position.x > 0 and $AnimatedSprite.scale.x > 0)):
 		$block.play()
-		damage = (enemy_strength*15)/(10*defense*chaos_multiplier)
+		damage = (enemy_strength*15)/(10*defence*chaos_multiplier)
 		life -= damage
 	else:
 		wielded_shield = false
-		damage = (enemy_strength*15)/(defense*chaos_multiplier)
+		damage = (enemy_strength*15)/(defence*chaos_multiplier)
 		life -= damage
 		movement.x = push_power*20
 		if damage >= 10:
@@ -342,3 +344,7 @@ func _on_death_finished():
 func _on_Chaos_timeout():
 	reset_chaos_bar = true
 	chaos_multiplier = 1
+
+
+func _on_Inventory_visibility_changed():
+	inventory_open = !inventory_open

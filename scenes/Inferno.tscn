@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/Inferno/scenario/inferno.tres" type="Texture" id=1]
 [ext_resource path="res://scenes/Haytham.tscn" type="PackedScene" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://assets/Text/next-indicator.png" type="Texture" id=12]
 [ext_resource path="res://scenes/DialogueBox.gd" type="Script" id=13]
 [ext_resource path="res://scenes/Minotaur.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/Inventory.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/HotBar.tscn" type="PackedScene" id=16]
 
 [sub_resource type="TileSet" id=1]
 0/name = "inferno.tres 0"
@@ -762,6 +764,11 @@ margin_right = 177.598
 margin_bottom = 83.304
 script = ExtResource( 9 )
 
+[node name="Inventory" parent="InterfaceLayer" instance=ExtResource( 15 )]
+
+[node name="HotBar" parent="InterfaceLayer" instance=ExtResource( 16 )]
+position = Vector2( 1124, 0 )
+
 [node name="Wall" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
@@ -777,4 +784,5 @@ shape = SubResource( 17 )
 [node name="Minotaur" parent="." instance=ExtResource( 14 )]
 position = Vector2( 3064.02, 2546.58 )
 [connection signal="tween_completed" from="InterfaceLayer/Control/DialogueBox/Tween" to="InterfaceLayer/Control/DialogueBox" method="_on_Tween_tween_completed"]
+[connection signal="visibility_changed" from="InterfaceLayer/Inventory" to="Haytham" method="_on_Inventory_visibility_changed"]
 [connection signal="body_entered" from="DialogArea" to="." method="_on_DialogArea_body_entered"]
