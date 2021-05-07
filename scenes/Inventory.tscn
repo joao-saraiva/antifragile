@@ -7,16 +7,15 @@
 [ext_resource path="res://scenes/Slot.gd" type="Script" id=5]
 [ext_resource path="res://assets/HUD/plus-button.png" type="Texture" id=6]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 46
 font_data = ExtResource( 3 )
 
-[sub_resource type="StyleBoxTexture" id=3]
+[sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 128, 128 )
 
 [node name="Inventory" type="Node2D"]
-visible = false
 script = ExtResource( 4 )
 
 [node name="Inventory_gui" type="Sprite" parent="."]
@@ -51,7 +50,7 @@ margin_left = -37.0
 margin_top = -255.0
 margin_right = 369.0
 margin_bottom = -216.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -62,7 +61,7 @@ margin_left = -451.058
 margin_top = -75.5051
 margin_right = -308.058
 margin_bottom = -36.5051
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "1"
 align = 2
 __meta__ = {
@@ -74,7 +73,7 @@ margin_left = -24.9553
 margin_top = -75.5051
 margin_right = 102.045
 margin_bottom = -36.5051
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "1"
 align = 2
 __meta__ = {
@@ -86,7 +85,7 @@ margin_left = 246.0
 margin_top = -137.0
 margin_right = 434.0
 margin_bottom = -98.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -97,7 +96,7 @@ margin_left = -143.0
 margin_top = -137.0
 margin_right = 35.0
 margin_bottom = -98.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -105,9 +104,9 @@ __meta__ = {
 
 [node name="GridContainer" type="GridContainer" parent="Inventory_gui"]
 margin_left = -383.0
-margin_top = 24.2806
+margin_top = 24.0
 margin_right = 392.0
-margin_bottom = 144.281
+margin_bottom = 144.0
 custom_constants/hseparation = 9
 columns = 6
 __meta__ = {
@@ -118,7 +117,7 @@ __meta__ = {
 margin_right = 120.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 120, 120 )
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 2 )
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -129,11 +128,10 @@ margin_left = 129.0
 margin_right = 249.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 120, 120 )
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 2 )
 script = ExtResource( 5 )
 __meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
+"_edit_use_anchors_": false
 }
 
 [node name="slot3" type="Panel" parent="Inventory_gui/GridContainer"]
@@ -141,11 +139,10 @@ margin_left = 258.0
 margin_right = 378.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 120, 120 )
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 2 )
 script = ExtResource( 5 )
 __meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
+"_edit_use_anchors_": false
 }
 
 [node name="slot4" type="Panel" parent="Inventory_gui/GridContainer"]
@@ -153,11 +150,10 @@ margin_left = 387.0
 margin_right = 507.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 120, 120 )
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 2 )
 script = ExtResource( 5 )
 __meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
+"_edit_use_anchors_": false
 }
 
 [node name="slot5" type="Panel" parent="Inventory_gui/GridContainer"]
@@ -165,11 +161,10 @@ margin_left = 516.0
 margin_right = 636.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 120, 120 )
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 2 )
 script = ExtResource( 5 )
 __meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
+"_edit_use_anchors_": false
 }
 
 [node name="slot6" type="Panel" parent="Inventory_gui/GridContainer"]
@@ -177,11 +172,42 @@ margin_left = 645.0
 margin_right = 765.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 120, 120 )
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 2 )
 script = ExtResource( 5 )
 __meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer2" type="GridContainer" parent="Inventory_gui"]
+margin_left = -516.046
+margin_top = 191.51
+margin_right = -136.046
+margin_bottom = 321.51
+custom_constants/hseparation = 135
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hotbar1" type="Panel" parent="Inventory_gui/GridContainer2"]
+margin_right = 120.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 120, 120 )
+custom_styles/panel = SubResource( 2 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hotbar2" type="Panel" parent="Inventory_gui/GridContainer2"]
+margin_left = 255.0
+margin_right = 375.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 120, 120 )
+custom_styles/panel = SubResource( 2 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
 }
 [connection signal="draw" from="Inventory_gui" to="." method="_on_Inventory_draw"]
 [connection signal="pressed" from="Inventory_gui/StrengthUpgrade" to="." method="_on_StrengthUpgrade_pressed"]

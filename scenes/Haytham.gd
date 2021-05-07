@@ -28,6 +28,7 @@ var deathSound = true
 var chaos_multiplier = 1
 var reset_chaos_bar = false
 var inventory_open = false
+
 # Esses status serão salvos por arquivo para não serem resetados
 # cada vez q o jogo for iniciado. Estão sendo declarados aqui
 # somente para teste
@@ -37,7 +38,7 @@ export var strength = 1
 export var defence = 33
 var chaos = 0
 var chaos_enable = true
-var sword = "Chaos_longsword"
+var sword = "None"
 
 func _ready():
 	Socket.connect("jump",self,"jump")
@@ -111,7 +112,7 @@ func _physics_process(delta):
 			chaos -= 2
 			if chaos == 0:
 				reset_chaos_bar = true
-		if sword != "None" and esp32ChangeAttackStyle or Input.is_action_just_pressed("change_attack_style"):
+		if sword != "life_potion" and sword != "None" and esp32ChangeAttackStyle or Input.is_action_just_pressed("change_attack_style"):
 			if attack_style == "slash":
 				attack_style = "stab"
 			else:
@@ -142,13 +143,15 @@ func _physics_process(delta):
 					movement.x = horizontal_axis*walk_speed
 					is_running = false
 			
-				if sword != "None" and (esp32Attack or Input.is_action_just_pressed("attack")) and not is_attacking():
+				if sword != "life_potion" and sword != "None" and (esp32Attack or Input.is_action_just_pressed("attack")) and not is_attacking():
 					esp32Attack = false
 					attack()
 			elif $AnimatedSprite.frame == 11:
 				$AnimatedSprite.frame = 3
 			if esp32Shield or Input.is_action_pressed("shield") and is_on_floor():
 				wielded_shield = true
+				is_running = false
+				$walk.stop()
 				$AnimatedSprite.play("shield"+sword)
 				$Sword_slash_sound.stop()
 				$Sword_stab_sound.stop()
@@ -240,7 +243,7 @@ func attack():
 	$AnimatedSprite.play(attack_style+str(current_look_angle)+sword)
 	last_animation = attack_style
 	if attack_style == "slash":
-		$Swordhit/attack_on.wait_time = 0.16
+		$Swordhit/attack_on.wait_time = 0.20
 	else:
 		$Sword_stab_sound.play()
 		$Swordhit/attack_on.wait_time = 0.12
@@ -260,9 +263,9 @@ func take_damage(enemy, enemy_strength,push_power, ignore_shield = false):
 		movement.x = push_power*20
 		if damage >= 10:
 			hit = true
-	print("player: "+str(life))
-	if damage >= 3:
 		$Hit.play()
+	print("player: "+str(life))
+		
 
 func fall_damage():
 	var damage = pow(1.14,last_movement.y/(defence*chaos_multiplier))
@@ -355,3 +358,11 @@ func _on_Chaos_timeout():
 
 func _on_Inventory_visibility_changed():
 	inventory_open = !inventory_open
+
+
+func _on_HotBar_hotbar1(item):
+	sword = item
+
+
+func _on_HotBar_hotbar2(item):
+	sword = item

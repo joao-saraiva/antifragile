@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://assets/Inferno/scenario/inferno.tres" type="Texture" id=1]
 [ext_resource path="res://scenes/Haytham.tscn" type="PackedScene" id=2]
@@ -19,6 +19,9 @@
 [ext_resource path="res://assets/Inferno/scenario/door.tres" type="Texture" id=17]
 [ext_resource path="res://assets/Inferno/scenario/door(1).tres" type="Texture" id=18]
 [ext_resource path="res://scenes/Minotaur.tscn" type="PackedScene" id=19]
+[ext_resource path="res://assets/Items/Chaos_longsword_grund_item.tscn" type="PackedScene" id=20]
+[ext_resource path="res://assets/Items/Steel_longsword_grund_item.tscn" type="PackedScene" id=21]
+[ext_resource path="res://assets/Items/life_potion_ground_item.tscn" type="PackedScene" id=22]
 
 [sub_resource type="TileSet" id=1]
 0/name = "inferno.tres 0"
@@ -809,7 +812,22 @@ position = Vector2( 3591.56, 541.777 )
 position = Vector2( 3384.08, 540.005 )
 
 [node name="Haytham" parent="." instance=ExtResource( 2 )]
-position = Vector2( 6913.89, 846.136 )
+position = Vector2( 6773.73, 864.824 )
+
+[node name="Chaos_longsword" parent="." instance=ExtResource( 20 )]
+position = Vector2( 6533.67, 867.279 )
+
+[node name="Steel_longsword" parent="." instance=ExtResource( 21 )]
+position = Vector2( 6577.05, 868.614 )
+
+[node name="life_potion" parent="." instance=ExtResource( 22 )]
+position = Vector2( 6605.08, 869.949 )
+
+[node name="life_potion2" parent="." instance=ExtResource( 22 )]
+position = Vector2( 6665.15, 869.949 )
+
+[node name="life_potion3" parent="." instance=ExtResource( 22 )]
+position = Vector2( 6631.11, 865.944 )
 
 [node name="Boss_1" parent="." instance=ExtResource( 6 )]
 position = Vector2( -557.735, 295.703 )
@@ -946,7 +964,7 @@ margin_bottom = 83.304
 script = ExtResource( 9 )
 
 [node name="Inventory" parent="InterfaceLayer" instance=ExtResource( 15 )]
-visible = true
+visible = false
 position = Vector2( 0, 30.2381 )
 
 [node name="HotBar" parent="InterfaceLayer" instance=ExtResource( 16 )]
@@ -969,6 +987,16 @@ position = Vector2( 7008.05, 1144.41 )
 
 [node name="Skeleton_archer7" parent="." instance=ExtResource( 3 )]
 position = Vector2( 7688.65, 1126.19 )
+[connection signal="pickup" from="Chaos_longsword" to="InterfaceLayer/Inventory" method="_on_Chaos_longsword_pickup"]
+[connection signal="pickup" from="Steel_longsword" to="InterfaceLayer/Inventory" method="_on_Steel_longsword_pickup"]
+[connection signal="pickup" from="life_potion" to="InterfaceLayer/Inventory" method="_on_life_potion_pickup"]
+[connection signal="pickup" from="life_potion2" to="InterfaceLayer/Inventory" method="_on_life_potion_pickup"]
+[connection signal="pickup" from="life_potion3" to="InterfaceLayer/Inventory" method="_on_life_potion_pickup"]
 [connection signal="tween_completed" from="InterfaceLayer/Control/DialogueBox/Tween" to="InterfaceLayer/Control/DialogueBox" method="_on_Tween_tween_completed"]
+[connection signal="hotbar1_items" from="InterfaceLayer/Inventory" to="InterfaceLayer/HotBar" method="_on_Inventory_hotbar1_items"]
+[connection signal="hotbar2_items" from="InterfaceLayer/Inventory" to="InterfaceLayer/HotBar" method="_on_Inventory_hotbar2_items"]
 [connection signal="visibility_changed" from="InterfaceLayer/Inventory" to="Haytham" method="_on_Inventory_visibility_changed"]
+[connection signal="hotbar1" from="InterfaceLayer/HotBar" to="Haytham" method="_on_HotBar_hotbar1"]
+[connection signal="hotbar2" from="InterfaceLayer/HotBar" to="Haytham" method="_on_HotBar_hotbar2"]
+[connection signal="item_used" from="InterfaceLayer/HotBar" to="InterfaceLayer/Inventory" method="_on_HotBar_item_used"]
 [connection signal="body_entered" from="DialogArea" to="." method="_on_DialogArea_body_entered"]

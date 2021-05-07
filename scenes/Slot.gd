@@ -1,12 +1,6 @@
 extends Panel
-var ItemClass = preload("res://assets/Items/Item.tscn")
+
 var item = null
-
-func _ready():
-	if randi() % 2 == 0:
-		item = ItemClass.instance()
-		add_child(item)
-
 
 func pickFromSlot():
 	remove_child(item)
@@ -20,3 +14,7 @@ func putIntoSlot(new_item):
 	var inventoryNode = find_parent("Inventory")
 	inventoryNode.remove_child(item)
 	add_child(item)
+
+func deleteItem():
+	remove_child(item)
+	item = null

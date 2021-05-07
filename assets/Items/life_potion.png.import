@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Chaos_longsword.png-a36d537c2035b705733bb33069e6a44b.stex"
+path="res://.import/life_potion.png-1b92b8f05004aed079f81a686a1d1058.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Items/Chaos_longsword.png"
-dest_files=[ "res://.import/Chaos_longsword.png-a36d537c2035b705733bb33069e6a44b.stex" ]
+source_file="res://assets/Items/life_potion.png"
+dest_files=[ "res://.import/life_potion.png-1b92b8f05004aed079f81a686a1d1058.stex" ]
 
 [params]
 
