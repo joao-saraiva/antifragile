@@ -689,18 +689,18 @@ points = PoolVector2Array( 240, 32, 0, 32, 0, 0, 240, 0 )
 } ]
 19/z_index = 0
 
-[sub_resource type="DynamicFont" id=19]
+[sub_resource type="DynamicFont" id=17]
 outline_size = 1
 outline_color = Color( 0.439216, 0.439216, 0.439216, 1 )
 font_data = ExtResource( 10 )
 
-[sub_resource type="DynamicFont" id=20]
+[sub_resource type="DynamicFont" id=18]
 size = 32
 outline_size = 1
 outline_color = Color( 0.439216, 0.439216, 0.439216, 1 )
 font_data = ExtResource( 10 )
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=19]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
@@ -715,10 +715,10 @@ tracks/0/keys = {
 "values": [ Vector2( 776.491, 160 ), Vector2( 776.491, 170 ) ]
 }
 
-[sub_resource type="SegmentShape2D" id=22]
+[sub_resource type="SegmentShape2D" id=20]
 a = Vector2( 2.81577, 414.15 )
 
-[sub_resource type="SegmentShape2D" id=23]
+[sub_resource type="SegmentShape2D" id=21]
 a = Vector2( -19.4625, -15.5434 )
 b = Vector2( -21.6316, 309.449 )
 
@@ -809,7 +809,7 @@ margin_top = 189.832
 margin_right = 156.85
 margin_bottom = 231.832
 rect_scale = Vector2( 1.20824, 1.65998 )
-custom_fonts/font = SubResource( 19 )
+custom_fonts/font = SubResource( 17 )
 text = "A e D para andar
 Shift para correr
 "
@@ -823,7 +823,7 @@ margin_top = 216.705
 margin_right = 826.126
 margin_bottom = 258.705
 rect_scale = Vector2( 1.20824, 1.65998 )
-custom_fonts/font = SubResource( 19 )
+custom_fonts/font = SubResource( 17 )
 text = "Spacebar para pular"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -835,7 +835,7 @@ margin_top = 179.893
 margin_right = 874.279
 margin_bottom = 221.893
 rect_scale = Vector2( 1.20824, 1.65998 )
-custom_fonts/font = SubResource( 19 )
+custom_fonts/font = SubResource( 17 )
 text = "Mouse direito para defender-se"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -847,7 +847,7 @@ margin_top = 155.738
 margin_right = 2003.01
 margin_bottom = 197.738
 rect_scale = Vector2( 1.20824, 1.65998 )
-custom_fonts/font = SubResource( 19 )
+custom_fonts/font = SubResource( 17 )
 text = "Shift e Spacebar para pulos mais altos"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -908,7 +908,7 @@ margin_left = 15.0
 margin_top = 15.0
 margin_right = -15.0
 margin_bottom = -15.0
-custom_fonts/normal_font = SubResource( 20 )
+custom_fonts/normal_font = SubResource( 18 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
 bbcode_text = "FONTE DE TESTE"
@@ -924,7 +924,7 @@ scale = Vector2( 0.6, 0.5 )
 texture = ExtResource( 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="InterfaceLayer/Control/DialogueBox/next-indicator"]
-anims/idle = SubResource( 21 )
+anims/idle = SubResource( 19 )
 
 [node name="Tween" type="Tween" parent="InterfaceLayer/Control/DialogueBox"]
 
@@ -957,13 +957,13 @@ position = Vector2( -2.70996, -3.6709 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
 position = Vector2( -1126.71, -4.01518 )
-shape = SubResource( 22 )
+shape = SubResource( 20 )
 
 [node name="DialogArea" type="Area2D" parent="."]
 
 [node name="dialogShape" type="CollisionShape2D" parent="DialogArea"]
 position = Vector2( 7163.6, 575.418 )
-shape = SubResource( 23 )
+shape = SubResource( 21 )
 
 [node name="Skeleton5" parent="." instance=ExtResource( 14 )]
 position = Vector2( 7000.93, 1139.92 )
