@@ -26,20 +26,20 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 14 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
-"name": "attack",
-"speed": 6.0
+"name": "death",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "walk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"frames": [ ExtResource( 1 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 14 ) ],
 "loop": true,
-"name": "death",
-"speed": 5.0
+"name": "attack",
+"speed": 6.0
 }, {
 "frames": [ ExtResource( 21 ), ExtResource( 20 ) ],
 "loop": true,
@@ -126,3 +126,4 @@ volume_db = -10.505
 [connection signal="body_exited" from="CanAttack" to="." method="_on_CanAttack_body_exited"]
 [connection signal="timeout" from="CanAttackTime" to="." method="_on_CanAttackTime_timeout"]
 [connection signal="body_entered" from="Attack" to="." method="_on_Attack_body_entered"]
+[connection signal="finished" from="Death_sound" to="." method="_on_Death_sound_finished"]

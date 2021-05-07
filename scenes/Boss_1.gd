@@ -154,3 +154,8 @@ func play_theme():
 func _on_Attack_body_entered(body):
 	if body.get_name() == "Haytham":
 		player.take_damage(position,strength,push_power)
+
+
+func _on_Death_sound_finished():
+	
+	pass # Replace with function body.

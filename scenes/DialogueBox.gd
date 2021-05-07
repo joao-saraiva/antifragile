@@ -30,6 +30,7 @@ func load_dialog():
 		)
 		$Tween.start()
 	else:
+		get_tree().change_scene("res://scenes/BattleField.tscn")
 		queue_free()
 	dialog_index += 1
 
