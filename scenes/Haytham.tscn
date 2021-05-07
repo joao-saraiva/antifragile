@@ -416,14 +416,14 @@ height = 19.8709
 extents = Vector2( 10, 2 )
 
 [node name="Haytham" type="KinematicBody2D"]
-collision_layer = 15
-collision_mask = 2147483663
+collision_layer = 29
+collision_mask = 2147483677
 script = ExtResource( 40 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "runChaos_longsword"
-frame = 6
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -788,10 +788,10 @@ position = Vector2( 3591.56, 541.777 )
 position = Vector2( 3384.08, 540.005 )
 
 [node name="Haytham" parent="." instance=ExtResource( 2 )]
-position = Vector2( 6773.73, 864.824 )
+position = Vector2( 6738.32, 867.259 )
 
 [node name="Chaos_longsword" parent="." instance=ExtResource( 20 )]
-position = Vector2( 6533.67, 867.279 )
+position = Vector2( 6536.34, 864.609 )
 
 [node name="Steel_longsword" parent="." instance=ExtResource( 21 )]
 position = Vector2( 6577.05, 868.614 )
