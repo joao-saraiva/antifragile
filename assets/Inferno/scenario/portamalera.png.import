@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Chaos_longsword.png-a36d537c2035b705733bb33069e6a44b.stex"
+path="res://.import/portamalera.png-1ff9183ab0de4a7bb01c64e041171616.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Items/Chaos_longsword.png"
-dest_files=[ "res://.import/Chaos_longsword.png-a36d537c2035b705733bb33069e6a44b.stex" ]
+source_file="res://assets/Inferno/scenario/portamalera.png"
+dest_files=[ "res://.import/portamalera.png-1ff9183ab0de4a7bb01c64e041171616.stex" ]
 
 [params]
 

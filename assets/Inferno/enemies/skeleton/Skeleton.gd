@@ -11,7 +11,7 @@ var next_direction_time = 0
 #fim da movimentacao
 var last_animation = ""
 var player_detected = false
-
+var canFollow = false
 onready var player = get_parent().get_node("Haytham")
 
 var life = 25
@@ -49,7 +49,7 @@ func _physics_process(delta):
 		#desativa o ataque do esqueleto
 		$AttackSkeleton.monitoring = false
 		
-	if not is_dead:
+	if not is_dead and canFollow:
 		if player_detected:
 			if player.life > 0 and not is_dead and not is_attacking():
 				$AnimatedSprite.play("attack")
@@ -128,3 +128,9 @@ func _on_AttackSkeleton_body_entered(body):
 
 func _on_delay_timeout():
 	queue_free()
+
+
+func _on_CanFollow_body_entered(body):
+	if body.get_name() == "Haytham":
+		canFollow = true
+	pass # Replace with function body.

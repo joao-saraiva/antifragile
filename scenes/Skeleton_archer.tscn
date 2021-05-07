@@ -28,7 +28,7 @@ radius = 11.125
 height = 9.0
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 224, 39 )
+extents = Vector2( 224, 72.8516 )
 
 [node name="Skeleton_archer" type="KinematicBody2D"]
 collision_layer = 3

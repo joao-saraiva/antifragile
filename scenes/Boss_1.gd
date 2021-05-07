@@ -32,6 +32,7 @@ func _ready():
 func _process(delta):
 	if player.life <= 0:
 		$Theme.stop()
+		$Background.stop()
 	if life <= 0:
 		is_dead = true
 	

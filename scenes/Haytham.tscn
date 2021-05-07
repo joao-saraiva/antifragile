@@ -212,25 +212,120 @@ animations = [ {
 "name": "walkChaos_longsword",
 "speed": 6.0
 }, {
+"frames": [ ExtResource( 170 ), ExtResource( 171 ), ExtResource( 171 ) ],
+"loop": false,
+"name": "landChaos_longsword",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 194 ), ExtResource( 195 ), ExtResource( 192 ), ExtResource( 193 ), ExtResource( 184 ), ExtResource( 182 ), ExtResource( 188 ) ],
+"loop": false,
+"name": "deathChaos_longsword",
+"speed": 6.0
+}, {
 "frames": [ ExtResource( 30 ), ExtResource( 32 ), ExtResource( 27 ), ExtResource( 35 ), ExtResource( 33 ), ExtResource( 34 ) ],
 "loop": false,
 "name": "jumpSteel_longsword",
 "speed": 8.0
-}, {
-"frames": [ ExtResource( 178 ), ExtResource( 180 ) ],
-"loop": true,
-"name": "fallChaos_longsword",
-"speed": 5.0
 }, {
 "frames": [ ExtResource( 189 ), ExtResource( 185 ), ExtResource( 186 ), ExtResource( 187 ), ExtResource( 183 ), ExtResource( 190 ), ExtResource( 191 ) ],
 "loop": false,
 "name": "deathNone",
 "speed": 6.0
 }, {
+"frames": [ ExtResource( 201 ), ExtResource( 200 ), ExtResource( 196 ), ExtResource( 202 ), ExtResource( 202 ), ExtResource( 202 ), ExtResource( 26 ), ExtResource( 26 ), ExtResource( 26 ), ExtResource( 204 ), ExtResource( 204 ), ExtResource( 204 ) ],
+"loop": false,
+"name": "shieldChaos_longsword",
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 28 ), ExtResource( 42 ), ExtResource( 41 ), ExtResource( 43 ), ExtResource( 43 ) ],
+"loop": false,
+"name": "slash0Steel_longsword",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 169 ), ExtResource( 168 ), ExtResource( 168 ) ],
+"loop": true,
+"name": "landNone",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 77 ), ExtResource( 78 ), ExtResource( 80 ), ExtResource( 79 ), ExtResource( 79 ) ],
+"loop": false,
+"name": "stab60Steel_longsword",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "idleSteel_longsword",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 46 ), ExtResource( 45 ), ExtResource( 50 ), ExtResource( 44 ), ExtResource( 49 ), ExtResource( 47 ), ExtResource( 48 ) ],
+"loop": false,
+"name": "deathSteel_longsword",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 38 ), ExtResource( 37 ), ExtResource( 37 ) ],
+"loop": false,
+"name": "landSteel_longsword",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 64 ), ExtResource( 63 ), ExtResource( 62 ), ExtResource( 61 ), ExtResource( 61 ) ],
+"loop": false,
+"name": "slash30Steel_longsword",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 18 ), ExtResource( 163 ), ExtResource( 25 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "runSteel_longsword",
+"speed": 8.0
+}, {
 "frames": [ ExtResource( 69 ), ExtResource( 70 ), ExtResource( 71 ), ExtResource( 72 ), ExtResource( 72 ) ],
 "loop": false,
 "name": "slash-30Steel_longsword",
 "speed": 8.0
+}, {
+"frames": [ ExtResource( 147 ), ExtResource( 148 ), ExtResource( 150 ), ExtResource( 149 ), ExtResource( 152 ), ExtResource( 151 ), ExtResource( 154 ), ExtResource( 153 ) ],
+"loop": true,
+"name": "runChaos_longsword",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 132 ), ExtResource( 134 ), ExtResource( 133 ), ExtResource( 135 ), ExtResource( 135 ) ],
+"loop": false,
+"name": "stab30Chaos_longsword",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 76 ), ExtResource( 73 ), ExtResource( 75 ), ExtResource( 74 ), ExtResource( 74 ) ],
+"loop": false,
+"name": "stab30Steel_longsword",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 199 ), ExtResource( 203 ), ExtResource( 197 ), ExtResource( 198 ) ],
+"loop": false,
+"name": "shieldNone",
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 115 ), ExtResource( 116 ), ExtResource( 118 ), ExtResource( 117 ), ExtResource( 117 ) ],
+"loop": false,
+"name": "slash0Chaos_longsword",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 128 ), ExtResource( 129 ), ExtResource( 130 ), ExtResource( 126 ), ExtResource( 126 ) ],
+"loop": true,
+"name": "slash-30Chaos_longsword",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 159 ), ExtResource( 162 ), ExtResource( 156 ), ExtResource( 158 ), ExtResource( 160 ), ExtResource( 157 ), ExtResource( 161 ), ExtResource( 155 ) ],
+"loop": true,
+"name": "runNone",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 165 ), ExtResource( 164 ), ExtResource( 166 ), ExtResource( 167 ), ExtResource( 179 ), ExtResource( 173 ) ],
+"loop": false,
+"name": "jumpNone",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 163 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "walkSteel_longsword",
+"speed": 6.0
 }, {
 "frames": [ ExtResource( 136 ), ExtResource( 137 ), ExtResource( 141 ), ExtResource( 131 ), ExtResource( 131 ) ],
 "loop": false,
@@ -240,36 +335,6 @@ animations = [ {
 "frames": [ ExtResource( 86 ), ExtResource( 85 ), ExtResource( 93 ), ExtResource( 88 ), ExtResource( 87 ), ExtResource( 95 ), ExtResource( 92 ), ExtResource( 94 ), ExtResource( 96 ), ExtResource( 89 ), ExtResource( 90 ), ExtResource( 97 ), ExtResource( 98 ), ExtResource( 91 ), ExtResource( 99 ) ],
 "loop": true,
 "name": "idleChaos_longsword",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 77 ), ExtResource( 78 ), ExtResource( 80 ), ExtResource( 79 ), ExtResource( 79 ) ],
-"loop": false,
-"name": "stab60Steel_longsword",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 201 ), ExtResource( 200 ), ExtResource( 196 ), ExtResource( 202 ), ExtResource( 202 ), ExtResource( 202 ), ExtResource( 26 ), ExtResource( 26 ), ExtResource( 26 ), ExtResource( 204 ), ExtResource( 204 ), ExtResource( 204 ) ],
-"loop": false,
-"name": "shieldChaos_longsword",
-"speed": 20.0
-}, {
-"frames": [ ExtResource( 46 ), ExtResource( 45 ), ExtResource( 50 ), ExtResource( 44 ), ExtResource( 49 ), ExtResource( 47 ), ExtResource( 48 ) ],
-"loop": false,
-"name": "deathSteel_longsword",
-"speed": 6.0
-}, {
-"frames": [ ExtResource( 28 ), ExtResource( 42 ), ExtResource( 41 ), ExtResource( 43 ), ExtResource( 43 ) ],
-"loop": false,
-"name": "slash0Steel_longsword",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ) ],
-"loop": true,
-"name": "idleSteel_longsword",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 64 ), ExtResource( 63 ), ExtResource( 62 ), ExtResource( 61 ), ExtResource( 61 ) ],
-"loop": false,
-"name": "slash30Steel_longsword",
 "speed": 8.0
 }, {
 "frames": [ ExtResource( 17 ), ExtResource( 20 ), ExtResource( 29 ), ExtResource( 36 ), ExtResource( 36 ) ],
@@ -282,89 +347,44 @@ animations = [ {
 "name": "shieldSteel_longsword",
 "speed": 20.0
 }, {
-"frames": [ ExtResource( 76 ), ExtResource( 73 ), ExtResource( 75 ), ExtResource( 74 ), ExtResource( 74 ) ],
-"loop": false,
-"name": "stab30Steel_longsword",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 128 ), ExtResource( 129 ), ExtResource( 130 ), ExtResource( 126 ), ExtResource( 126 ) ],
+"frames": [ ExtResource( 178 ), ExtResource( 180 ) ],
 "loop": true,
-"name": "slash-30Chaos_longsword",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 115 ), ExtResource( 116 ), ExtResource( 118 ), ExtResource( 117 ), ExtResource( 117 ) ],
-"loop": false,
-"name": "slash0Chaos_longsword",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 194 ), ExtResource( 195 ), ExtResource( 192 ), ExtResource( 193 ), ExtResource( 184 ), ExtResource( 182 ), ExtResource( 188 ) ],
-"loop": false,
-"name": "deathChaos_longsword",
-"speed": 6.0
-}, {
-"frames": [ ExtResource( 159 ), ExtResource( 162 ), ExtResource( 156 ), ExtResource( 158 ), ExtResource( 160 ), ExtResource( 157 ), ExtResource( 161 ), ExtResource( 155 ) ],
-"loop": true,
-"name": "runNone",
-"speed": 8.0
+"name": "fallChaos_longsword",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 119 ), ExtResource( 120 ), ExtResource( 121 ), ExtResource( 122 ), ExtResource( 122 ) ],
 "loop": true,
 "name": "slash30Chaos_longsword",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 170 ), ExtResource( 171 ), ExtResource( 171 ) ],
+"frames": [ ExtResource( 82 ), ExtResource( 83 ), ExtResource( 84 ), ExtResource( 81 ), ExtResource( 81 ) ],
 "loop": false,
-"name": "landChaos_longsword",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 147 ), ExtResource( 148 ), ExtResource( 150 ), ExtResource( 149 ), ExtResource( 152 ), ExtResource( 151 ), ExtResource( 154 ), ExtResource( 153 ) ],
-"loop": true,
-"name": "runChaos_longsword",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 38 ), ExtResource( 37 ), ExtResource( 37 ) ],
-"loop": false,
-"name": "landSteel_longsword",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 18 ), ExtResource( 163 ), ExtResource( 25 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 22 ) ],
-"loop": true,
-"name": "runSteel_longsword",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 169 ), ExtResource( 168 ), ExtResource( 168 ) ],
-"loop": true,
-"name": "landNone",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 132 ), ExtResource( 134 ), ExtResource( 133 ), ExtResource( 135 ), ExtResource( 135 ) ],
-"loop": false,
-"name": "stab30Chaos_longsword",
+"name": "stab-30Steel_longsword",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 199 ), ExtResource( 203 ), ExtResource( 197 ), ExtResource( 198 ) ],
-"loop": false,
-"name": "shieldNone",
-"speed": 20.0
-}, {
-"frames": [ ExtResource( 165 ), ExtResource( 164 ), ExtResource( 166 ), ExtResource( 167 ), ExtResource( 179 ), ExtResource( 173 ) ],
-"loop": false,
-"name": "jumpNone",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 163 ), ExtResource( 19 ) ],
+"frames": [ ExtResource( 173 ), ExtResource( 172 ) ],
 "loop": true,
-"name": "walkSteel_longsword",
-"speed": 6.0
+"name": "fallNone",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 138 ), ExtResource( 139 ), ExtResource( 140 ), ExtResource( 142 ), ExtResource( 142 ) ],
+"loop": false,
+"name": "stab60Chaos_longsword",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 100 ), ExtResource( 111 ), ExtResource( 107 ), ExtResource( 105 ), ExtResource( 103 ), ExtResource( 102 ), ExtResource( 112 ), ExtResource( 114 ), ExtResource( 101 ), ExtResource( 113 ), ExtResource( 110 ), ExtResource( 108 ), ExtResource( 104 ), ExtResource( 106 ), ExtResource( 109 ) ],
+"loop": true,
+"name": "idleNone",
+"speed": 8.0
 }, {
 "frames": [ ExtResource( 159 ), ExtResource( 156 ), ExtResource( 160 ) ],
 "loop": true,
 "name": "walkNone",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 100 ), ExtResource( 111 ), ExtResource( 107 ), ExtResource( 105 ), ExtResource( 103 ), ExtResource( 102 ), ExtResource( 112 ), ExtResource( 114 ), ExtResource( 101 ), ExtResource( 113 ), ExtResource( 110 ), ExtResource( 108 ), ExtResource( 104 ), ExtResource( 106 ), ExtResource( 109 ) ],
-"loop": true,
-"name": "idleNone",
+"frames": [ ExtResource( 175 ), ExtResource( 176 ), ExtResource( 177 ), ExtResource( 174 ), ExtResource( 181 ), ExtResource( 178 ) ],
+"loop": false,
+"name": "jumpChaos_longsword",
 "speed": 8.0
 }, {
 "frames": [ ExtResource( 146 ), ExtResource( 145 ), ExtResource( 143 ), ExtResource( 144 ), ExtResource( 144 ) ],
@@ -377,35 +397,15 @@ animations = [ {
 "name": "slash60Steel_longsword",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 175 ), ExtResource( 176 ), ExtResource( 177 ), ExtResource( 174 ), ExtResource( 181 ), ExtResource( 178 ) ],
-"loop": false,
-"name": "jumpChaos_longsword",
-"speed": 8.0
+"frames": [ ExtResource( 34 ), ExtResource( 39 ) ],
+"loop": true,
+"name": "fallSteel_longsword",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 123 ), ExtResource( 124 ), ExtResource( 125 ), ExtResource( 127 ), ExtResource( 127 ) ],
 "loop": false,
 "name": "slash60Chaos_longsword",
 "speed": 8.0
-}, {
-"frames": [ ExtResource( 173 ), ExtResource( 172 ) ],
-"loop": true,
-"name": "fallNone",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 138 ), ExtResource( 139 ), ExtResource( 140 ), ExtResource( 142 ), ExtResource( 142 ) ],
-"loop": false,
-"name": "stab60Chaos_longsword",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 82 ), ExtResource( 83 ), ExtResource( 84 ), ExtResource( 81 ), ExtResource( 81 ) ],
-"loop": false,
-"name": "stab-30Steel_longsword",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 34 ), ExtResource( 39 ) ],
-"loop": true,
-"name": "fallSteel_longsword",
-"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -423,7 +423,7 @@ script = ExtResource( 40 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "runChaos_longsword"
-frame = 6
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
