@@ -7,6 +7,7 @@ var hitHaytham = false
 var gone = false
 var flexa_strengh
 var flexa_push_power
+var archer_position
 signal dano()
 
 # Called when the node enters the scene tree for the first time.
@@ -23,7 +24,7 @@ func _on_Area2D_body_entered(body):
 	if body.get_name() == "Haytham":
 		hitHaytham = true
 		queue_free()
-		body.take_damage(position,flexa_strengh,flexa_push_power)
+		body.take_damage(archer_position,flexa_strengh,flexa_push_power)
 		emit_signal("dano")
 		
 		

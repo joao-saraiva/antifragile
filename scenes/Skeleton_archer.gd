@@ -67,6 +67,7 @@ func _process(delta):
 			a.escala = next_direction
 			a.flexa_push_power = push_power
 			a.flexa_strengh = strengh
+			a.archer_position = position
 
 func take_damage():
 	

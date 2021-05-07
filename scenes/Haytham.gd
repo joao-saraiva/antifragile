@@ -33,9 +33,9 @@ var inventory_open = false
 # cada vez q o jogo for iniciado. Estão sendo declarados aqui
 # somente para teste
 var life = 100
-export var experience = 5001
+export var experience = 0
 export var strength = 1
-export var defence = 33
+export var defence = 1
 var chaos = 0
 var chaos_enable = true
 var sword = "None"
@@ -251,8 +251,8 @@ func attack():
 
 func take_damage(enemy, enemy_strength,push_power, ignore_shield = false):
 	var damage
-	var distance = enemy.x - position.x
-	if wielded_shield and ((distance < 0 and $AnimatedSprite.scale.x < 0) or (enemy.x - position.x > 0 and $AnimatedSprite.scale.x > 0)) and not ignore_shield:
+	var distance = enemy[0] - position[0]
+	if wielded_shield and ((distance < 0 and $AnimatedSprite.scale.x < 0) or (enemy[0] - position.x > 0 and $AnimatedSprite.scale.x > 0)) and not ignore_shield:
 		$block.play()
 		damage = (enemy_strength*15)/(10*defence*chaos_multiplier)
 		life -= damage
