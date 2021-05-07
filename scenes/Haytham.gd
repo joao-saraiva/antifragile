@@ -112,7 +112,7 @@ func _physics_process(delta):
 			chaos -= 2
 			if chaos == 0:
 				reset_chaos_bar = true
-		if sword != "life_potion" and sword != "None" and esp32ChangeAttackStyle or Input.is_action_just_pressed("change_attack_style"):
+		if sword != "key" and sword != "life_potion" and sword != "None" and esp32ChangeAttackStyle or Input.is_action_just_pressed("change_attack_style"):
 			if attack_style == "slash":
 				attack_style = "stab"
 			else:
@@ -143,7 +143,7 @@ func _physics_process(delta):
 					movement.x = horizontal_axis*walk_speed
 					is_running = false
 			
-				if sword != "life_potion" and sword != "None" and (esp32Attack or Input.is_action_just_pressed("attack")) and not is_attacking():
+				if sword != "key" and sword != "life_potion" and sword != "None" and (esp32Attack or Input.is_action_just_pressed("attack")) and not is_attacking():
 					esp32Attack = false
 					attack()
 			elif $AnimatedSprite.frame == 11:

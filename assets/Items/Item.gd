@@ -14,3 +14,6 @@ func define_item(item):
 	elif item == "Steel_longsword":
 		$TextureRect.texture = load("res://assets/Items/Steel_longsword.png")
 		item_name = "Steel_longsword"
+	elif item == "key":
+		$TextureRect.texture = load("res://assets/Items/key.png")
+		item_name = "key"

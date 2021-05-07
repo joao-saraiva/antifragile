@@ -154,3 +154,8 @@ func _on_Chaos_longsword_pickup(item, node):
 func _on_Steel_longsword_pickup(item, node):
 	if loot(item) == 0:
 		node.queue_free()
+
+
+func _on_key_pickup(item, node):
+	if loot(item) == 0:
+		node.queue_free()

@@ -4,9 +4,10 @@
 [ext_resource path="res://scenes/FLEXA.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 13.4216, 0.957485 )
+extents = Vector2( 13.7701, 1.68494 )
 
 [node name="Area2D" type="Area2D"]
+position = Vector2( 3.07559, -0.198425 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
