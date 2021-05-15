@@ -4,7 +4,7 @@ export var gravity = 10
 export var walk_speed = 60
 var canAttack = false
 var is_dead = false
-var life = 0.5
+var life = 0.1
 var react_time = 200
 var direction = 0
 var next_direction = 0
@@ -51,6 +51,9 @@ func _physics_process(delta):
 		last_animation = "death"
 		next_direction = 0
 		
+		
+	if last_animation == "death" and $AnimatedSprite.frame == 11:
+		queue_free()
 	if canFollow and not attacking:
 		if player.position.x < position.x and next_direction != -1:
 				next_direction = -1
@@ -80,7 +83,20 @@ func update_animations():
 		last_animation = "walk"
 		
 
-
+func take_damage():
+	print(life)
+	if player.attack_style == "slash":
+		var damage = (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defence
+		life -= damage
+	else:
+		var damage = 0.5 * (3*Swords.swordAtributes(player.sword,player.attack_style)+3*player.strength*player.chaos_multiplier)/defence
+		life -= damage
+	if life <= 0:
+		player.experience += 1100
+		if player.chaos + 50 > 100:
+			player.chaos = 100
+		else:
+			player.chaos += 50
 
 
 func _on_CanFollow_body_entered(body):

@@ -16,3 +16,7 @@ func _ready():
 #	pass
 
 
+
+
+func _on_Chaos_longsword_pickup(item, node):
+	pass # Replace with function body.

@@ -54,6 +54,8 @@ extents = Vector2( 294.997, 18.416 )
 extents = Vector2( 13.2464, 16.8869 )
 
 [node name="Enemy_Haytham" type="KinematicBody2D"]
+collision_layer = 2147483651
+collision_mask = 3
 script = ExtResource( 21 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

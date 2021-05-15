@@ -33,7 +33,7 @@ var inventory_open = false
 # cada vez q o jogo for iniciado. Estão sendo declarados aqui
 # somente para teste
 var life = 100
-export var experience = 0
+export var experience = 1000
 export var strength = 1
 export var defence = 1
 var chaos = 0

@@ -2,9 +2,9 @@ extends Control
 
 
 var dialog = [
-	"Do you think that i need you ?",
-	"poor soul dont even know what is happening",
-	"i hope you die in the hell you little freak"
+	"Parabens haytham voce ja percebeu o que aconteceu ?",
+	"isso mesmo você morreu apenas aceite o seu destino filho do caos e fique ao meu lado",
+	"Voce quer resolver seus assuntos ? , tudo bem"
 ]
 var dialog_index = 0
 var finished = false

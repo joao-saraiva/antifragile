@@ -1,7 +1,7 @@
 extends Node2D
 
 
-onready var player = get_tree().root.get_node("BattleField").get_node("Haytham")
+onready var player = get_tree().root.get_node("Inferno").get_node("Haytham")
 onready var strength_xp_upgrade = int(pow(1.08, player.strength))
 onready var defence_xp_upgrade = int(pow(1.08, player.defence))
 var holding_item = null

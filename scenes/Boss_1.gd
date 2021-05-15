@@ -18,7 +18,7 @@ var can_attack = false
 var tocou = false
 var is_hit = false
 onready var player = get_parent().get_node("Haytham")
-var life = 200
+var life = 100
 var strength = 90
 var defense = 70
 var is_dead = false
@@ -157,5 +157,5 @@ func _on_Attack_body_entered(body):
 
 
 func _on_Death_sound_finished():
-	
+	get_tree().change_scene("res://scenes/FinalBoss_Arena.tscn")
 	pass # Replace with function body.
